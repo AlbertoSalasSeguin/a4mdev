@@ -75,7 +75,7 @@ public class frmLogin {
 		frame.getContentPane().setLayout(null);
 		{
 			lblIcon = new JLabel("");
-			lblIcon.setIcon(new ImageIcon(frmLogin.class.getResource("/recursos/Spotify_icon-icons.com_66783.png")));
+			lblIcon.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
 			lblIcon.setBounds(264, 29, 106, 120);
 			frame.getContentPane().add(lblIcon);
 		}
@@ -126,7 +126,7 @@ public class frmLogin {
 		}
 		{
 			lblanNoTienes = new JLabel("¿Aún no tienes cuenta?");
-			lblanNoTienes.setIcon(new ImageIcon(frmLogin.class.getResource("/recursos/info_4908.png")));
+			lblanNoTienes.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/info_4908.png")));
 			lblanNoTienes.setBounds(137, 423, 194, 35);
 			frame.getContentPane().add(lblanNoTienes);
 		}
@@ -140,14 +140,14 @@ public class frmLogin {
 		{
 			lblErrornick = new JLabel("");
 			lblErrornick.setVisible(false);
-			lblErrornick.setIcon(new ImageIcon(frmLogin.class.getResource("/recursos/exclamation_icon-icons.com_62226.png")));
+			lblErrornick.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/exclamation_icon-icons.com_62226.png")));
 			lblErrornick.setBounds(432, 199, 56, 35);
 			frame.getContentPane().add(lblErrornick);
 		}
 		{
 			lblErrorpass = new JLabel("");
 			lblErrorpass.setVisible(false);
-			lblErrorpass.setIcon(new ImageIcon(frmLogin.class.getResource("/recursos/exclamation_icon-icons.com_62226.png")));
+			lblErrorpass.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/exclamation_icon-icons.com_62226.png")));
 			lblErrorpass.setBounds(432, 253, 56, 35);
 			frame.getContentPane().add(lblErrorpass);
 		}
