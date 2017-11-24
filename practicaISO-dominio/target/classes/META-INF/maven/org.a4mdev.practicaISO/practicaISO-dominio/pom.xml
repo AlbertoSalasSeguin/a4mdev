@@ -24,7 +24,7 @@
     </dependency>
     <dependency>
       <groupId>org.a4mdev.practicaISO</groupId>
-      <artifactId>practicaISO-presentacion</artifactId>
+      <artifactId>practicaISO-persistencia</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency> 
   </dependencies>
