@@ -165,6 +165,8 @@ public class frmLogin {
 		if(c!=null) {
 			JOptionPane.showMessageDialog(frame.getContentPane(), "Bienvenido "+c.getNombre());
 			frame.dispose();
+			frmInterfazPrincipal fp = new frmInterfazPrincipal(c);
+			fp.setVisible(true);
 		
 		}else if(txtNick.getText().equals("")){
 			
@@ -185,6 +187,7 @@ public class frmLogin {
 	private class BtnEntrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			entrar();
+			
 		}
 	}
 	private class TxtNickKeyListener extends KeyAdapter {

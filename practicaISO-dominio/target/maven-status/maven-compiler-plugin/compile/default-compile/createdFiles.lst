@@ -1,1 +1,3 @@
-org\practicaISO\dominio\App.class
+org\practicaISO\dominio\Cliente.class
+org\practicaISO\dominio\Album.class
+org\practicaISO\dominio\Cancion.class

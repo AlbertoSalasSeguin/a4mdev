@@ -63,7 +63,11 @@ public class Cancion {
 		this.precio = precio;
 	}
 	
-	
+	@Override
+	public String toString() {
+		
+		return this.getTitulo()+ " - " +this.getAutor();
+	}
 	
 	
 	

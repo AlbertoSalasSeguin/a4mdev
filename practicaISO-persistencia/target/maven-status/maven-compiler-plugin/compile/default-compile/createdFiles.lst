@@ -1,1 +1,4 @@
-org\practicaISO\persistencia\App.class
+org\practicaISO\persistencia\GestorAlbum.class
+org\practicaISO\persistencia\GestorCancion.class
+org\practicaISO\persistencia\GestorCliente.class
+org\practicaISO\persistencia\MySQLConexion.class

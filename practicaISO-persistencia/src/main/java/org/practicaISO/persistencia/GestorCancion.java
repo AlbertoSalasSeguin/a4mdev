@@ -16,6 +16,29 @@ public class GestorCancion {
 	private ResultSet rs;
 	private Statement st;
 
+	
+	public  ArrayList leerCanciones () {
+		ArrayList <Cancion> ac= new ArrayList<Cancion>();
+		try {
+			con=MySQLConexion.getConexion();
+			String sql = "select*from tb_cancion order by idcancion";
+			pst=con.prepareStatement(sql);
+			rs=pst.executeQuery();
+
+			while(rs.next()) {
+				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
+						rs.getDouble(5));
+				ac.add(cancion);
+			}
+		}catch(Exception e) {
+			System.out.println("Error al obtener lista de canciones");
+		}
+
+		return ac;
+	}
+
+	
+	
 	public Cancion obtenerCancion(Cancion can) {
 
 		try {
