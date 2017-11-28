@@ -81,9 +81,8 @@ public class frmInterfazPrincipal extends JFrame {
 					tree = new JTree();
 					tree.addTreeSelectionListener(new TreeTreeSelectionListener());
 					tree.setModel(new DefaultTreeModel(
-						new DefaultMutableTreeNode("Menu") {
+						new DefaultMutableTreeNode("Canciones") {
 							{
-								add(new DefaultMutableTreeNode("Canciones"));
 							}
 						}
 					));
@@ -92,11 +91,10 @@ public class frmInterfazPrincipal extends JFrame {
 			}
 			{
 				panelCard = new JPanel();
-				panelCard.setBorder(new TitledBorder(null, "Canciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				splitPane.setRightComponent(panelCard);
 				panelCard.setLayout(null);
 				{
-					pnlCanciones = new MiPanelCanciones();
+					pnlCanciones = new MiPanelCanciones(c);
 					pnlCanciones.setBorder(new TitledBorder(null, "Canciones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 					pnlCanciones.setBounds(0, 28, 592, 409);
 					panelCard.add(pnlCanciones);
@@ -127,11 +125,14 @@ public class frmInterfazPrincipal extends JFrame {
 
 	private class TreeTreeSelectionListener implements TreeSelectionListener {
 		public void valueChanged(TreeSelectionEvent e) {
+			System.out.println("Nodo seleccionado "+e.getPath().getLastPathComponent());
 			String nodo = (e.getPath().getLastPathComponent()).toString();
 			switch (nodo){
 				case "Canciones":
 					((CardLayout) panelCard.getLayout()).show(panelCard, nodo);
+					System.out.println("hola");
 			}
 		}
 	}
 }
+

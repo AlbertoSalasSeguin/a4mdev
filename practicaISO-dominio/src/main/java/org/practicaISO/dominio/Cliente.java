@@ -25,6 +25,10 @@ public class Cliente {
 	
 	}
 
+	public Cliente(String nick) {
+		this.nick=nick;
+	}
+
 	public String getNick() {
 		return nick;
 	}

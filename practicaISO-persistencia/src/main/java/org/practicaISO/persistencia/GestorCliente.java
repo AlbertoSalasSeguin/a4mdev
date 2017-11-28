@@ -91,6 +91,22 @@ public class GestorCliente {
 		}
 	}
 	
+	public void comprarCancion(Cliente client, Cancion canc) {
+		try {
+
+			con=MySQLConexion.getConexion();
+			st=con.createStatement();
+			String sql = "insert into tb_playlist values(?,?)";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, client.getNick());
+			pst.setInt(2, canc.getIdCancion());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("Error al comprar canción");
+		}
+
+	}
+	
 	public void eliminarCliente(Cliente client) {
 		try {
 			con=MySQLConexion.getConexion();

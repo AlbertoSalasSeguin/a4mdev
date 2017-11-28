@@ -66,7 +66,7 @@ public class Cancion {
 	@Override
 	public String toString() {
 		
-		return this.getTitulo()+ " - " +this.getAutor();
+		return this.getIdCancion()+ "-" +this.getTitulo()+ " - " +this.getAutor();
 	}
 	
 	

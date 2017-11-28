@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.practicaISO.dominio.Cancion;
+import org.practicaISO.dominio.Cliente;
 ;
 
 public class GestorCancion {
@@ -37,6 +38,26 @@ public class GestorCancion {
 		return ac;
 	}
 
+	
+	public ArrayList<String> obtenerIds (Cliente client) {
+		ArrayList<String> ids = new ArrayList<String>();
+		try {
+			con=MySQLConexion.getConexion();
+			String sql = "select canciones from tb_playlist where nick = ?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, client.getNick());
+			rs=pst.executeQuery();
+
+			while(rs.next()) {
+				ids.add(String.valueOf(rs.getInt(1)));
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error al obtener canciones");
+		}
+		return ids;
+		
+	}
 	
 	
 	public Cancion obtenerCancion(Cancion can) {
