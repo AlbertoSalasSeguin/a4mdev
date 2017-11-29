@@ -137,7 +137,7 @@ public class GestorCliente {
 		try {
 			con=MySQLConexion.getConexion();
 			st=con.createStatement();
-			String sql = "delete from tb_client where nick = '"+client.getNick()+"'";
+			String sql = "delete from tb_cliente where nick = '"+client.getNick()+"'";
 			pst=con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {

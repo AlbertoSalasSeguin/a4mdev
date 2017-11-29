@@ -34,6 +34,7 @@ public class MiPanelInfo extends JPanel {
 	private JButton btnAtrs;
 	private JLabel lblLblnick;
 	private JCheckBox chckbxActualizarAPremium;
+	private JButton btnEliminarMiCuenta;
 
 	/**
 	 * Create the panel.
@@ -144,6 +145,12 @@ public class MiPanelInfo extends JPanel {
 			chckbxActualizarAPremium.setBounds(184, 477, 201, 25);
 			add(chckbxActualizarAPremium);
 		}
+		{
+			btnEliminarMiCuenta = new JButton("Eliminar mi cuenta");
+			btnEliminarMiCuenta.addActionListener(new BtnEliminarMiCuentaActionListener());
+			btnEliminarMiCuenta.setBounds(776, 449, 156, 81);
+			add(btnEliminarMiCuenta);
+		}
 
 	}
 
@@ -179,6 +186,26 @@ public class MiPanelInfo extends JPanel {
 				e2.printStackTrace();
 			}
 			
+		}
+	}
+	private class BtnEliminarMiCuentaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			int confirmado = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer."
+					,"Ventana de confirmación",JOptionPane.YES_NO_OPTION);
+			if (confirmado==JOptionPane.YES_OPTION) {
+				GestorCliente gc = new GestorCliente();
+				Cliente client = new Cliente(lblLblnick.getText());
+				try {
+
+					gc.eliminarCliente(client);
+					JOptionPane.showMessageDialog(null, "Tu cuenta se ha eliminado con éxito. Saliendo...");
+					System.exit(0);
+
+				} catch (Exception e2) {
+					e2.printStackTrace();
+					
+				}
+			}
 		}
 	}
 }
