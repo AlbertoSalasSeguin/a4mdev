@@ -63,7 +63,11 @@ public class Cancion {
 		this.precio = precio;
 	}
 	
-	@Override
+	public String toStringCompra() {
+		
+		return this.getIdCancion()+ "-" +this.getTitulo()+ " - " +this.getAutor()+" - "+this.getPrecio()+"€";
+	}
+	
 	public String toString() {
 		
 		return this.getIdCancion()+ "-" +this.getTitulo()+ " - " +this.getAutor();

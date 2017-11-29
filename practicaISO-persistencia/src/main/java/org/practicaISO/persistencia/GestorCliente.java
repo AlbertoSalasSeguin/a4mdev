@@ -16,7 +16,7 @@ public class GestorCliente {
 	private ResultSet rs;
 	private Statement st;
 
-	public Cliente obtenerCliente(Cliente client) {
+	public Cliente logearCliente(Cliente client) {
 
 		try {
 			con=MySQLConexion.getConexion();
@@ -38,7 +38,29 @@ public class GestorCliente {
 		return cliente;
 	}
 
-	public void obtenerCanciones(Cliente client) {
+	public Cliente obtenerCliente(Cliente client) {
+
+		try {
+			con=MySQLConexion.getConexion();
+			String sql = "select*from tb_cliente where nick = ?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, client.getNick());
+			rs=pst.executeQuery();
+
+			while(rs.next()) {
+				cliente= new Cliente (rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
+						rs.getString(5),rs.getString(6));
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error al obtener el cliente");
+		}
+
+		return cliente;
+	}
+	
+	public ArrayList<Cancion> obtenerCanciones(Cliente client) {
+		ArrayList<Cancion> ac = new ArrayList<Cancion>();
 		try {
 			con=MySQLConexion.getConexion();
 			String sql = "select canciones from tb_playlist where nick = ?";
@@ -46,15 +68,14 @@ public class GestorCliente {
 			pst.setString(1, client.getNick());
 
 			rs=pst.executeQuery();
-			ArrayList<Cancion> ac = new ArrayList<Cancion>();
 			while(rs.next()) {
-				ac.add(new Cancion(rs.getInt(0)));
+				ac.add(new Cancion(rs.getInt(1)));
 			}
 			client.setListaCanciones(ac);
 		} catch (Exception e) {
 			System.out.println("Error al cargar playlist del usuario");
 		}
-
+		return ac;
 
 	}
 
@@ -82,9 +103,14 @@ public class GestorCliente {
 		try {
 			con=MySQLConexion.getConexion();
 			st=con.createStatement();
-			String sql = "update tb_client set pass = '"+client.getPass()+"', email = '"+client.getEmail()+"', nombre = '"+client.getNombre()+"',"
-					+ " apellidos = '"+client.getApellidos()+"', suscripcion = '"+client.getSuscripcion()+" where usuario='"+client.getNick()+"'";
+			String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ? where nick = ?";
 			pst=con.prepareStatement(sql);
+			pst.setString(1, client.getPass());
+			pst.setString(2, client.getEmail());
+			pst.setString(3, client.getNombre());
+			pst.setString(4, client.getApellidos());
+			pst.setString(5, client.getSuscripcion());
+			pst.setString(6, client.getNick());
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al actualizar cliente en la base de datos");
