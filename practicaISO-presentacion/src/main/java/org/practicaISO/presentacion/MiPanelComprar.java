@@ -44,6 +44,7 @@ public class MiPanelComprar extends JPanel {
 		setMinimumSize(new Dimension(104, 20));
 		{
 			list = new JList();
+			list.setFont(new Font("Tahoma", Font.BOLD, 17));
 			list.setBounds(58, 153, 568, 334);
 			list.setBackground(new Color(105, 105, 105));
 			list.addListSelectionListener(new ListListSelectionListener());

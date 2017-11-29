@@ -62,19 +62,17 @@ public class frmInterfaz extends JFrame {
 					tree.setBackground(Color.GRAY);
 					tree.addTreeSelectionListener(new TreeTreeSelectionListener());
 					tree.setModel(new DefaultTreeModel(
-						new DefaultMutableTreeNode("Menú") {
+						new DefaultMutableTreeNode("Menu principal\t") {
 							{
 								DefaultMutableTreeNode node_1;
-								DefaultMutableTreeNode node_2;
 								node_1 = new DefaultMutableTreeNode("Biblioteca");
-									node_2 = new DefaultMutableTreeNode("Canciones");
-										node_2.add(new DefaultMutableTreeNode("Artistas"));
-										node_2.add(new DefaultMutableTreeNode("Álbumes"));
-									node_1.add(node_2);
-									node_2 = new DefaultMutableTreeNode("Mi cuenta");
-										node_2.add(new DefaultMutableTreeNode("Información de mi cuenta"));
-										node_2.add(new DefaultMutableTreeNode("Comprar canciones"));
-									node_1.add(node_2);
+									node_1.add(new DefaultMutableTreeNode("Canciones"));
+									node_1.add(new DefaultMutableTreeNode("Artistas"));
+									node_1.add(new DefaultMutableTreeNode("Álbumes"));
+								add(node_1);
+								node_1 = new DefaultMutableTreeNode("Mi cuenta");
+									node_1.add(new DefaultMutableTreeNode("Información de mi cuenta"));
+									node_1.add(new DefaultMutableTreeNode("Comprar canciones"));
 								add(node_1);
 							}
 						}

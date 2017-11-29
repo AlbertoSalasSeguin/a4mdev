@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 
 public class MiPanelCanciones extends JPanel {
 	private JList list;
@@ -31,28 +32,30 @@ public class MiPanelCanciones extends JPanel {
 	private JButton btnReproductor;
 	private JButton btnParar;
 	private JLabel lblReproduciendo;
+	private JLabel label;
+	private JLabel lblNick;
 
 	/**
 	 * Create the panel.
 	 */
 	
 	public MiPanelCanciones(Cliente c) {
-		setBackground(Color.GRAY);
+		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		{
 			list = new JList();
 			list.addListSelectionListener(new ListListSelectionListener());
-			list.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			list.setFont(new Font("Tahoma", Font.BOLD, 17));
 			list.setForeground(SystemColor.control);
 			list.setBackground(Color.GRAY);
-			list.setBounds(12, 69, 461, 188);
+			list.setBounds(58, 168, 559, 233);
 			add(list);
 		}
 		{
-			lblEstaEsTu = new JLabel("Esta es tu lista de canciones");
-			lblEstaEsTu.setFont(new Font("Tahoma", Font.BOLD, 21));
+			lblEstaEsTu = new JLabel("Lista de canciones");
+			lblEstaEsTu.setFont(new Font("Tahoma", Font.BOLD, 26));
 			lblEstaEsTu.setForeground(Color.WHITE);
-			lblEstaEsTu.setBounds(12, 13, 340, 31);
+			lblEstaEsTu.setBounds(58, 26, 438, 58);
 			add(lblEstaEsTu);
 		}
 		GestorCliente gc = new GestorCliente();
@@ -77,22 +80,36 @@ public class MiPanelCanciones extends JPanel {
 			btnReproductor = new JButton("Reproducir");
 			btnReproductor.addActionListener(new BtnReproductorActionListener());
 			btnReproductor.setEnabled(false);
-			btnReproductor.setBounds(12, 278, 104, 31);
+			btnReproductor.setBounds(731, 166, 104, 31);
 			add(btnReproductor);
 		}
 		{
 			btnParar = new JButton("Parar");
 			btnParar.addActionListener(new BtnPararActionListener());
 			btnParar.setEnabled(false);
-			btnParar.setBounds(165, 278, 104, 31);
+			btnParar.setBounds(731, 217, 104, 31);
 			add(btnParar);
 		}
 		{
 			lblReproduciendo = new JLabel("");
-			lblReproduciendo.setForeground(UIManager.getColor("Button.light"));
-			lblReproduciendo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
-			lblReproduciendo.setBounds(12, 325, 521, 31);
+			lblReproduciendo.setForeground(Color.WHITE);
+			lblReproduciendo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 21));
+			lblReproduciendo.setBounds(58, 441, 671, 51);
 			add(lblReproduciendo);
+		}
+		{
+			label = new JLabel("");
+			label.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			label.setBounds(768, 0, 176, 127);
+			add(label);
+		}
+		{
+			lblNick = new JLabel((String) null);
+			lblNick.setForeground(Color.WHITE);
+			lblNick.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+			lblNick.setBounds(58, 89, 242, 38);
+			lblNick.setText(c.getNick());
+			add(lblNick);
 		}
 		
 	}
