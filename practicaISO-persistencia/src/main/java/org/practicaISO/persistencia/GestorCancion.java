@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.practicaISO.dominio.Album;
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
 ;
@@ -28,7 +29,7 @@ public class GestorCancion {
 
 			while(rs.next()) {
 				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
-						rs.getDouble(5));
+						rs.getFloat(5));
 				ac.add(cancion);
 			}
 		}catch(Exception e) {
@@ -38,6 +39,27 @@ public class GestorCancion {
 		return ac;
 	}
 
+	public  ArrayList<Cancion> obtenerCancionesAutor (String autor) {
+		ArrayList <Cancion> ac= new ArrayList<Cancion>();
+		try {
+			con=MySQLConexion.getConexion();
+			String sql = "select*from tb_cancion where autor = ?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1,autor);
+			rs=pst.executeQuery();
+
+			while(rs.next()) {
+				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
+						rs.getFloat(5));
+				ac.add(cancion);
+			}
+		}catch(Exception e) {
+			System.out.println("Error al obtener lista de canciones");
+		}
+
+		return ac;
+	}
+	
 	
 	public ArrayList<String> obtenerIds (Cliente client) {
 		ArrayList<String> ids = new ArrayList<String>();
@@ -59,8 +81,31 @@ public class GestorCancion {
 		
 	}
 	
+	public ArrayList<String> obteneridsAlbum (Album alb) {
+		ArrayList<String> ids = new ArrayList<String>();
+		try {
+			con=MySQLConexion.getConexion();
+			String sql = "select idcancion from tb_cancion where album = ?";
+			pst=con.prepareStatement(sql);
+			pst.setInt(1,alb.getIdalbum());
+			rs=pst.executeQuery();
+
+			while(rs.next()) {
+				ids.add(String.valueOf(rs.getInt(1)));
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error al obtener canciones");
+		}
+		return ids;
+		
+	}
 	
-	public Cancion obtenerCancion(Cancion can) {
+	
+	
+	
+	
+	public Cancion obtenerCancionId(Cancion can) {
 
 		try {
 			con=MySQLConexion.getConexion();
@@ -71,7 +116,7 @@ public class GestorCancion {
 
 			while(rs.next()) {
 				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
-						rs.getDouble(5));
+						rs.getFloat(5));
 
 			}
 		} catch (Exception e) {
@@ -81,6 +126,27 @@ public class GestorCancion {
 		return cancion;
 	}
 
+	public Cancion obtenerCancionTitulo(Cancion can) {
+
+		try {
+			con=MySQLConexion.getConexion();
+			String sql = "select*from tb_cancion where titulo = ?";
+			pst=con.prepareStatement(sql);
+			pst.setString(1, can.getTitulo());
+			rs=pst.executeQuery();
+
+			while(rs.next()) {
+				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
+						rs.getFloat(5));
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error al obtener la cancion");
+		}
+
+		return cancion;
+	}
+	
 	public void insertarCancion(Cancion can) {
 		try {
 
@@ -92,7 +158,7 @@ public class GestorCancion {
 			pst.setInt(2, can.getIdCancion());
 			pst.setString(3, can.getAutor());
 			pst.setInt(4, can.getAlbum());
-			pst.setDouble(5, can.getPrecio());
+			pst.setFloat(5, can.getPrecio());
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al insertar canción en la base de datos");
@@ -104,8 +170,8 @@ public class GestorCancion {
 		try {
 			con=MySQLConexion.getConexion();
 			st=con.createStatement();
-			String sql = "update tb_cancion set titulo = '"+can.getTitulo()+"', idcancion = "+can.getIdCancion()+", autor = '"+can.getAutor()+"',"
-					+ " album = "+can.getAlbum()+", precio = "+can.getPrecio()+"";
+			String sql = "update tb_cancion set titulo = '"+can.getTitulo()+"', autor = '"+can.getAutor()+"',"
+					+ " album = "+can.getAlbum()+", precio = "+can.getPrecio()+" where idcancion = "+can.getIdCancion();
 			pst=con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {

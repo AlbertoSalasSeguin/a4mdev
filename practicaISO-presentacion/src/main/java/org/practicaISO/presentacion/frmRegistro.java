@@ -181,7 +181,7 @@ public class frmRegistro extends JFrame {
 			if(!txtNick.getText().equals("") && !pwdPass.getText().equals("") && !txtEmail.getText().equals("")
 					&& !txtNombre.getText().equals("") && !txtApellidos.getText().equals("")) {
 						
-						client= new Cliente(txtNick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(),"Normal");
+						client= new Cliente(txtNick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(),"Normal", "Usuario");
 						GestorCliente gc= new GestorCliente();
 			
 						try {

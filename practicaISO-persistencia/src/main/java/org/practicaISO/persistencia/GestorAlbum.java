@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import org.practicaISO.dominio.Album;
+import org.practicaISO.dominio.Cancion;
 
 
 public class GestorAlbum {
@@ -15,13 +16,13 @@ public class GestorAlbum {
 	private ResultSet rs;
 	private Statement st;
 
-	public Album obtenerCancion(Album alb) {
+	public Album obtenerAlbum(Cancion canc) {
 
 		try {
 			con=MySQLConexion.getConexion();
-			String sql = "select*from tb_album where idalbum = ?";
+			String sql = "select * from tb_album where idalbum = ?";
 			pst=con.prepareStatement(sql);
-			pst.setInt(1, alb.getIdalbum());
+			pst.setInt(1, canc.getAlbum());
 			rs=pst.executeQuery();
 
 			while(rs.next()) {

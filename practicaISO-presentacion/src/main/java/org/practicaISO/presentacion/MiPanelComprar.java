@@ -1,6 +1,7 @@
 package org.practicaISO.presentacion;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
@@ -38,6 +40,7 @@ public class MiPanelComprar extends JPanel {
 	private JLabel lblEscuchando;
 	private JButton btnParar;
 	private JLabel lblicon;
+	private JButton btnEditarCancion;
 
 	public MiPanelComprar(Cliente client) {
 		setBackground(Color.DARK_GRAY);
@@ -82,7 +85,7 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			btnComprarCancin = new JButton("Comprar canción");
-			btnComprarCancin.setBounds(661, 395, 243, 80);
+			btnComprarCancin.setBounds(655, 407, 243, 80);
 			btnComprarCancin.addActionListener(new BtnComprarCancinActionListener());
 			btnComprarCancin.setEnabled(false);
 			add(btnComprarCancin);
@@ -123,6 +126,14 @@ public class MiPanelComprar extends JPanel {
 			lblicon.setBounds(768, 0, 176, 127);
 			add(lblicon);
 		}
+		{
+			btnEditarCancion = new JButton("Editar Canción");
+			btnEditarCancion.addActionListener(new BtnEditarCancionActionListener());
+			btnEditarCancion.setEnabled(false);
+			btnEditarCancion.setVisible(false);
+			btnEditarCancion.setBounds(655, 291, 114, 58);
+			add(btnEditarCancion);
+		}
 		
 		if(client.getSuscripcion().equals("Premium")) {
 			btnReproducir.setVisible(true);
@@ -146,6 +157,10 @@ public class MiPanelComprar extends JPanel {
 				btnReproducir.setVisible(true);
 				btnParar.setVisible(true);
 			}
+			if(client.getRol().equals("Admin")) {
+				btnEditarCancion.setVisible(true);
+				btnEditarCancion.setEnabled(true);
+			}
 		}
 	}
 
@@ -158,7 +173,7 @@ public class MiPanelComprar extends JPanel {
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			Cliente client = new Cliente(lblNick.getText());
 			try {
-				canc=gcan.obtenerCancion(canc);
+				canc=gcan.obtenerCancionId(canc);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}	
@@ -201,7 +216,7 @@ public class MiPanelComprar extends JPanel {
 			StringTokenizer token = new StringTokenizer(cancion, "-");
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
-				canc=gcan.obtenerCancion(canc);
+				canc=gcan.obtenerCancionId(canc);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -215,4 +230,21 @@ public class MiPanelComprar extends JPanel {
 			btnReproducir.setEnabled(true);
 		}
 	}
+	private class BtnEditarCancionActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String cancion = list.getSelectedValue().toString();
+			StringTokenizer token = new StringTokenizer(cancion, "-");
+			GestorCancion gcan = new GestorCancion();
+			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
+			try {
+				canc=gcan.obtenerCancionId(canc);
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			MiGestorCancion mgc= new MiGestorCancion(canc);
+			mgc.setVisible(true);
+			
+		}
+	}
+
 }

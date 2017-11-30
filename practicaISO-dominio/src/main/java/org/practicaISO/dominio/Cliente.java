@@ -9,9 +9,10 @@ public class Cliente {
 	private String nombre;
 	private String apellidos;
 	private String suscripcion;
+	private String rol;
 	private ArrayList<Cancion> listaCanciones;
 	
-	public Cliente(String nick, String pass, String email, String nombre, String apellidos, String suscripcion) {
+	public Cliente(String nick, String pass, String email, String nombre, String apellidos, String suscripcion, String rol) {
 		
 		this.nick = nick;
 		this.pass = pass;
@@ -19,6 +20,7 @@ public class Cliente {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.suscripcion = suscripcion;
+		this.rol=rol;
 	}
 
 	public Cliente() {
@@ -84,5 +86,15 @@ public class Cliente {
 	public void setListaCanciones(ArrayList<Cancion> listaCanciones) {
 		this.listaCanciones = listaCanciones;
 	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	
+	
 
 }

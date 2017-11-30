@@ -57,12 +57,8 @@ public class frmInterfaz extends JFrame {
 				splitPane.setLeftComponent(scrollPane);
 				{
 					tree = new JTree();
-					tree.setFont(new Font("Tahoma", Font.BOLD, 23));
-					tree.setForeground(new Color(102, 153, 255));
-					tree.setBackground(Color.GRAY);
-					tree.addTreeSelectionListener(new TreeTreeSelectionListener());
 					tree.setModel(new DefaultTreeModel(
-						new DefaultMutableTreeNode("Menu principal\t") {
+						new DefaultMutableTreeNode("Menú") {
 							{
 								DefaultMutableTreeNode node_1;
 								node_1 = new DefaultMutableTreeNode("Biblioteca");
@@ -77,6 +73,27 @@ public class frmInterfaz extends JFrame {
 							}
 						}
 					));
+					tree.setFont(new Font("Tahoma", Font.BOLD, 18));
+					tree.setForeground(new Color(102, 153, 255));
+					tree.setBackground(Color.WHITE);
+					tree.addTreeSelectionListener(new TreeTreeSelectionListener());
+				/*	tree.setModel(new DefaultTreeModel(
+						new DefaultMutableTreeNode("Menu principal") {
+							{
+								DefaultMutableTreeNode node_1;
+								node_1 = new DefaultMutableTreeNode("Biblioteca");
+									node_1.add(new DefaultMutableTreeNode("Canciones"));
+									node_1.add(new DefaultMutableTreeNode("Artistas"));
+									node_1.add(new DefaultMutableTreeNode("Álbumes"));
+								add(node_1);
+								node_1 = new DefaultMutableTreeNode("Mi cuenta");
+									node_1.add(new DefaultMutableTreeNode("Información de mi cuenta"));
+									node_1.add(new DefaultMutableTreeNode("Comprar canciones"));
+								add(node_1);
+							}
+						}
+					)); 
+					*/
 					scrollPane.setViewportView(tree);
 				}
 //				Menú
@@ -102,7 +119,7 @@ public class frmInterfaz extends JFrame {
 				}
 				{
 					miPanelArtistas = new MiPanelArtistas(c);
-					panel.add(miPanelArtistas, "Atistas");
+					panel.add(miPanelArtistas, "Artistas");
 				}
 				{
 					miPanelAlbumes = new MiPanelAlbumes(c);

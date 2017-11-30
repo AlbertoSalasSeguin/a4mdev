@@ -28,7 +28,7 @@ public class GestorCliente {
 
 			while(rs.next()) {
 				cliente= new Cliente (rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
-						rs.getString(5),rs.getString(6));
+						rs.getString(5),rs.getString(6),rs.getString(7));
 
 			}
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class GestorCliente {
 
 			while(rs.next()) {
 				cliente= new Cliente (rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
-						rs.getString(5),rs.getString(6));
+						rs.getString(5),rs.getString(6),rs.getString(7));
 
 			}
 		} catch (Exception e) {
@@ -84,7 +84,7 @@ public class GestorCliente {
 
 			con=MySQLConexion.getConexion();
 			st=con.createStatement();
-			String sql = "insert into tb_cliente values(?,?,?,?,?,?)";
+			String sql = "insert into tb_cliente values(?,?,?,?,?,?,?)";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, client.getNick());
 			pst.setString(2, client.getPass());
@@ -92,6 +92,7 @@ public class GestorCliente {
 			pst.setString(4, client.getNombre());
 			pst.setString(5, client.getApellidos());
 			pst.setString(6, client.getSuscripcion());
+			pst.setString(7, client.getRol());
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al insertar cliente en la base de datos");
@@ -103,14 +104,15 @@ public class GestorCliente {
 		try {
 			con=MySQLConexion.getConexion();
 			st=con.createStatement();
-			String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ? where nick = ?";
+			String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ?, rol = ? where nick = ?";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, client.getPass());
 			pst.setString(2, client.getEmail());
 			pst.setString(3, client.getNombre());
 			pst.setString(4, client.getApellidos());
 			pst.setString(5, client.getSuscripcion());
-			pst.setString(6, client.getNick());
+			pst.setString(6, client.getRol());
+			pst.setString(7, client.getNick());
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al actualizar cliente en la base de datos");

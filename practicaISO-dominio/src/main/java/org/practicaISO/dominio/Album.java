@@ -10,6 +10,10 @@ public class Album {
 		this.nombre = nombre;
 	}
 
+	public Album(int idalbum) {
+		this.idalbum=idalbum;
+	}
+
 	public int getIdalbum() {
 		return idalbum;
 	}
@@ -26,5 +30,8 @@ public class Album {
 		this.nombre = nombre;
 	}
 	
+	public String toString() {
+		return this.getIdalbum()+"-"+this.getNombre();
+	}
 	
 }

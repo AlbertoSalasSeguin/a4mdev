@@ -6,15 +6,19 @@ public class Cancion {
 	private int idCancion;
 	private String autor;
 	private int album;
-	private double precio;
+	private float precio;
 	
 	
 	
 	public Cancion(int idCancion) {
 		this.idCancion = idCancion;
 	}
+	
+	public Cancion(String titulo) {
+		this.titulo=titulo;
+	}
 
-	public Cancion(String titulo, int idCancion, String autor, int album, double precio) {
+	public Cancion(String titulo, int idCancion, String autor, int album, float precio) {
 
 		this.titulo = titulo;
 		this.idCancion = idCancion;
@@ -55,11 +59,11 @@ public class Cancion {
 		this.album = album;
 	}
 
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(double precio) {
+	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
 	

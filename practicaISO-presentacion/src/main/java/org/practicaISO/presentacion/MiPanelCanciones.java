@@ -69,7 +69,7 @@ public class MiPanelCanciones extends JPanel {
 		}
 		if(ac!=null) {
 			for (Cancion canc : ac) {
-				canc=gcan.obtenerCancion(canc);
+				canc=gcan.obtenerCancionId(canc);
 				modelo.addElement(canc.toString());
 			}
 		}else {
@@ -94,7 +94,7 @@ public class MiPanelCanciones extends JPanel {
 			lblReproduciendo = new JLabel("");
 			lblReproduciendo.setForeground(Color.WHITE);
 			lblReproduciendo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 21));
-			lblReproduciendo.setBounds(58, 441, 671, 51);
+			lblReproduciendo.setBounds(58, 441, 819, 51);
 			add(lblReproduciendo);
 		}
 		{
@@ -136,7 +136,7 @@ public class MiPanelCanciones extends JPanel {
 			StringTokenizer token = new StringTokenizer(cancion, "-");
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
-				canc=gcan.obtenerCancion(canc);
+				canc=gcan.obtenerCancionId(canc);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}

@@ -178,7 +178,7 @@ public class MiPanelInfo extends JPanel {
 			} else {
 				suscripcion="Normal";
 			}
-			Cliente client = new Cliente(lblLblnick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(), suscripcion);
+			Cliente client = new Cliente(lblLblnick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(), suscripcion, "Usuario");
 			try {
 				gc.actualizarCliente(client);
 				JOptionPane.showMessageDialog(null, "Tu cuenta se ha actualizado con éxito");
