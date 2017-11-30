@@ -35,6 +35,7 @@ public class MiPanelInfo extends JPanel {
 	private JLabel lblLblnick;
 	private JCheckBox chckbxActualizarAPremium;
 	private JButton btnEliminarMiCuenta;
+	private JButton btnCerrarSesin;
 
 	/**
 	 * Create the panel.
@@ -121,13 +122,13 @@ public class MiPanelInfo extends JPanel {
 		{
 			btnActualizarMisDatos = new JButton("Actualizar mis datos");
 			btnActualizarMisDatos.addActionListener(new BtnActualizarMisDatosActionListener());
-			btnActualizarMisDatos.setBounds(477, 369, 164, 74);
+			btnActualizarMisDatos.setBounds(406, 371, 164, 74);
 			add(btnActualizarMisDatos);
 		}
 		{
 			btnAtrs = new JButton("Restablecer");
 			btnAtrs.addActionListener(new BtnAtrsActionListener());
-			btnAtrs.setBounds(477, 275, 164, 46);
+			btnAtrs.setBounds(406, 277, 164, 46);
 			add(btnAtrs);
 		}
 		{
@@ -148,8 +149,14 @@ public class MiPanelInfo extends JPanel {
 		{
 			btnEliminarMiCuenta = new JButton("Eliminar mi cuenta");
 			btnEliminarMiCuenta.addActionListener(new BtnEliminarMiCuentaActionListener());
-			btnEliminarMiCuenta.setBounds(776, 449, 156, 81);
+			btnEliminarMiCuenta.setBounds(738, 369, 156, 81);
 			add(btnEliminarMiCuenta);
+		}
+		{
+			btnCerrarSesin = new JButton("Cerrar sesión");
+			btnCerrarSesin.addActionListener(new BtnCerrarSesinActionListener());
+			btnCerrarSesin.setBounds(738, 275, 156, 51);
+			add(btnCerrarSesin);
 		}
 
 	}
@@ -206,6 +213,11 @@ public class MiPanelInfo extends JPanel {
 					
 				}
 			}
+		}
+	}
+	private class BtnCerrarSesinActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
 		}
 	}
 }

@@ -58,24 +58,7 @@ public class MiPanelCanciones extends JPanel {
 			lblEstaEsTu.setBounds(58, 26, 438, 58);
 			add(lblEstaEsTu);
 		}
-		GestorCliente gc = new GestorCliente();
-		GestorCancion gcan= new GestorCancion();
-		ArrayList<Cancion> ac=null;
-		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		try {
-			ac=gc.obtenerCanciones(c);		
-		} catch (Exception e) {
-			System.out.println("Error al obtener canciones del usuario");
-		}
-		if(ac!=null) {
-			for (Cancion canc : ac) {
-				canc=gcan.obtenerCancionId(canc);
-				modelo.addElement(canc.toString());
-			}
-		}else {
-			JOptionPane.showMessageDialog(this, "No hay canciones que mostrar");
-		}
-		list.setModel(modelo);
+		actualizarModelo(c);
 		{
 			btnReproductor = new JButton("Reproducir");
 			btnReproductor.addActionListener(new BtnReproductorActionListener());
@@ -111,6 +94,27 @@ public class MiPanelCanciones extends JPanel {
 			lblNick.setText(c.getNick());
 			add(lblNick);
 		}
+		
+	}
+	public void actualizarModelo(Cliente c) {
+		GestorCliente gc = new GestorCliente();
+		GestorCancion gcan= new GestorCancion();
+		ArrayList<Cancion> ac=null;
+		DefaultListModel<String> modelo = new DefaultListModel<String>();
+		try {
+			ac=gc.obtenerCanciones(c);		
+		} catch (Exception e) {
+			System.out.println("Error al obtener canciones del usuario");
+		}
+		if(ac!=null) {
+			for (Cancion canc : ac) {
+				canc=gcan.obtenerCancionId(canc);
+				modelo.addElement(canc.toString());
+			}
+		}else {
+			JOptionPane.showMessageDialog(this, "No hay canciones que mostrar");
+		}
+		list.setModel(modelo);
 		
 	}
 	private class BtnPararActionListener implements ActionListener {

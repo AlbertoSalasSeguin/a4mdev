@@ -65,22 +65,7 @@ public class MiPanelComprar extends JPanel {
 			add(list);
 		}
 		{
-			GestorCancion gc = new GestorCancion();
-			ArrayList<Cancion> ac=null;
-			DefaultListModel<String> modelo = new DefaultListModel<String>();
-			try {
-				ac=gc.leerCanciones();		
-			} catch (Exception e) {
-				System.out.println("Error ");
-			}
-			if(ac!=null) {
-				for (Cancion canc : ac) {
-					modelo.addElement(canc.toStringCompra());
-				}
-			}else {
-				JOptionPane.showMessageDialog(this, "No hay canciones que mostrar");
-			}
-			list.setModel(modelo);
+		actualizarModelo(client);
 
 		}
 		{
@@ -142,6 +127,25 @@ public class MiPanelComprar extends JPanel {
 		}
 //944 550
 	}
+	private void actualizarModelo(Cliente client) {
+		GestorCancion gc = new GestorCancion();
+		ArrayList<Cancion> ac=null;
+		DefaultListModel<String> modelo = new DefaultListModel<String>();
+		try {
+			ac=gc.leerCanciones();		
+		} catch (Exception e) {
+			System.out.println("Error ");
+		}
+		if(ac!=null) {
+			for (Cancion canc : ac) {
+				modelo.addElement(canc.toStringCompra());
+			}
+		}else {
+			JOptionPane.showMessageDialog(this, "No hay canciones que mostrar");
+		}
+		list.setModel(modelo);	
+		
+	}
 	private class ListListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			btnComprarCancin.setEnabled(true);
@@ -174,6 +178,7 @@ public class MiPanelComprar extends JPanel {
 			Cliente client = new Cliente(lblNick.getText());
 			try {
 				canc=gcan.obtenerCancionId(canc);
+				
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}	
@@ -187,8 +192,12 @@ public class MiPanelComprar extends JPanel {
 
 					try {
 						gc.comprarCancion(client, canc);
-
+//						client=gc.obtenerCliente(client);
+//						MiPanelCanciones mpc = new MiPanelCanciones(client);
+//						mpc.actualizarModelo(client);
+//						mpc.setVisible(true);
 						JOptionPane.showMessageDialog(null, "Enhorabuena has comprado "+canc.getTitulo()+ " de "+canc.getAutor());
+						
 					} catch (Exception e2) {
 						e2.printStackTrace();
 					}
