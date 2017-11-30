@@ -93,6 +93,7 @@ public class MiPanelCanciones extends JPanel {
 			lblNick.setBounds(58, 89, 242, 38);
 			lblNick.setText(c.getNick());
 			add(lblNick);
+			
 		}
 		
 	}
