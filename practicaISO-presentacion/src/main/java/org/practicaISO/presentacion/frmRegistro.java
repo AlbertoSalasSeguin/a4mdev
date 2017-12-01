@@ -163,13 +163,13 @@ public class frmRegistro extends JFrame {
 		}
 		{
 			lblLblimage_1 = new JLabel("");
-			lblLblimage_1.setIcon(new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			lblLblimage_1.setIcon(new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblLblimage_1.setBounds(126, 26, 124, 111);
 			contentPane.add(lblLblimage_1);
 		}
 		{
 			lblLblimage = new JLabel("");
-			lblLblimage.setIcon(new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/user-green_25326.png")));
+			lblLblimage.setIcon(new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoUsuario.png")));
 			lblLblimage.setBounds(33, 78, 188, 159);
 			contentPane.add(lblLblimage);
 		}

@@ -108,7 +108,7 @@ public class MiPanelInfo extends JPanel {
 		}
 		{
 			lblLblicon = new JLabel("");
-			lblLblicon.setIcon(new ImageIcon(MiPanelInfo.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			lblLblicon.setIcon(new ImageIcon(MiPanelInfo.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblLblicon.setBounds(768, 0, 176, 127);
 			add(lblLblicon);
 		}

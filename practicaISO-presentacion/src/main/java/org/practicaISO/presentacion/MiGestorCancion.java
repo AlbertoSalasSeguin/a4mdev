@@ -57,7 +57,7 @@ public class MiGestorCancion extends JFrame {
 		contentPane.setLayout(null);
 		{
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(MiGestorCancion.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			label.setIcon(new ImageIcon(MiGestorCancion.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			label.setBounds(748, 0, 176, 127);
 			contentPane.add(label);
 		}

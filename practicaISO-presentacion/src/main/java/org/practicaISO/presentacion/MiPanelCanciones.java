@@ -34,6 +34,7 @@ public class MiPanelCanciones extends JPanel {
 	private JLabel lblReproduciendo;
 	private JLabel label;
 	private JLabel lblNick;
+	private JButton btnActualizarLista;
 
 	/**
 	 * Create the panel.
@@ -61,16 +62,18 @@ public class MiPanelCanciones extends JPanel {
 		actualizarModelo(c);
 		{
 			btnReproductor = new JButton("Reproducir");
+			btnReproductor.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
 			btnReproductor.addActionListener(new BtnReproductorActionListener());
 			btnReproductor.setEnabled(false);
-			btnReproductor.setBounds(731, 166, 104, 31);
+			btnReproductor.setBounds(642, 170, 146, 51);
 			add(btnReproductor);
 		}
 		{
 			btnParar = new JButton("Parar");
+			btnParar.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
 			btnParar.addActionListener(new BtnPararActionListener());
 			btnParar.setEnabled(false);
-			btnParar.setBounds(731, 217, 104, 31);
+			btnParar.setBounds(642, 251, 146, 51);
 			add(btnParar);
 		}
 		{
@@ -82,7 +85,7 @@ public class MiPanelCanciones extends JPanel {
 		}
 		{
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			label.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			label.setBounds(768, 0, 176, 127);
 			add(label);
 		}
@@ -94,6 +97,13 @@ public class MiPanelCanciones extends JPanel {
 			lblNick.setText(c.getNick());
 			add(lblNick);
 			
+		}
+		{
+			btnActualizarLista = new JButton("Actualizar lista");
+			btnActualizarLista.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
+			btnActualizarLista.setBounds(642, 331, 189, 51);
+			add(btnActualizarLista);
 		}
 		
 	}
@@ -129,7 +139,6 @@ public class MiPanelCanciones extends JPanel {
 		public void valueChanged(ListSelectionEvent e) {
 			btnReproductor.setEnabled(true);
 			
-			
 		}
 	}
 	private class BtnReproductorActionListener implements ActionListener {
@@ -146,6 +155,14 @@ public class MiPanelCanciones extends JPanel {
 				e2.printStackTrace();
 			}
 			lblReproduciendo.setText("Reproduciendo "+canc.getTitulo()+" - "+canc.getAutor());
+		}
+	}
+	private class BtnActualizarListaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Cliente client = new Cliente(lblNick.getText());
+			actualizarModelo(client);
+			btnReproductor.setEnabled(false);
+			btnParar.setEnabled(false);
 		}
 	}
 }

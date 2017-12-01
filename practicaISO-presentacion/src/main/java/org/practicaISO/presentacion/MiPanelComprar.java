@@ -41,6 +41,7 @@ public class MiPanelComprar extends JPanel {
 	private JButton btnParar;
 	private JLabel lblicon;
 	private JButton btnEditarCancion;
+	private JButton btnActualizarLista;
 
 	public MiPanelComprar(Cliente client) {
 		setBackground(Color.DARK_GRAY);
@@ -70,7 +71,7 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			btnComprarCancin = new JButton("Comprar canción");
-			btnComprarCancin.setBounds(655, 407, 243, 80);
+			btnComprarCancin.setBounds(655, 425, 195, 50);
 			btnComprarCancin.addActionListener(new BtnComprarCancinActionListener());
 			btnComprarCancin.setEnabled(false);
 			add(btnComprarCancin);
@@ -84,18 +85,20 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			btnParar = new JButton("Parar");
+			btnParar.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
 			btnParar.setVisible(false);
 			btnParar.addActionListener(new BtnPararActionListener());
 			btnParar.setEnabled(false);
-			btnParar.setBounds(804, 165, 112, 80);
+			btnParar.setBounds(655, 228, 135, 50);
 			add(btnParar);
 		}
 		{
 			btnReproducir = new JButton("Reproducir");
+			btnReproducir.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
 			btnReproducir.setVisible(false);
 			btnReproducir.setEnabled(false);
 			btnReproducir.addActionListener(new BtnReproducirActionListener());			
-			btnReproducir.setBounds(655, 165, 118, 80);
+			btnReproducir.setBounds(655, 165, 135, 50);
 			add(btnReproducir);
 		}
 		{
@@ -107,7 +110,7 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			lblicon = new JLabel("");
-			lblicon.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			lblicon.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblicon.setBounds(768, 0, 176, 127);
 			add(lblicon);
 		}
@@ -116,8 +119,15 @@ public class MiPanelComprar extends JPanel {
 			btnEditarCancion.addActionListener(new BtnEditarCancionActionListener());
 			btnEditarCancion.setEnabled(false);
 			btnEditarCancion.setVisible(false);
-			btnEditarCancion.setBounds(655, 291, 114, 58);
+			btnEditarCancion.setBounds(655, 291, 135, 58);
 			add(btnEditarCancion);
+		}
+		{
+			btnActualizarLista = new JButton("Actualizar lista");
+			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
+			btnActualizarLista.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarLista.setBounds(655, 362, 195, 50);
+			add(btnActualizarLista);
 		}
 		
 		if(client.getSuscripcion().equals("Premium")) {
@@ -125,7 +135,6 @@ public class MiPanelComprar extends JPanel {
 			btnParar.setVisible(true);
 			
 		}
-//944 550
 	}
 	private void actualizarModelo(Cliente client) {
 		GestorCancion gc = new GestorCancion();
@@ -192,10 +201,6 @@ public class MiPanelComprar extends JPanel {
 
 					try {
 						gc.comprarCancion(client, canc);
-//						client=gc.obtenerCliente(client);
-//						MiPanelCanciones mpc = new MiPanelCanciones(client);
-//						mpc.actualizarModelo(client);
-//						mpc.setVisible(true);
 						JOptionPane.showMessageDialog(null, "Enhorabuena has comprado "+canc.getTitulo()+ " de "+canc.getAutor());
 						
 					} catch (Exception e2) {
@@ -252,8 +257,19 @@ public class MiPanelComprar extends JPanel {
 			}
 			MiGestorCancion mgc= new MiGestorCancion(canc);
 			mgc.setVisible(true);
-			
+
 		}
+	}
+	private class BtnActualizarListaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Cliente client = new Cliente(lblNick.getText());
+			actualizarModelo(client);
+			btnComprarCancin.setEnabled(false);
+			btnReproducir.setEnabled(false);
+			btnParar.setEnabled(false);
+			btnEditarCancion.setEnabled(false);
+		}
+
 	}
 
 }

@@ -35,6 +35,7 @@ public class MiPanelArtistas extends JPanel {
 	private JButton btnParar;
 	private JButton btnReproducir;
 	private JLabel lblReproduciendo;
+	private JButton btnActualizarLista;
 
 	/**
 	 * Create the panel.
@@ -44,7 +45,7 @@ public class MiPanelArtistas extends JPanel {
 		setLayout(null);
 		{
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(MiPanelArtistas.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			label.setIcon(new ImageIcon(MiPanelArtistas.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			label.setBounds(768, 0, 176, 127);
 			add(label);
 		}
@@ -71,7 +72,51 @@ public class MiPanelArtistas extends JPanel {
 			list.setBackground(Color.GRAY);
 			list.setBounds(58, 168, 559, 233);
 			add(list);
+			actualizarModelo(client);
 		}
+		
+		
+		
+		
+		{
+			btnParar = new JButton("Parar");
+			btnParar.setIcon(new ImageIcon(MiPanelArtistas.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
+			btnParar.addActionListener(new BtnPararActionListener());
+			btnParar.setEnabled(false);
+			btnParar.setBounds(646, 250, 176, 47);
+			add(btnParar);
+		}
+		{
+			btnReproducir = new JButton("Reproducir album");
+			btnReproducir.setIcon(new ImageIcon(MiPanelArtistas.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
+			btnReproducir.addActionListener(new BtnReproducirActionListener());
+			btnReproducir.setEnabled(false);
+			btnReproducir.setBounds(646, 168, 186, 47);
+			add(btnReproducir);
+		}
+		{
+			lblReproduciendo = new JLabel("");
+			lblReproduciendo.setForeground(Color.WHITE);
+			lblReproduciendo.setFont(new Font("Tahoma", Font.BOLD, 19));
+			lblReproduciendo.setBounds(58, 434, 842, 38);
+			add(lblReproduciendo);
+		}
+		{
+			btnActualizarLista = new JButton("Actualizar Lista");
+			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
+			btnActualizarLista.setIcon(new ImageIcon(MiPanelArtistas.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarLista.setBounds(646, 327, 202, 47);
+			add(btnActualizarLista);
+		}
+
+	}
+	private class ListListSelectionListener implements ListSelectionListener {
+		public void valueChanged(ListSelectionEvent e) {
+			btnReproducir.setEnabled(true);
+		}
+	}
+	
+	public void actualizarModelo(Cliente client) {
 		GestorCliente gc = new GestorCliente();
 		GestorCancion gcan= new GestorCancion();
 		ArrayList<Cancion> ac=null;
@@ -107,37 +152,8 @@ public class MiPanelArtistas extends JPanel {
 			JOptionPane.showMessageDialog(this, "No hay artistas que mostrar");
 		}
 		list.setModel(modelolimpio);
-		
-		
-		
-		{
-			btnParar = new JButton("Parar");
-			btnParar.addActionListener(new BtnPararActionListener());
-			btnParar.setEnabled(false);
-			btnParar.setBounds(668, 237, 176, 58);
-			add(btnParar);
-		}
-		{
-			btnReproducir = new JButton("Reproducir album");
-			btnReproducir.addActionListener(new BtnReproducirActionListener());
-			btnReproducir.setEnabled(false);
-			btnReproducir.setBounds(668, 168, 176, 47);
-			add(btnReproducir);
-		}
-		{
-			lblReproduciendo = new JLabel("");
-			lblReproduciendo.setForeground(Color.WHITE);
-			lblReproduciendo.setFont(new Font("Tahoma", Font.BOLD, 19));
-			lblReproduciendo.setBounds(58, 434, 842, 38);
-			add(lblReproduciendo);
-		}
-
 	}
-	private class ListListSelectionListener implements ListSelectionListener {
-		public void valueChanged(ListSelectionEvent e) {
-			btnReproducir.setEnabled(true);
-		}
-	}
+	
 	private class BtnPararActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnParar.setEnabled(false);
@@ -158,6 +174,14 @@ public class MiPanelArtistas extends JPanel {
 				e2.printStackTrace();
 			}
 			lblReproduciendo.setText("Reproduciendo lista aleatoria "+canciones.get(0).getTitulo()+" - "+canciones.get(0).getAutor());
+		}
+	}
+	private class BtnActualizarListaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Cliente client = new Cliente(lblNick.getText());
+			actualizarModelo(client);
+			btnReproducir.setEnabled(false);
+			btnParar.setEnabled(false);
 		}
 	}
 }

@@ -36,6 +36,7 @@ public class MiPanelAlbumes extends JPanel {
 	private JButton btnReproducirAlbum;
 	private JLabel lblMusica;
 	private JButton btnParar;
+	private JButton btnActualizarLista;
 
 	/**
 	 * Create the panel.
@@ -45,7 +46,7 @@ public class MiPanelAlbumes extends JPanel {
 		setLayout(null);
 		{
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/Spotify_icon-icons.com_66783.png")));
+			label.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			label.setBounds(768, 0, 176, 127);
 			add(label);
 		}
@@ -72,7 +73,45 @@ public class MiPanelAlbumes extends JPanel {
 			list.setBackground(Color.GRAY);
 			list.setBounds(58, 168, 559, 233);
 			add(list);
+			actualizarModelo(client);
 		}
+		
+		{
+			btnReproducirAlbum = new JButton("Reproducir álbum");
+			btnReproducirAlbum.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
+			btnReproducirAlbum.setEnabled(false);
+			btnReproducirAlbum.addActionListener(new BtnReproducirAlbumActionListener());
+			btnReproducirAlbum.setBounds(648, 168, 176, 47);
+			add(btnReproducirAlbum);
+		}
+		{
+			lblMusica = new JLabel("");
+			lblMusica.setForeground(Color.WHITE);
+			lblMusica.setFont(new Font("Tahoma", Font.BOLD, 19));
+			lblMusica.setBounds(58, 442, 786, 38);
+			add(lblMusica);
+		}
+		{
+			btnParar = new JButton("Parar");
+			btnParar.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
+			btnParar.addActionListener(new BtnPararActionListener());
+			btnParar.setEnabled(false);
+			btnParar.setBounds(648, 246, 176, 47);
+			add(btnParar);
+		}
+		{
+			btnActualizarLista = new JButton("Actualizar lista");
+			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
+			btnActualizarLista.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarLista.setBounds(648, 329, 197, 47);
+			add(btnActualizarLista);
+		}
+		
+		
+
+	}
+	
+	public void actualizarModelo(Cliente client) {
 		GestorCliente gc = new GestorCliente();
 		GestorCancion gcan= new GestorCancion();
 		GestorAlbum galb = new GestorAlbum();
@@ -110,31 +149,8 @@ public class MiPanelAlbumes extends JPanel {
 			JOptionPane.showMessageDialog(this, "No hay albumes que mostrar");
 		}
 		list.setModel(modelolimpio);
-		{
-			btnReproducirAlbum = new JButton("Reproducir album");
-			btnReproducirAlbum.setEnabled(false);
-			btnReproducirAlbum.addActionListener(new BtnReproducirAlbumActionListener());
-			btnReproducirAlbum.setBounds(668, 169, 176, 47);
-			add(btnReproducirAlbum);
-		}
-		{
-			lblMusica = new JLabel("");
-			lblMusica.setForeground(Color.WHITE);
-			lblMusica.setFont(new Font("Tahoma", Font.BOLD, 19));
-			lblMusica.setBounds(58, 442, 786, 38);
-			add(lblMusica);
-		}
-		{
-			btnParar = new JButton("Parar");
-			btnParar.addActionListener(new BtnPararActionListener());
-			btnParar.setEnabled(false);
-			btnParar.setBounds(668, 238, 176, 58);
-			add(btnParar);
-		}
-		
-		
-
 	}
+	
 	private class BtnReproducirAlbumActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducirAlbum.setEnabled(false);
@@ -164,6 +180,14 @@ public class MiPanelAlbumes extends JPanel {
 	private class ListListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			btnReproducirAlbum.setEnabled(true);
+		}
+	}
+	private class BtnActualizarListaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Cliente client = new Cliente(lblNick.getText());
+			actualizarModelo(client);
+			btnReproducirAlbum.setEnabled(false);
+			btnParar.setEnabled(false);
 		}
 	}
 }

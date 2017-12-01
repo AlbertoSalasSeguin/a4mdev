@@ -20,7 +20,7 @@ public class GestorAlbum {
 
 		try {
 			con=MySQLConexion.getConexion();
-			String sql = "select * from tb_album where idalbum = ?";
+			String sql = "select * from tb_album where idalbum = ? order by idalbum";
 			pst=con.prepareStatement(sql);
 			pst.setInt(1, canc.getAlbum());
 			rs=pst.executeQuery();
