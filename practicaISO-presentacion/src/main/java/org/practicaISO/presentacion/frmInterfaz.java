@@ -137,12 +137,8 @@ public class frmInterfaz extends JFrame {
 		public void valueChanged(TreeSelectionEvent e) {
 			System.out.println("Nodo seleccionado "+e.getPath().getLastPathComponent());
 			String nodo = (e.getPath().getLastPathComponent()).toString();
-			switch (nodo){
-			case "Canciones":
-			case "Artistas":
-			case "Álbumes":
-			case "Información de mi cuenta":
-			case "Comprar canciones":
+			if(nodo.equals("Canciones")||nodo.equals("Artistas")||nodo.equals("Álbumes")||nodo.equals("Información de mi cuenta")||nodo.equals("Comprar canciones")){
+
 				((CardLayout) panel.getLayout()).show(panel, nodo);
 			}
 		}

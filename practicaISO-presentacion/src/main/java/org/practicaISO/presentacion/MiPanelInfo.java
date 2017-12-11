@@ -121,6 +121,7 @@ public class MiPanelInfo extends JPanel {
 		}
 		{
 			btnActualizarMisDatos = new JButton("Actualizar mis datos");
+			btnActualizarMisDatos.setIcon(new ImageIcon(MiPanelInfo.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarMisDatos.addActionListener(new BtnActualizarMisDatosActionListener());
 			btnActualizarMisDatos.setBounds(406, 371, 164, 74);
 			add(btnActualizarMisDatos);

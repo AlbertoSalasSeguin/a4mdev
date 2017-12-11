@@ -101,7 +101,7 @@ public class MiPanelAlbumes extends JPanel {
 		}
 		{
 			btnActualizarLista = new JButton("Actualizar lista");
-			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
+			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener1());
 			btnActualizarLista.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarLista.setBounds(648, 329, 197, 47);
 			add(btnActualizarLista);
@@ -182,7 +182,7 @@ public class MiPanelAlbumes extends JPanel {
 			btnReproducirAlbum.setEnabled(true);
 		}
 	}
-	private class BtnActualizarListaActionListener implements ActionListener {
+	private class BtnActualizarListaActionListener1 implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente client = new Cliente(lblNick.getText());
 			actualizarModelo(client);

@@ -124,7 +124,7 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			btnActualizarLista = new JButton("Actualizar lista");
-			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
+			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener3());
 			btnActualizarLista.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarLista.setBounds(655, 362, 195, 50);
 			add(btnActualizarLista);
@@ -260,7 +260,7 @@ public class MiPanelComprar extends JPanel {
 
 		}
 	}
-	private class BtnActualizarListaActionListener implements ActionListener {
+	private class BtnActualizarListaActionListener3 implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente client = new Cliente(lblNick.getText());
 			actualizarModelo(client);

@@ -103,7 +103,7 @@ public class MiPanelArtistas extends JPanel {
 		}
 		{
 			btnActualizarLista = new JButton("Actualizar Lista");
-			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
+			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener2());
 			btnActualizarLista.setIcon(new ImageIcon(MiPanelArtistas.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarLista.setBounds(646, 327, 202, 47);
 			add(btnActualizarLista);
@@ -176,7 +176,7 @@ public class MiPanelArtistas extends JPanel {
 			lblReproduciendo.setText("Reproduciendo lista aleatoria "+canciones.get(0).getTitulo()+" - "+canciones.get(0).getAutor());
 		}
 	}
-	private class BtnActualizarListaActionListener implements ActionListener {
+	private class BtnActualizarListaActionListener2 implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente client = new Cliente(lblNick.getText());
 			actualizarModelo(client);
