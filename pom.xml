@@ -102,6 +102,12 @@
 				<artifactId>maven-pmd-plugin</artifactId>
 				<configuration>
 					<skipEmptyReport>false</skipEmptyReport>
+					<rulesets>
+						<!-- Two rule sets that come bundled with PMD -->
+						<ruleset>/rulesets/java/braces.xml</ruleset>
+						<ruleset>/rulesets/java/naming.xml</ruleset>
+						
+					</rulesets>
 				</configuration>
 			</plugin>
 			<plugin>
