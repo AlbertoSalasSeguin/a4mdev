@@ -100,14 +100,27 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.8</version>
 				<configuration>
-					<skipEmptyReport>false</skipEmptyReport>
 					<rulesets>
-						<!-- Two rule sets that come bundled with PMD -->
+						<ruleset>/rulesets/java/basic.xml</ruleset>
+						<ruleset>/rulesets/java/imports.xml</ruleset>
+						<ruleset>/rulesets/java/unnecessary.xml</ruleset>
 						<ruleset>/rulesets/java/braces.xml</ruleset>
 						<ruleset>/rulesets/java/naming.xml</ruleset>
-						
+						<ruleset>/rulesets/java/design.xml</ruleset>
+						<ruleset>/rulesets/java/coupling.xml</ruleset>
+						<ruleset>/rulesets/java/controversial.xml</ruleset>
+						<ruleset>/rulesets/java/optimizations.xml</ruleset>
 					</rulesets>
+					<reportSets>
+						<reportSet>
+							<reports>
+								<report>pmd</report>
+								<report>cpd</report>
+							</reports>
+						</reportSet>
+					</reportSets>
 				</configuration>
 			</plugin>
 			<plugin>
