@@ -43,7 +43,6 @@ public class MiGestorCancion extends JFrame {
 	private JLabel lblIdDeLa;
 	private JLabel lblId;
 
-
 	/**
 	 * Create the frame.
 	 */
@@ -57,7 +56,8 @@ public class MiGestorCancion extends JFrame {
 		contentPane.setLayout(null);
 		{
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(MiGestorCancion.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+			label.setIcon(
+					new ImageIcon(MiGestorCancion.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			label.setBounds(748, 0, 176, 127);
 			contentPane.add(label);
 		}
@@ -161,16 +161,18 @@ public class MiGestorCancion extends JFrame {
 			contentPane.add(lblId);
 		}
 	}
+
 	private class BtnEliminarCancinActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int confirmado = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar esta canción? Esta acción no se puede deshacer."
-					,"Ventana de confirmación",JOptionPane.YES_NO_OPTION);
-			if (confirmado==JOptionPane.YES_OPTION) {
-			Cancion canc = new Cancion(txtTitulo.getText());
-			GestorCancion gc = new GestorCancion();
-			
+			int confirmado = JOptionPane.showConfirmDialog(null,
+					"¿Estás seguro de que quieres eliminar esta canción? Esta acción no se puede deshacer.",
+					"Ventana de confirmación", JOptionPane.YES_NO_OPTION);
+			if (confirmado == JOptionPane.YES_OPTION) {
+				Cancion canc = new Cancion(txtTitulo.getText());
+				GestorCancion gc = new GestorCancion();
+
 				try {
-					canc=gc.obtenerCancionTitulo(canc);
+					canc = gc.obtenerCancionTitulo(canc);
 					gc.eliminarCancion(canc);
 				} catch (Exception e2) {
 					e2.printStackTrace();
@@ -179,14 +181,16 @@ public class MiGestorCancion extends JFrame {
 			}
 		}
 	}
+
 	private class BtnActualizarCancinActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int confirmado = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres actualizar esta canción?"
-					,"Ventana de confirmación",JOptionPane.YES_NO_OPTION);
-			if (confirmado==JOptionPane.YES_OPTION) {
+			int confirmado = JOptionPane.showConfirmDialog(null,
+					"¿Estás seguro de que quieres actualizar esta canción?", "Ventana de confirmación",
+					JOptionPane.YES_NO_OPTION);
+			if (confirmado == JOptionPane.YES_OPTION) {
 				GestorCancion gc = new GestorCancion();
-				Cancion canc = new Cancion(txtTitulo.getText(),Integer.parseInt(lblId.getText()) , txtArtista.getText(), Integer.parseInt(txtAlbum.getText()),
-						Float.parseFloat(txtPrecio.getText()));
+				Cancion canc = new Cancion(txtTitulo.getText(), Integer.parseInt(lblId.getText()), txtArtista.getText(),
+						Integer.parseInt(txtAlbum.getText()), Float.parseFloat(txtPrecio.getText()));
 
 				try {
 					gc.actualizarCancion(canc);

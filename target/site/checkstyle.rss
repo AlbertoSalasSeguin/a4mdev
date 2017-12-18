@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 16,
-             Errors: 1960,
+      <title>File: 19,
+             Errors: 1703,
              Warnings: 0,
              Infos: 0
       </title>
@@ -97,7 +97,21 @@ under the License.
                   0
                 </td>
                 <td>
-                  157
+                  140
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.practicaISO.persistencia.DAOAlbum.java">org/practicaISO/persistencia/DAOAlbum.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  68
                 </td>
               </tr>
                           <tr>
@@ -125,7 +139,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  137
+                  95
                 </td>
               </tr>
                           <tr>
@@ -139,7 +153,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  198
+                  139
                 </td>
               </tr>
                           <tr>
@@ -181,7 +195,21 @@ under the License.
                   0
                 </td>
                 <td>
-                  152
+                  136
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.practicaISO.dominio.GestorCliente.java">org/practicaISO/dominio/GestorCliente.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
               </tr>
                           <tr>
@@ -195,7 +223,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  92
+                  79
                 </td>
               </tr>
                           <tr>
@@ -209,12 +237,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  145
+                  97
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#org.practicaISO.persistencia.GestorAlbum.java">org/practicaISO/persistencia/GestorAlbum.java</a>
+                  <a href="${project.url}/checkstyle.html#org.practicaISO.dominio.GestorAlbum.java">org/practicaISO/dominio/GestorAlbum.java</a>
                 </td>
                 <td>
                   0
@@ -223,7 +251,21 @@ under the License.
                   0
                 </td>
                 <td>
-                  68
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.practicaISO.dominio.GestorCancion.java">org/practicaISO/dominio/GestorCancion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
               </tr>
                           <tr>
@@ -251,7 +293,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  185
+                  146
                 </td>
               </tr>
                           <tr>
@@ -265,7 +307,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  115
+                  89
                 </td>
               </tr>
                       </tbody>

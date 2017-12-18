@@ -49,7 +49,7 @@ public class MiPanelInfo extends JPanel {
 			lblPass.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblPass.setForeground(Color.WHITE);
 			lblPass.setFont(new Font("Tahoma", Font.BOLD, 14));
-			
+
 			add(lblPass);
 		}
 		{
@@ -58,7 +58,7 @@ public class MiPanelInfo extends JPanel {
 			lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblEmail.setForeground(Color.WHITE);
 			lblEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
-			
+
 			add(lblEmail);
 		}
 		{
@@ -67,7 +67,7 @@ public class MiPanelInfo extends JPanel {
 			lblNombre.setHorizontalAlignment(SwingConstants.RIGHT);
 			lblNombre.setForeground(Color.WHITE);
 			lblNombre.setFont(new Font("Tahoma", Font.BOLD, 14));
-			
+
 			add(lblNombre);
 		}
 		{
@@ -96,7 +96,7 @@ public class MiPanelInfo extends JPanel {
 			txtNombre.setBounds(184, 369, 116, 22);
 			txtNombre.setColumns(10);
 			txtNombre.setText(c.getNombre());
-			
+
 			add(txtNombre);
 		}
 		{
@@ -108,7 +108,8 @@ public class MiPanelInfo extends JPanel {
 		}
 		{
 			lblLblicon = new JLabel("");
-			lblLblicon.setIcon(new ImageIcon(MiPanelInfo.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+			lblLblicon.setIcon(
+					new ImageIcon(MiPanelInfo.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblLblicon.setBounds(768, 0, 176, 127);
 			add(lblLblicon);
 		}
@@ -121,7 +122,8 @@ public class MiPanelInfo extends JPanel {
 		}
 		{
 			btnActualizarMisDatos = new JButton("Actualizar mis datos");
-			btnActualizarMisDatos.setIcon(new ImageIcon(MiPanelInfo.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarMisDatos.setIcon(
+					new ImageIcon(MiPanelInfo.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarMisDatos.addActionListener(new BtnActualizarMisDatosActionListener());
 			btnActualizarMisDatos.setBounds(406, 371, 164, 74);
 			add(btnActualizarMisDatos);
@@ -164,10 +166,10 @@ public class MiPanelInfo extends JPanel {
 
 	private class BtnAtrsActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Cliente c= new Cliente(lblLblnick.getText());
+			Cliente c = new Cliente(lblLblnick.getText());
 			GestorCliente gc = new GestorCliente();
 			try {
-				c=gc.obtenerCliente(c);
+				c = gc.obtenerCliente(c);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -177,30 +179,34 @@ public class MiPanelInfo extends JPanel {
 			txtNombre.setText(c.getNombre());
 		}
 	}
+
 	private class BtnActualizarMisDatosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			GestorCliente gc = new GestorCliente();
 			String suscripcion;
 			if (chckbxActualizarAPremium.isSelected()) {
-				suscripcion="Premium";
+				suscripcion = "Premium";
 			} else {
-				suscripcion="Normal";
+				suscripcion = "Normal";
 			}
-			Cliente client = new Cliente(lblLblnick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(), suscripcion, "Usuario");
+			Cliente client = new Cliente(lblLblnick.getText(), pwdPass.getText(), txtEmail.getText(),
+					txtNombre.getText(), txtApellidos.getText(), suscripcion, "Usuario");
 			try {
 				gc.actualizarCliente(client);
 				JOptionPane.showMessageDialog(null, "Tu cuenta se ha actualizado con éxito");
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			
+
 		}
 	}
+
 	private class BtnEliminarMiCuentaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int confirmado = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer."
-					,"Ventana de confirmación",JOptionPane.YES_NO_OPTION);
-			if (confirmado==JOptionPane.YES_OPTION) {
+			int confirmado = JOptionPane.showConfirmDialog(null,
+					"¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.",
+					"Ventana de confirmación", JOptionPane.YES_NO_OPTION);
+			if (confirmado == JOptionPane.YES_OPTION) {
 				GestorCliente gc = new GestorCliente();
 				Cliente client = new Cliente(lblLblnick.getText());
 				try {
@@ -211,11 +217,12 @@ public class MiPanelInfo extends JPanel {
 
 				} catch (Exception e2) {
 					e2.printStackTrace();
-					
+
 				}
 			}
 		}
 	}
+
 	private class BtnCerrarSesinActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.exit(0);

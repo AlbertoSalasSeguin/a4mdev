@@ -190,7 +190,7 @@
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 					&amp;&amp; !txtNombre.getText().equals(<span class="jxr_string">""</span>) &amp;&amp; !txtApellidos.getText().equals(<span class="jxr_string">""</span>)) {
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 						
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 						client= <strong class="jxr_keyword">new</strong> <a href="../../../org/practicaISO/dominio/Cliente.html">Cliente</a>(txtNick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(),<span class="jxr_string">"Normal"</span>, <span class="jxr_string">"Usuario"</span>);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 						GestorCliente gc= <strong class="jxr_keyword">new</strong> <a href="../../../org/practicaISO/persistencia/GestorCliente.html">GestorCliente</a>();
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> 						GestorCliente gc= <strong class="jxr_keyword">new</strong> <a href="../../../org/practicaISO/dominio/GestorCliente.html">GestorCliente</a>();
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> 			
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> 						<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> 							gc.insertarCliente(client);

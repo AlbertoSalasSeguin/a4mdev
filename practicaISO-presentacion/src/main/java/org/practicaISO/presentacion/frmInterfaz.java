@@ -38,8 +38,6 @@ public class frmInterfaz extends JFrame {
 	 * Launch the application.
 	 */
 
-
-
 	public frmInterfaz(Cliente c) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,53 +55,45 @@ public class frmInterfaz extends JFrame {
 				splitPane.setLeftComponent(scrollPane);
 				{
 					tree = new JTree();
-					tree.setModel(new DefaultTreeModel(
-						new DefaultMutableTreeNode("Menú") {
-							{
-								DefaultMutableTreeNode node_1;
-								node_1 = new DefaultMutableTreeNode("Biblioteca");
-									node_1.add(new DefaultMutableTreeNode("Canciones"));
-									node_1.add(new DefaultMutableTreeNode("Artistas"));
-									node_1.add(new DefaultMutableTreeNode("Álbumes"));
-								add(node_1);
-								node_1 = new DefaultMutableTreeNode("Mi cuenta");
-									node_1.add(new DefaultMutableTreeNode("Información de mi cuenta"));
-									node_1.add(new DefaultMutableTreeNode("Comprar canciones"));
-								add(node_1);
-							}
+					tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Menú") {
+						{
+							DefaultMutableTreeNode node_1;
+							node_1 = new DefaultMutableTreeNode("Biblioteca");
+							node_1.add(new DefaultMutableTreeNode("Canciones"));
+							node_1.add(new DefaultMutableTreeNode("Artistas"));
+							node_1.add(new DefaultMutableTreeNode("Álbumes"));
+							add(node_1);
+							node_1 = new DefaultMutableTreeNode("Mi cuenta");
+							node_1.add(new DefaultMutableTreeNode("Información de mi cuenta"));
+							node_1.add(new DefaultMutableTreeNode("Comprar canciones"));
+							add(node_1);
 						}
-					));
+					}));
 					tree.setFont(new Font("Tahoma", Font.BOLD, 18));
 					tree.setForeground(new Color(102, 153, 255));
 					tree.setBackground(Color.WHITE);
 					tree.addTreeSelectionListener(new TreeTreeSelectionListener());
-				/*	tree.setModel(new DefaultTreeModel(
-						new DefaultMutableTreeNode("Menu principal") {
-							{
-								DefaultMutableTreeNode node_1;
-								node_1 = new DefaultMutableTreeNode("Biblioteca");
-									node_1.add(new DefaultMutableTreeNode("Canciones"));
-									node_1.add(new DefaultMutableTreeNode("Artistas"));
-									node_1.add(new DefaultMutableTreeNode("Álbumes"));
-								add(node_1);
-								node_1 = new DefaultMutableTreeNode("Mi cuenta");
-									node_1.add(new DefaultMutableTreeNode("Información de mi cuenta"));
-									node_1.add(new DefaultMutableTreeNode("Comprar canciones"));
-								add(node_1);
-							}
-						}
-					)); 
-					*/
+					/*
+					 * tree.setModel(new DefaultTreeModel( new
+					 * DefaultMutableTreeNode("Menu principal") { { DefaultMutableTreeNode node_1;
+					 * node_1 = new DefaultMutableTreeNode("Biblioteca"); node_1.add(new
+					 * DefaultMutableTreeNode("Canciones")); node_1.add(new
+					 * DefaultMutableTreeNode("Artistas")); node_1.add(new
+					 * DefaultMutableTreeNode("Álbumes")); add(node_1); node_1 = new
+					 * DefaultMutableTreeNode("Mi cuenta"); node_1.add(new
+					 * DefaultMutableTreeNode("Información de mi cuenta")); node_1.add(new
+					 * DefaultMutableTreeNode("Comprar canciones")); add(node_1); } } ));
+					 */
 					scrollPane.setViewportView(tree);
 				}
-//				Menú
-//				Biblioteca
-//					Canciones
-//					Artistas
-//					Álbumes
-//				Mi cuenta
-//					Información de mi cuenta
-//					Comprar canciones
+				// Menú
+				// Biblioteca
+				// Canciones
+				// Artistas
+				// Álbumes
+				// Mi cuenta
+				// Información de mi cuenta
+				// Comprar canciones
 			}
 			{
 				panel = new JPanel();
@@ -131,13 +121,14 @@ public class frmInterfaz extends JFrame {
 				}
 			}
 		}
-	} 
+	}
 
 	private class TreeTreeSelectionListener implements TreeSelectionListener {
 		public void valueChanged(TreeSelectionEvent e) {
-			System.out.println("Nodo seleccionado "+e.getPath().getLastPathComponent());
+			System.out.println("Nodo seleccionado " + e.getPath().getLastPathComponent());
 			String nodo = (e.getPath().getLastPathComponent()).toString();
-			if(nodo.equals("Canciones")||nodo.equals("Artistas")||nodo.equals("Álbumes")||nodo.equals("Información de mi cuenta")||nodo.equals("Comprar canciones")){
+			if (nodo.equals("Canciones") || nodo.equals("Artistas") || nodo.equals("Álbumes")
+					|| nodo.equals("Información de mi cuenta") || nodo.equals("Comprar canciones")) {
 
 				((CardLayout) panel.getLayout()).show(panel, nodo);
 			}

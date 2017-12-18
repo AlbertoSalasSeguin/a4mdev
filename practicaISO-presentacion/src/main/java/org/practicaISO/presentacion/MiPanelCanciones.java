@@ -39,7 +39,7 @@ public class MiPanelCanciones extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	
+
 	public MiPanelCanciones(Cliente c) {
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
@@ -62,7 +62,8 @@ public class MiPanelCanciones extends JPanel {
 		actualizarModelo(c);
 		{
 			btnReproductor = new JButton("Reproducir");
-			btnReproductor.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
+			btnReproductor.setIcon(
+					new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
 			btnReproductor.addActionListener(new BtnReproductorActionListener());
 			btnReproductor.setEnabled(false);
 			btnReproductor.setBounds(642, 170, 146, 51);
@@ -70,7 +71,8 @@ public class MiPanelCanciones extends JPanel {
 		}
 		{
 			btnParar = new JButton("Parar");
-			btnParar.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
+			btnParar.setIcon(
+					new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
 			btnParar.addActionListener(new BtnPararActionListener());
 			btnParar.setEnabled(false);
 			btnParar.setBounds(642, 251, 146, 51);
@@ -85,7 +87,8 @@ public class MiPanelCanciones extends JPanel {
 		}
 		{
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+			label.setIcon(new ImageIcon(
+					MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			label.setBounds(768, 0, 176, 127);
 			add(label);
 		}
@@ -96,38 +99,41 @@ public class MiPanelCanciones extends JPanel {
 			lblNick.setBounds(58, 89, 242, 38);
 			lblNick.setText(c.getNick());
 			add(lblNick);
-			
+
 		}
 		{
 			btnActualizarLista = new JButton("Actualizar lista");
-			btnActualizarLista.setIcon(new ImageIcon(MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarLista.setIcon(new ImageIcon(
+					MiPanelCanciones.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener());
 			btnActualizarLista.setBounds(642, 331, 189, 51);
 			add(btnActualizarLista);
 		}
-		
+
 	}
+
 	public void actualizarModelo(Cliente c) {
 		GestorCliente gc = new GestorCliente();
-		GestorCancion gcan= new GestorCancion();
-		ArrayList<Cancion> ac=null;
+		GestorCancion gcan = new GestorCancion();
+		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		try {
-			ac=gc.obtenerCanciones(c);		
+			ac = gc.obtenerCanciones(c);
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones del usuario");
 		}
-		if(ac!=null) {
+		if (ac != null) {
 			for (Cancion canc : ac) {
-				canc=gcan.obtenerCancionId(canc);
+				canc = gcan.obtenerCancionId(canc);
 				modelo.addElement(canc.toString());
 			}
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(this, "No hay canciones que mostrar");
 		}
 		list.setModel(modelo);
-		
+
 	}
+
 	private class BtnPararActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnParar.setEnabled(false);
@@ -135,12 +141,14 @@ public class MiPanelCanciones extends JPanel {
 			btnReproductor.setEnabled(true);
 		}
 	}
+
 	private class ListListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			btnReproductor.setEnabled(true);
-			
+
 		}
 	}
+
 	private class BtnReproductorActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnReproductor.setEnabled(false);
@@ -150,13 +158,14 @@ public class MiPanelCanciones extends JPanel {
 			StringTokenizer token = new StringTokenizer(cancion, "-");
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
-				canc=gcan.obtenerCancionId(canc);
+				canc = gcan.obtenerCancionId(canc);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			lblReproduciendo.setText("Reproduciendo "+canc.getTitulo()+" - "+canc.getAutor());
+			lblReproduciendo.setText("Reproduciendo " + canc.getTitulo() + " - " + canc.getAutor());
 		}
 	}
+
 	private class BtnActualizarListaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente client = new Cliente(lblNick.getText());

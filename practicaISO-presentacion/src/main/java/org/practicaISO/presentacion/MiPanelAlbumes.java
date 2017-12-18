@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import org.practicaISO.dominio.Album;
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.GestorAlbum;
+import org.practicaISO.persistencia.DAOAlbum;
 import org.practicaISO.persistencia.GestorCancion;
 import org.practicaISO.persistencia.GestorCliente;
 
@@ -46,7 +46,8 @@ public class MiPanelAlbumes extends JPanel {
 		setLayout(null);
 		{
 			label = new JLabel("");
-			label.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+			label.setIcon(
+					new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			label.setBounds(768, 0, 176, 127);
 			add(label);
 		}
@@ -75,10 +76,11 @@ public class MiPanelAlbumes extends JPanel {
 			add(list);
 			actualizarModelo(client);
 		}
-		
+
 		{
 			btnReproducirAlbum = new JButton("Reproducir álbum");
-			btnReproducirAlbum.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
+			btnReproducirAlbum.setIcon(
+					new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
 			btnReproducirAlbum.setEnabled(false);
 			btnReproducirAlbum.addActionListener(new BtnReproducirAlbumActionListener());
 			btnReproducirAlbum.setBounds(648, 168, 176, 47);
@@ -93,7 +95,8 @@ public class MiPanelAlbumes extends JPanel {
 		}
 		{
 			btnParar = new JButton("Parar");
-			btnParar.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
+			btnParar.setIcon(
+					new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
 			btnParar.addActionListener(new BtnPararActionListener());
 			btnParar.setEnabled(false);
 			btnParar.setBounds(648, 246, 176, 47);
@@ -102,55 +105,54 @@ public class MiPanelAlbumes extends JPanel {
 		{
 			btnActualizarLista = new JButton("Actualizar lista");
 			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener1());
-			btnActualizarLista.setIcon(new ImageIcon(MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarLista.setIcon(new ImageIcon(
+					MiPanelAlbumes.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarLista.setBounds(648, 329, 197, 47);
 			add(btnActualizarLista);
 		}
-		
-		
 
 	}
-	
+
 	public void actualizarModelo(Cliente client) {
 		GestorCliente gc = new GestorCliente();
-		GestorCancion gcan= new GestorCancion();
-		GestorAlbum galb = new GestorAlbum();
-		ArrayList<Cancion> ac=null;
+		GestorCancion gcan = new GestorCancion();
+		DAOAlbum galb = new DAOAlbum();
+		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		DefaultListModel<String> modelolimpio = new DefaultListModel<String>();
 		try {
-			ac=gc.obtenerCanciones(client);		
+			ac = gc.obtenerCanciones(client);
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones del usuario");
 		}
-		if(ac!=null) {
+		if (ac != null) {
 			for (Cancion canc : ac) {
 				try {
-					canc=gcan.obtenerCancionId(canc);
-					Album alb= galb.obtenerAlbum(canc);
+					canc = gcan.obtenerCancionId(canc);
+					Album alb = galb.obtenerAlbum(canc);
 					modelo.addElement(alb.toString());
-						
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+
 			}
-			//para no repetir albumes
-			for (int ii=0;ii<modelo.size();ii++) {
-				for (int jj=0;jj<modelo.size();jj++) {
-					if(!modelo.get(ii).equals(modelo.get(jj))) {
-						if(!modelolimpio.contains(modelo.get(jj))) {
+			// para no repetir albumes
+			for (int ii = 0; ii < modelo.size(); ii++) {
+				for (int jj = 0; jj < modelo.size(); jj++) {
+					if (!modelo.get(ii).equals(modelo.get(jj))) {
+						if (!modelolimpio.contains(modelo.get(jj))) {
 							modelolimpio.addElement(modelo.get(jj));
 						}
 					}
 				}
 			}
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(this, "No hay albumes que mostrar");
 		}
 		list.setModel(modelolimpio);
 	}
-	
+
 	private class BtnReproducirAlbumActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducirAlbum.setEnabled(false);
@@ -159,17 +161,19 @@ public class MiPanelAlbumes extends JPanel {
 			StringTokenizer token = new StringTokenizer(album, "-");
 			Album alb = new Album(Integer.parseInt(token.nextToken()));
 			try {
-				ArrayList<String> idscanciones= gcan.obteneridsAlbum(alb);
+				ArrayList<String> idscanciones = gcan.obteneridsAlbum(alb);
 				Cancion canc = new Cancion(Integer.parseInt(idscanciones.get(0)));
-				canc=gcan.obtenerCancionId(canc);
-				lblMusica.setText("Reproduciendo lista aleatoria: "+canc.getTitulo()+" - "+canc.getAutor()+" del álbum con id "+canc.getAlbum());
+				canc = gcan.obtenerCancionId(canc);
+				lblMusica.setText("Reproduciendo lista aleatoria: " + canc.getTitulo() + " - " + canc.getAutor()
+						+ " del álbum con id " + canc.getAlbum());
 				btnParar.setEnabled(true);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			
+
 		}
 	}
+
 	private class BtnPararActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnParar.setEnabled(false);
@@ -177,11 +181,13 @@ public class MiPanelAlbumes extends JPanel {
 			lblMusica.setText("");
 		}
 	}
+
 	private class ListListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			btnReproducirAlbum.setEnabled(true);
 		}
 	}
+
 	private class BtnActualizarListaActionListener1 implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente client = new Cliente(lblNick.getText());

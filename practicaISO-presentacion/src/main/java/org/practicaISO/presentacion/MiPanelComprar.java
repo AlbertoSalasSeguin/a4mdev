@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.GestorAlbum;
+import org.practicaISO.persistencia.DAOAlbum;
 import org.practicaISO.persistencia.GestorCancion;
 import org.practicaISO.persistencia.GestorCliente;
 
@@ -66,7 +66,7 @@ public class MiPanelComprar extends JPanel {
 			add(list);
 		}
 		{
-		actualizarModelo(client);
+			actualizarModelo(client);
 
 		}
 		{
@@ -85,7 +85,8 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			btnParar = new JButton("Parar");
-			btnParar.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
+			btnParar.setIcon(
+					new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoParar.png")));
 			btnParar.setVisible(false);
 			btnParar.addActionListener(new BtnPararActionListener());
 			btnParar.setEnabled(false);
@@ -94,10 +95,11 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			btnReproducir = new JButton("Reproducir");
-			btnReproducir.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
+			btnReproducir.setIcon(
+					new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoPlay.png")));
 			btnReproducir.setVisible(false);
 			btnReproducir.setEnabled(false);
-			btnReproducir.addActionListener(new BtnReproducirActionListener());			
+			btnReproducir.addActionListener(new BtnReproducirActionListener());
 			btnReproducir.setBounds(655, 165, 135, 50);
 			add(btnReproducir);
 		}
@@ -110,7 +112,8 @@ public class MiPanelComprar extends JPanel {
 		}
 		{
 			lblicon = new JLabel("");
-			lblicon.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+			lblicon.setIcon(
+					new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblicon.setBounds(768, 0, 176, 127);
 			add(lblicon);
 		}
@@ -125,36 +128,39 @@ public class MiPanelComprar extends JPanel {
 		{
 			btnActualizarLista = new JButton("Actualizar lista");
 			btnActualizarLista.addActionListener(new BtnActualizarListaActionListener3());
-			btnActualizarLista.setIcon(new ImageIcon(MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
+			btnActualizarLista.setIcon(new ImageIcon(
+					MiPanelComprar.class.getResource("/org/practicaISO/presentacion/IconoActualizar.png")));
 			btnActualizarLista.setBounds(655, 362, 195, 50);
 			add(btnActualizarLista);
 		}
-		
-		if(client.getSuscripcion().equals("Premium")) {
+
+		if (client.getSuscripcion().equals("Premium")) {
 			btnReproducir.setVisible(true);
 			btnParar.setVisible(true);
-			
+
 		}
 	}
+
 	private void actualizarModelo(Cliente client) {
 		GestorCancion gc = new GestorCancion();
-		ArrayList<Cancion> ac=null;
+		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		try {
-			ac=gc.leerCanciones();		
+			ac = gc.leerCanciones();
 		} catch (Exception e) {
 			System.out.println("Error ");
 		}
-		if(ac!=null) {
+		if (ac != null) {
 			for (Cancion canc : ac) {
 				modelo.addElement(canc.toStringCompra());
 			}
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(this, "No hay canciones que mostrar");
 		}
-		list.setModel(modelo);	
-		
+		list.setModel(modelo);
+
 	}
+
 	private class ListListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent e) {
 			btnComprarCancin.setEnabled(true);
@@ -162,22 +168,22 @@ public class MiPanelComprar extends JPanel {
 			Cliente client = new Cliente(lblNick.getText());
 			GestorCliente gc = new GestorCliente();
 			try {
-				client=gc.obtenerCliente(client);
+				client = gc.obtenerCliente(client);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			if(client.getSuscripcion().equals("Premium")) {
+			if (client.getSuscripcion().equals("Premium")) {
 				btnReproducir.setVisible(true);
 				btnParar.setVisible(true);
 			}
-			if(client.getRol().equals("Admin")) {
+			if (client.getRol().equals("Admin")) {
 				btnEditarCancion.setVisible(true);
 				btnEditarCancion.setEnabled(true);
 			}
 		}
 	}
 
-	private class BtnComprarCancinActionListener implements ActionListener{
+	private class BtnComprarCancinActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
@@ -186,23 +192,24 @@ public class MiPanelComprar extends JPanel {
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			Cliente client = new Cliente(lblNick.getText());
 			try {
-				canc=gcan.obtenerCancionId(canc);
-				
+				canc = gcan.obtenerCancionId(canc);
+
 			} catch (Exception e2) {
 				e2.printStackTrace();
-			}	
-			ArrayList<String> ids=gcan.obtenerIds(client);
-			if (esComprada(ids,canc)) {
+			}
+			ArrayList<String> ids = gcan.obtenerIds(client);
+			if (esComprada(ids, canc)) {
 				JOptionPane.showMessageDialog(null, "Esta canción ya ha sido adquirida");
 			} else {
-				int confirmado = JOptionPane.showConfirmDialog(null, "¿Deseas adquirir esta canción?","Ventana de confirmación",JOptionPane.YES_NO_OPTION);
-				if (confirmado==JOptionPane.YES_OPTION) {
-
+				int confirmado = JOptionPane.showConfirmDialog(null, "¿Deseas adquirir esta canción?",
+						"Ventana de confirmación", JOptionPane.YES_NO_OPTION);
+				if (confirmado == JOptionPane.YES_OPTION) {
 
 					try {
 						gc.comprarCancion(client, canc);
-						JOptionPane.showMessageDialog(null, "Enhorabuena has comprado "+canc.getTitulo()+ " de "+canc.getAutor());
-						
+						JOptionPane.showMessageDialog(null,
+								"Enhorabuena has comprado " + canc.getTitulo() + " de " + canc.getAutor());
+
 					} catch (Exception e2) {
 						e2.printStackTrace();
 					}
@@ -213,14 +220,15 @@ public class MiPanelComprar extends JPanel {
 
 		private boolean esComprada(ArrayList<String> ids, Cancion canc) {
 			boolean comprado = false;
-			for(int i=0;i<ids.size();i++) {
-				if(canc.getIdCancion()==Integer.parseInt(ids.get(i).toString())) {
-					comprado=true;
+			for (int i = 0; i < ids.size(); i++) {
+				if (canc.getIdCancion() == Integer.parseInt(ids.get(i).toString())) {
+					comprado = true;
 				}
 			}
 			return comprado;
 		}
 	}
+
 	private class BtnReproducirActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducir.setEnabled(false);
@@ -230,13 +238,14 @@ public class MiPanelComprar extends JPanel {
 			StringTokenizer token = new StringTokenizer(cancion, "-");
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
-				canc=gcan.obtenerCancionId(canc);
+				canc = gcan.obtenerCancionId(canc);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			lblEscuchando.setText("Reproduciendo "+canc.getTitulo()+" - "+canc.getAutor());
+			lblEscuchando.setText("Reproduciendo " + canc.getTitulo() + " - " + canc.getAutor());
 		}
 	}
+
 	private class BtnPararActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			lblEscuchando.setText("");
@@ -244,6 +253,7 @@ public class MiPanelComprar extends JPanel {
 			btnReproducir.setEnabled(true);
 		}
 	}
+
 	private class BtnEditarCancionActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			String cancion = list.getSelectedValue().toString();
@@ -251,15 +261,16 @@ public class MiPanelComprar extends JPanel {
 			GestorCancion gcan = new GestorCancion();
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
-				canc=gcan.obtenerCancionId(canc);
+				canc = gcan.obtenerCancionId(canc);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			MiGestorCancion mgc= new MiGestorCancion(canc);
+			MiGestorCancion mgc = new MiGestorCancion(canc);
 			mgc.setVisible(true);
 
 		}
 	}
+
 	private class BtnActualizarListaActionListener3 implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente client = new Cliente(lblNick.getText());

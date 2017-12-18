@@ -1,4 +1,5 @@
 package org.practicaISO.presentacion;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -80,7 +81,8 @@ public class frmLogin {
 		frmLogin.getContentPane().setLayout(null);
 		{
 			lblIcon = new JLabel("");
-			lblIcon.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+			lblIcon.setIcon(
+					new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblIcon.setBounds(267, 35, 106, 120);
 			frmLogin.getContentPane().add(lblIcon);
 		}
@@ -140,7 +142,8 @@ public class frmLogin {
 		{
 			lblanNoTienes = new JLabel("¿Aún no tienes cuenta?");
 			lblanNoTienes.setForeground(new Color(255, 255, 255));
-			lblanNoTienes.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoInfo.png")));
+			lblanNoTienes
+					.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoInfo.png")));
 			lblanNoTienes.setBounds(159, 423, 178, 35);
 			frmLogin.getContentPane().add(lblanNoTienes);
 		}
@@ -155,85 +158,90 @@ public class frmLogin {
 		{
 			lblErrornick = new JLabel("");
 			lblErrornick.setVisible(false);
-			lblErrornick.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
+			lblErrornick.setIcon(
+					new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
 			lblErrornick.setBounds(432, 199, 56, 35);
 			frmLogin.getContentPane().add(lblErrornick);
 		}
 		{
 			lblErrorpass = new JLabel("");
 			lblErrorpass.setVisible(false);
-			lblErrorpass.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
+			lblErrorpass.setIcon(
+					new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
 			lblErrorpass.setBounds(432, 253, 56, 35);
 			frmLogin.getContentPane().add(lblErrorpass);
 		}
 	}
-	
+
 	public void entrar() {
-		String nick=txtNick.getText();
-		String password=String.valueOf(pwdPass.getPassword());
+		String nick = txtNick.getText();
+		String password = String.valueOf(pwdPass.getPassword());
 		GestorCliente gc = new GestorCliente();
-		Cliente client= new Cliente();
+		Cliente client = new Cliente();
 		client.setNick(nick);
 		client.setPass(password);
-		Cliente c=gc.logearCliente(client);
-		
-		if(c!=null) {
-			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Bienvenido "+c.getNombre());
+		Cliente c = gc.logearCliente(client);
+
+		if (c != null) {
+			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Bienvenido " + c.getNombre());
 			frmLogin.dispose();
 			frmInterfaz fi = new frmInterfaz(c);
 			fi.setVisible(true);
-			
-		
-			
-		}else if(txtNick.getText().equals("")){
-			
+
+		} else if (txtNick.getText().equals("")) {
+
 			lblErrornick.setVisible(true);
 			txtNick.setCaretColor(Color.RED);
 			txtNick.requestFocus();
-			
-		}else if(pwdPass.getText().equals("")) {
-			
+
+		} else if (pwdPass.getText().equals("")) {
+
 			lblErrorpass.setVisible(true);
 			pwdPass.setCaretColor(Color.RED);
 			pwdPass.requestFocus();
-		}else {
-			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Datos inválidos", "Error",JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Datos inválidos", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
-		
+
 	}
+
 	private class BtnEntrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			entrar();
-			
+
 		}
 	}
+
 	private class TxtNickKeyListener extends KeyAdapter {
 		@Override
 		public void keyTyped(KeyEvent e) {
 			lblErrornick.setVisible(false);
 		}
 	}
+
 	private class PwdPassKeyListener extends KeyAdapter {
 		@Override
 		public void keyTyped(KeyEvent e) {
 			lblErrorpass.setVisible(false);
 		}
 	}
+
 	private class ChckbxMostrarContraseaMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(chckbxMostrarContrasea.isSelected()) {
-				pwdPass.setEchoChar((char)0);
-			}else {
+			if (chckbxMostrarContrasea.isSelected()) {
+				pwdPass.setEchoChar((char) 0);
+			} else {
 				pwdPass.setEchoChar('*');
 			}
 		}
 	}
-	
-	public void mostrar () {
+
+	public void mostrar() {
 		frmLogin.setVisible(true);
 	}
-	
+
 	private class LblRegistrarmeMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
