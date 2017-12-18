@@ -23,6 +23,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.44-bin.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+=======
+>>>>>>> branch 'master' of https://github.com/javirmones/a4mdev
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
