@@ -6,8 +6,8 @@ import org.practicaISO.dominio.Album;
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
 import org.practicaISO.persistencia.DAOAlbum;
-import org.practicaISO.persistencia.GestorCancion;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCancion;
+import org.practicaISO.persistencia.DAOCliente;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -119,8 +119,8 @@ public class MiPanelArtistas extends JPanel {
 	}
 
 	public void actualizarModelo(Cliente client) {
-		GestorCliente gc = new GestorCliente();
-		GestorCancion gcan = new GestorCancion();
+		DAOCliente gc = new DAOCliente();
+		DAOCancion gcan = new DAOCancion();
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		DefaultListModel<String> modelolimpio = new DefaultListModel<String>();
@@ -168,7 +168,7 @@ public class MiPanelArtistas extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducir.setEnabled(false);
 			btnParar.setEnabled(true);
-			GestorCancion gcan = new GestorCancion();
+			DAOCancion gcan = new DAOCancion();
 			String autor = list.getSelectedValue().toString();
 			ArrayList<Cancion> canciones = new ArrayList<Cancion>();
 			try {

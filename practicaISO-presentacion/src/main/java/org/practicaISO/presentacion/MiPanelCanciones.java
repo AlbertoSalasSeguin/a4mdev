@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.GestorCancion;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCancion;
+import org.practicaISO.persistencia.DAOCliente;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -113,8 +113,8 @@ public class MiPanelCanciones extends JPanel {
 	}
 
 	public void actualizarModelo(Cliente c) {
-		GestorCliente gc = new GestorCliente();
-		GestorCancion gcan = new GestorCancion();
+		DAOCliente gc = new DAOCliente();
+		DAOCancion gcan = new DAOCancion();
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		try {
@@ -153,7 +153,7 @@ public class MiPanelCanciones extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnReproductor.setEnabled(false);
 			btnParar.setEnabled(true);
-			GestorCancion gcan = new GestorCancion();
+			DAOCancion gcan = new DAOCancion();
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));

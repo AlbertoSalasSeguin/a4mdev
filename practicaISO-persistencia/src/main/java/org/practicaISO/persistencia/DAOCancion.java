@@ -11,7 +11,7 @@ import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
 ;
 
-public class GestorCancion {
+public class DAOCancion {
 	private Cancion cancion;
 	private Connection con;
 	private PreparedStatement pst;
@@ -22,7 +22,7 @@ public class GestorCancion {
 	public  ArrayList leerCanciones () {
 		ArrayList <Cancion> ac= new ArrayList<Cancion>();
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select*from tb_cancion order by idcancion";
 			pst=con.prepareStatement(sql);
 			rs=pst.executeQuery();
@@ -42,7 +42,7 @@ public class GestorCancion {
 	public  ArrayList<Cancion> obtenerCancionesAutor (String autor) {
 		ArrayList <Cancion> ac= new ArrayList<Cancion>();
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select*from tb_cancion where autor = ?";
 			pst=con.prepareStatement(sql);
 			pst.setString(1,autor);
@@ -64,7 +64,7 @@ public class GestorCancion {
 	public ArrayList<String> obtenerIds (Cliente client) {
 		ArrayList<String> ids = new ArrayList<String>();
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select canciones from tb_playlist where nick = ?";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, client.getNick());
@@ -84,7 +84,7 @@ public class GestorCancion {
 	public ArrayList<String> obteneridsAlbum (Album alb) {
 		ArrayList<String> ids = new ArrayList<String>();
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select idcancion from tb_cancion where album = ?";
 			pst=con.prepareStatement(sql);
 			pst.setInt(1,alb.getIdalbum());
@@ -108,7 +108,7 @@ public class GestorCancion {
 	public Cancion obtenerCancionId(Cancion can) {
 
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select*from tb_cancion where idcancion = ?";
 			pst=con.prepareStatement(sql);
 			pst.setInt(1, can.getIdCancion());
@@ -129,7 +129,7 @@ public class GestorCancion {
 	public Cancion obtenerCancionTitulo(Cancion can) {
 
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select*from tb_cancion where titulo = ?";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, can.getTitulo());
@@ -150,7 +150,7 @@ public class GestorCancion {
 	public void insertarCancion(Cancion can) {
 		try {
 
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "insert into tb_cancion values(?,?,?,?,?)";
 			pst=con.prepareStatement(sql);
@@ -168,7 +168,7 @@ public class GestorCancion {
 
 	public void actualizarCancion(Cancion can) {
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "update tb_cancion set titulo = '"+can.getTitulo()+"', autor = '"+can.getAutor()+"',"
 					+ " album = "+can.getAlbum()+", precio = "+can.getPrecio()+" where idcancion = "+can.getIdCancion();
@@ -181,7 +181,7 @@ public class GestorCancion {
 
 	public void eliminarCancion(Cancion can) {
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "delete from tb_cancion where idcancion = "+can.getIdCancion()+"";
 			pst=con.prepareStatement(sql);

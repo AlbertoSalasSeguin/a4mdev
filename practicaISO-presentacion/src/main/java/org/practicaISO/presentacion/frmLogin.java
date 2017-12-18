@@ -14,7 +14,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCliente;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -176,7 +176,7 @@ public class frmLogin {
 	public void entrar() {
 		String nick = txtNick.getText();
 		String password = String.valueOf(pwdPass.getPassword());
-		GestorCliente gc = new GestorCliente();
+		DAOCliente gc = new DAOCliente();
 		Cliente client = new Cliente();
 		client.setNick(nick);
 		client.setPass(password);

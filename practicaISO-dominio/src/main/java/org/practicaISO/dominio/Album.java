@@ -1,15 +1,20 @@
 package org.practicaISO.dominio;
 
+import org.practicaISO.persistencia.DAOAlbum;
+
 public class Album {
 
 	private int idalbum;
 	private String nombre;
+	private DAOAlbum dao;
+	
 	
 	public Album(int idalbum, String nombre) {
 		this.idalbum = idalbum;
 		this.nombre = nombre;
 	}
 
+	
 	public Album(int idalbum) {
 		this.idalbum=idalbum;
 	}

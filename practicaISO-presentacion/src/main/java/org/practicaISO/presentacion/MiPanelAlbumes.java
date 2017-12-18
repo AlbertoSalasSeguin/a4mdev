@@ -6,8 +6,8 @@ import org.practicaISO.dominio.Album;
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
 import org.practicaISO.persistencia.DAOAlbum;
-import org.practicaISO.persistencia.GestorCancion;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCancion;
+import org.practicaISO.persistencia.DAOCliente;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -114,8 +114,8 @@ public class MiPanelAlbumes extends JPanel {
 	}
 
 	public void actualizarModelo(Cliente client) {
-		GestorCliente gc = new GestorCliente();
-		GestorCancion gcan = new GestorCancion();
+		DAOCliente gc = new DAOCliente();
+		DAOCancion gcan = new DAOCancion();
 		DAOAlbum galb = new DAOAlbum();
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
@@ -156,7 +156,7 @@ public class MiPanelAlbumes extends JPanel {
 	private class BtnReproducirAlbumActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducirAlbum.setEnabled(false);
-			GestorCancion gcan = new GestorCancion();
+			DAOCancion gcan = new DAOCancion();
 			String album = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(album, "-");
 			Album alb = new Album(Integer.parseInt(token.nextToken()));

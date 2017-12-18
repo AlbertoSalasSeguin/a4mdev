@@ -3,7 +3,7 @@ package org.practicaISO.presentacion;
 import javax.swing.JPanel;
 
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCliente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -167,7 +167,7 @@ public class MiPanelInfo extends JPanel {
 	private class BtnAtrsActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente c = new Cliente(lblLblnick.getText());
-			GestorCliente gc = new GestorCliente();
+			DAOCliente gc = new DAOCliente();
 			try {
 				c = gc.obtenerCliente(c);
 			} catch (Exception e2) {
@@ -182,7 +182,7 @@ public class MiPanelInfo extends JPanel {
 
 	private class BtnActualizarMisDatosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			GestorCliente gc = new GestorCliente();
+			DAOCliente gc = new DAOCliente();
 			String suscripcion;
 			if (chckbxActualizarAPremium.isSelected()) {
 				suscripcion = "Premium";
@@ -207,7 +207,7 @@ public class MiPanelInfo extends JPanel {
 					"¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.",
 					"Ventana de confirmación", JOptionPane.YES_NO_OPTION);
 			if (confirmado == JOptionPane.YES_OPTION) {
-				GestorCliente gc = new GestorCliente();
+				DAOCliente gc = new DAOCliente();
 				Cliente client = new Cliente(lblLblnick.getText());
 				try {
 

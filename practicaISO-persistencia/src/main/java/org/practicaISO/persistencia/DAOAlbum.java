@@ -19,7 +19,7 @@ public class DAOAlbum {
 	public Album obtenerAlbum(Cancion canc) {
 
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select * from tb_album where idalbum = ? order by idalbum";
 			pst=con.prepareStatement(sql);
 			pst.setInt(1, canc.getAlbum());
@@ -39,7 +39,7 @@ public class DAOAlbum {
 	public void insertarAlbum(Album alb) {
 		try {
 
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "insert into tb_album values(?,?)";
 			pst=con.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class DAOAlbum {
 
 	public void actualizarAlbum(Album alb) {
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "update tb_album set idalbum = "+alb.getIdalbum()+", nombre = '"+alb.getNombre()+"'";
 			pst=con.prepareStatement(sql);
@@ -66,7 +66,7 @@ public class DAOAlbum {
 	
 	public void eliminarAlbum(Album alb) {
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "delete from tb_album where idalbum = "+alb.getIdalbum()+"";
 			pst=con.prepareStatement(sql);

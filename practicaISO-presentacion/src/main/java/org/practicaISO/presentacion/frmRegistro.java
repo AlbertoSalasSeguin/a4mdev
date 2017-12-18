@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCliente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -182,7 +182,7 @@ public class frmRegistro extends JFrame {
 					&& !txtNombre.getText().equals("") && !txtApellidos.getText().equals("")) {
 						
 						client= new Cliente(txtNick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(),"Normal", "Usuario");
-						GestorCliente gc= new GestorCliente();
+						DAOCliente gc= new DAOCliente();
 			
 						try {
 							gc.insertarCliente(client);

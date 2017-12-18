@@ -6,8 +6,8 @@ import javax.swing.SwingUtilities;
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
 import org.practicaISO.persistencia.DAOAlbum;
-import org.practicaISO.persistencia.GestorCancion;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCancion;
+import org.practicaISO.persistencia.DAOCliente;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -142,7 +142,7 @@ public class MiPanelComprar extends JPanel {
 	}
 
 	private void actualizarModelo(Cliente client) {
-		GestorCancion gc = new GestorCancion();
+		DAOCancion gc = new DAOCancion();
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		try {
@@ -166,7 +166,7 @@ public class MiPanelComprar extends JPanel {
 			btnComprarCancin.setEnabled(true);
 			btnReproducir.setEnabled(true);
 			Cliente client = new Cliente(lblNick.getText());
-			GestorCliente gc = new GestorCliente();
+			DAOCliente gc = new DAOCliente();
 			try {
 				client = gc.obtenerCliente(client);
 			} catch (Exception e2) {
@@ -187,8 +187,8 @@ public class MiPanelComprar extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
-			GestorCliente gc = new GestorCliente();
-			GestorCancion gcan = new GestorCancion();
+			DAOCliente gc = new DAOCliente();
+			DAOCancion gcan = new DAOCancion();
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			Cliente client = new Cliente(lblNick.getText());
 			try {
@@ -233,7 +233,7 @@ public class MiPanelComprar extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducir.setEnabled(false);
 			btnParar.setEnabled(true);
-			GestorCancion gcan = new GestorCancion();
+			DAOCancion gcan = new DAOCancion();
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
@@ -258,7 +258,7 @@ public class MiPanelComprar extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
-			GestorCancion gcan = new GestorCancion();
+			DAOCancion gcan = new DAOCancion();
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
 				canc = gcan.obtenerCancionId(canc);

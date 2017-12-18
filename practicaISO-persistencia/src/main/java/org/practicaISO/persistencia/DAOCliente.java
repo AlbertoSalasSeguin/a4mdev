@@ -9,7 +9,7 @@ import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
 
 
-public class GestorCliente {
+public class DAOCliente {
 	private Cliente cliente;
 	private Connection con;
 	private PreparedStatement pst;
@@ -19,7 +19,7 @@ public class GestorCliente {
 	public Cliente logearCliente(Cliente client) {
 
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select*from tb_cliente where nick = ? and pass = ? ";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, client.getNick());
@@ -41,7 +41,7 @@ public class GestorCliente {
 	public Cliente obtenerCliente(Cliente client) {
 
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select*from tb_cliente where nick = ?";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, client.getNick());
@@ -62,7 +62,7 @@ public class GestorCliente {
 	public ArrayList<Cancion> obtenerCanciones(Cliente client) {
 		ArrayList<Cancion> ac = new ArrayList<Cancion>();
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			String sql = "select canciones from tb_playlist where nick = ?";
 			pst=con.prepareStatement(sql);
 			pst.setString(1, client.getNick());
@@ -82,7 +82,7 @@ public class GestorCliente {
 	public void insertarCliente(Cliente client) {
 		try {
 
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "insert into tb_cliente values(?,?,?,?,?,?,?)";
 			pst=con.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class GestorCliente {
 
 	public void actualizarCliente(Cliente client) {
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ?, rol = ? where nick = ?";
 			pst=con.prepareStatement(sql);
@@ -122,7 +122,7 @@ public class GestorCliente {
 	public void comprarCancion(Cliente client, Cancion canc) {
 		try {
 
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "insert into tb_playlist values(?,?)";
 			pst=con.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class GestorCliente {
 	
 	public void eliminarCliente(Cliente client) {
 		try {
-			con=MySQLConexion.getConexion();
+			con=Agente.getConexion();
 			st=con.createStatement();
 			String sql = "delete from tb_cliente where nick = '"+client.getNick()+"'";
 			pst=con.prepareStatement(sql);

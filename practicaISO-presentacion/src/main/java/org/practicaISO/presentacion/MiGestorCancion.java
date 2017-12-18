@@ -9,8 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.GestorCancion;
-import org.practicaISO.persistencia.GestorCliente;
+import org.practicaISO.persistencia.DAOCancion;
+import org.practicaISO.persistencia.DAOCliente;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -169,7 +169,7 @@ public class MiGestorCancion extends JFrame {
 					"Ventana de confirmación", JOptionPane.YES_NO_OPTION);
 			if (confirmado == JOptionPane.YES_OPTION) {
 				Cancion canc = new Cancion(txtTitulo.getText());
-				GestorCancion gc = new GestorCancion();
+				DAOCancion gc = new DAOCancion();
 
 				try {
 					canc = gc.obtenerCancionTitulo(canc);
@@ -188,7 +188,7 @@ public class MiGestorCancion extends JFrame {
 					"¿Estás seguro de que quieres actualizar esta canción?", "Ventana de confirmación",
 					JOptionPane.YES_NO_OPTION);
 			if (confirmado == JOptionPane.YES_OPTION) {
-				GestorCancion gc = new GestorCancion();
+				DAOCancion gc = new DAOCancion();
 				Cancion canc = new Cancion(txtTitulo.getText(), Integer.parseInt(lblId.getText()), txtArtista.getText(),
 						Integer.parseInt(txtAlbum.getText()), Float.parseFloat(txtPrecio.getText()));
 
