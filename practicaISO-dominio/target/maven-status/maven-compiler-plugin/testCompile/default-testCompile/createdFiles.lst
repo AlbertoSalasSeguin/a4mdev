@@ -1,1 +1,3 @@
-org\practicaISO\dominio\AppTest.class
+org\practicaISO\dominio\GestorAlbumTest.class
+org\practicaISO\dominio\GestorClienteTest.class
+org\practicaISO\dominio\GestorCancionTest.class
