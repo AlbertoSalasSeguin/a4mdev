@@ -3,7 +3,6 @@ package org.practicaISO.dominio;
 import java.sql.ResultSet;
 
 import org.practicaISO.persistencia.DAOAlbum;
-import org.practicaISO.persistencia.Entity;
 
 public class Album {
 
