@@ -124,7 +124,7 @@ public class MiPanelAlbumes extends JPanel {
 				try {
 					canc = canc.obtenerCancionId();
 					Album alb = new Album(canc.getAlbum());
-					alb.obtenerAlbum();
+					alb = alb.obtenerAlbum();
 					modelo.addElement(alb.toString());
 
 				} catch (Exception e) {
