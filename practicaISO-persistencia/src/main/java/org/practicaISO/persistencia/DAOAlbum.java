@@ -3,48 +3,36 @@ package org.practicaISO.persistencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-
-import org.practicaISO.dominio.Album;
-import org.practicaISO.dominio.Cancion;
-
 
 public class DAOAlbum {
-	private Album album;
 	private Connection con;
 	private PreparedStatement pst;
-	private ResultSet rs;
-	private Statement st;
 
-	public Album obtenerAlbum(Cancion canc) {
-
+	public ResultSet obtenerAlbumDAO(int idalbum) {
+		ResultSet rs = null;
 		try {
-			con=Agente.getConexion();
+			con = Agente.getConexion();
 			String sql = "select * from tb_album where idalbum = ? order by idalbum";
-			pst=con.prepareStatement(sql);
-			pst.setInt(1, canc.getAlbum());
-			rs=pst.executeQuery();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, idalbum);
+			rs = pst.executeQuery();
 
-			while(rs.next()) {
-				album= new Album (rs.getInt(1),rs.getString(2));
-
-			}
 		} catch (Exception e) {
 			System.out.println("Error al obtener álbum");
 		}
 
-		return album;
+		return rs;
 	}
 
-	public void insertarAlbum(Album alb) {
+	public void insertarAlbumDAO(int idAlbum, String nombre) {
 		try {
 
-			con=Agente.getConexion();
-			st=con.createStatement();
+			con = Agente.getConexion();
+			con.createStatement();
 			String sql = "insert into tb_album values(?,?)";
-			pst=con.prepareStatement(sql);
-			pst.setInt(1, alb.getIdalbum());
-			pst.setString(2, alb.getNombre());
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, idAlbum);
+			pst.setString(2, nombre);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al insertar album en la base de datos");
@@ -52,27 +40,27 @@ public class DAOAlbum {
 
 	}
 
-	public void actualizarAlbum(Album alb) {
+	public void actualizarAlbumDAO(int idAlbum, String nombre) {
 		try {
-			con=Agente.getConexion();
-			st=con.createStatement();
-			String sql = "update tb_album set idalbum = "+alb.getIdalbum()+", nombre = '"+alb.getNombre()+"'";
-			pst=con.prepareStatement(sql);
+			con = Agente.getConexion();
+			con.createStatement();
+			String sql = "update tb_album set idalbum = " + idAlbum + ", nombre = '" + nombre + "'";
+			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al actualizar álbum en la base de datos");
 		}
 	}
-	
-	public void eliminarAlbum(Album alb) {
+
+	public void eliminarAlbumDAO(int idalbum) {
 		try {
-			con=Agente.getConexion();
-			st=con.createStatement();
-			String sql = "delete from tb_album where idalbum = "+alb.getIdalbum()+"";
-			pst=con.prepareStatement(sql);
+			con = Agente.getConexion();
+			con.createStatement();
+			String sql = "delete from tb_album where idalbum = " + idalbum + "";
+			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al eliminar álbum en la base de datos");
-		}	
+		}
 	}
 }

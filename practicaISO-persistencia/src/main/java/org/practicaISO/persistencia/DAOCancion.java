@@ -3,162 +3,118 @@ package org.practicaISO.persistencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-
-import org.practicaISO.dominio.Album;
-import org.practicaISO.dominio.Cancion;
-import org.practicaISO.dominio.Cliente;
-;
 
 public class DAOCancion {
-	private Cancion cancion;
 	private Connection con;
 	private PreparedStatement pst;
-	private ResultSet rs;
-	private Statement st;
 
-	
-	public  ArrayList leerCanciones () {
-		ArrayList <Cancion> ac= new ArrayList<Cancion>();
+	public ResultSet leerCancionesDAO() {
+		ResultSet rs = null;
 		try {
-			con=Agente.getConexion();
+			con = Agente.getConexion();
 			String sql = "select*from tb_cancion order by idcancion";
-			pst=con.prepareStatement(sql);
-			rs=pst.executeQuery();
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
 
-			while(rs.next()) {
-				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
-						rs.getFloat(5));
-				ac.add(cancion);
-			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error al obtener lista de canciones");
 		}
 
-		return ac;
+		return rs;
 	}
 
-	public  ArrayList<Cancion> obtenerCancionesAutor (String autor) {
-		ArrayList <Cancion> ac= new ArrayList<Cancion>();
+	public ResultSet obtenerCancionesAutorDAO(String autor) {
+		ResultSet rs = null;
 		try {
-			con=Agente.getConexion();
+			con = Agente.getConexion();
 			String sql = "select*from tb_cancion where autor = ?";
-			pst=con.prepareStatement(sql);
-			pst.setString(1,autor);
-			rs=pst.executeQuery();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, autor);
+			rs = pst.executeQuery();
 
-			while(rs.next()) {
-				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
-						rs.getFloat(5));
-				ac.add(cancion);
-			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error al obtener lista de canciones");
 		}
 
-		return ac;
+		return rs;
 	}
-	
-	
-	public ArrayList<String> obtenerIds (Cliente client) {
-		ArrayList<String> ids = new ArrayList<String>();
+
+	public ResultSet obtenerIdsCancionesDAO(String nick) {
+		ResultSet rs = null;
 		try {
-			con=Agente.getConexion();
+			con = Agente.getConexion();
 			String sql = "select canciones from tb_playlist where nick = ?";
-			pst=con.prepareStatement(sql);
-			pst.setString(1, client.getNick());
-			rs=pst.executeQuery();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, nick);
+			rs = pst.executeQuery();
 
-			while(rs.next()) {
-				ids.add(String.valueOf(rs.getInt(1)));
-
-			}
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones");
 		}
-		return ids;
-		
+		return rs;
+
 	}
-	
-	public ArrayList<String> obteneridsAlbum (Album alb) {
-		ArrayList<String> ids = new ArrayList<String>();
+
+	public ResultSet obtenerIdsAlbumDAO(int idAlbum) {
+		ResultSet rs = null;
 		try {
-			con=Agente.getConexion();
+			con = Agente.getConexion();
 			String sql = "select idcancion from tb_cancion where album = ?";
-			pst=con.prepareStatement(sql);
-			pst.setInt(1,alb.getIdalbum());
-			rs=pst.executeQuery();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, idAlbum);
+			rs = pst.executeQuery();
 
-			while(rs.next()) {
-				ids.add(String.valueOf(rs.getInt(1)));
-
-			}
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones");
 		}
-		return ids;
-		
-	}
-	
-	
-	
-	
-	
-	public Cancion obtenerCancionId(Cancion can) {
+		return rs;
 
+	}
+
+	public ResultSet obtenerCancionIdDAO(int idcancion) {
+		ResultSet rs = null;
 		try {
-			con=Agente.getConexion();
+			con = Agente.getConexion();
 			String sql = "select*from tb_cancion where idcancion = ?";
-			pst=con.prepareStatement(sql);
-			pst.setInt(1, can.getIdCancion());
-			rs=pst.executeQuery();
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, idcancion);
+			rs = pst.executeQuery();
 
-			while(rs.next()) {
-				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
-						rs.getFloat(5));
-
-			}
 		} catch (Exception e) {
 			System.out.println("Error al obtener la cancion");
 		}
 
-		return cancion;
+		return rs;
 	}
 
-	public Cancion obtenerCancionTitulo(Cancion can) {
-
+	public ResultSet obtenerCancionTituloDAO(String titulo) {
+		ResultSet rs = null;
 		try {
-			con=Agente.getConexion();
+			con = Agente.getConexion();
 			String sql = "select*from tb_cancion where titulo = ?";
-			pst=con.prepareStatement(sql);
-			pst.setString(1, can.getTitulo());
-			rs=pst.executeQuery();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, titulo);
+			rs = pst.executeQuery();
 
-			while(rs.next()) {
-				cancion= new Cancion (rs.getString(1),rs.getInt(2),rs.getString(3),rs.getInt(4),
-						rs.getFloat(5));
-
-			}
 		} catch (Exception e) {
 			System.out.println("Error al obtener la cancion");
 		}
 
-		return cancion;
+		return rs;
 	}
-	
-	public void insertarCancion(Cancion can) {
+
+	public void insertarCancion(String titulo, int idcancion, String autor, int idalbum, float precio) {
 		try {
 
-			con=Agente.getConexion();
-			st=con.createStatement();
+			con = Agente.getConexion();
+			con.createStatement();
 			String sql = "insert into tb_cancion values(?,?,?,?,?)";
-			pst=con.prepareStatement(sql);
-			pst.setString(1, can.getTitulo());
-			pst.setInt(2, can.getIdCancion());
-			pst.setString(3, can.getAutor());
-			pst.setInt(4, can.getAlbum());
-			pst.setFloat(5, can.getPrecio());
+			pst = con.prepareStatement(sql);
+			pst.setString(1, titulo);
+			pst.setInt(2, idcancion);
+			pst.setString(3, autor);
+			pst.setInt(4, idalbum);
+			pst.setFloat(5, precio);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al insertar canción en la base de datos");
@@ -166,28 +122,28 @@ public class DAOCancion {
 
 	}
 
-	public void actualizarCancion(Cancion can) {
+	public void actualizarCancionDAO(String titulo, int idcancion, String autor, int idalbum, float precio) {
 		try {
-			con=Agente.getConexion();
-			st=con.createStatement();
-			String sql = "update tb_cancion set titulo = '"+can.getTitulo()+"', autor = '"+can.getAutor()+"',"
-					+ " album = "+can.getAlbum()+", precio = "+can.getPrecio()+" where idcancion = "+can.getIdCancion();
-			pst=con.prepareStatement(sql);
+			con = Agente.getConexion();
+			con.createStatement();
+			String sql = "update tb_cancion set titulo = '" + titulo + "', autor = '" + autor + "'," + " album = "
+					+ idalbum + ", precio = " + precio + " where idcancion = " + idcancion;
+			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al actualizar cancion en la base de datos");
 		}
 	}
 
-	public void eliminarCancion(Cancion can) {
+	public void eliminarCancionDAO(int idcancion) {
 		try {
-			con=Agente.getConexion();
-			st=con.createStatement();
-			String sql = "delete from tb_cancion where idcancion = "+can.getIdCancion()+"";
-			pst=con.prepareStatement(sql);
+			con = Agente.getConexion();
+			con.createStatement();
+			String sql = "delete from tb_cancion where idcancion = " + idcancion + "";
+			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al eliminar cancion en la base de datos");
-		}	
+		}
 	}
 }
