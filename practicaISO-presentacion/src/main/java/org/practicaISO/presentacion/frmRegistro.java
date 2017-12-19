@@ -43,22 +43,6 @@ public class frmRegistro extends JFrame {
 	private JLabel lblLblimage;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmRegistro frame = new frmRegistro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public frmRegistro() {
@@ -163,13 +147,15 @@ public class frmRegistro extends JFrame {
 		}
 		{
 			lblLblimage_1 = new JLabel("");
-			lblLblimage_1.setIcon(new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+			lblLblimage_1.setIcon(
+					new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblLblimage_1.setBounds(126, 26, 124, 111);
 			contentPane.add(lblLblimage_1);
 		}
 		{
 			lblLblimage = new JLabel("");
-			lblLblimage.setIcon(new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoUsuario.png")));
+			lblLblimage.setIcon(
+					new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoUsuario.png")));
 			lblLblimage.setBounds(33, 78, 188, 159);
 			contentPane.add(lblLblimage);
 		}
@@ -177,42 +163,46 @@ public class frmRegistro extends JFrame {
 
 	private class BtnRegistrarmeActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			Cliente client =null;
-			if(!txtNick.getText().equals("") && !pwdPass.getText().equals("") && !txtEmail.getText().equals("")
+			Cliente client = null;
+			if (!txtNick.getText().equals("") && !pwdPass.getText().equals("") && !txtEmail.getText().equals("")
 					&& !txtNombre.getText().equals("") && !txtApellidos.getText().equals("")) {
-						
-						client= new Cliente(txtNick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(), txtApellidos.getText(),"Normal", "Usuario");
-						DAOCliente gc= new DAOCliente();
-			
-						try {
-							client.insertarCliente();
-							dispose();
-							frmInterfaz fi = new frmInterfaz(client);
-							fi.setVisible(true);
-						} catch (Exception e1) {
-							System.out.println("No se ha podido registrar al cliente.");
-						}
-						JOptionPane.showMessageDialog(contentPane, "El usuario "+client.getNombre()+ " "+client.getApellidos()+" con usuario '"+client.getNick()+ "' "
-								+ "se ha registrado correctamente.");
-						
+
+				client = new Cliente(txtNick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(),
+						txtApellidos.getText(), "Normal", "Usuario");
+				DAOCliente gc = new DAOCliente();
+
+				try {
+					client.insertarCliente();
+					dispose();
+					frmInterfaz fi = new frmInterfaz(client);
+					fi.setVisible(true);
+				} catch (Exception e1) {
+					System.out.println("No se ha podido registrar al cliente.");
+				}
+				JOptionPane.showMessageDialog(contentPane,
+						"El usuario " + client.getNombre() + " " + client.getApellidos() + " con usuario '"
+								+ client.getNick() + "' " + "se ha registrado correctamente.");
+
+			}
 		}
 	}
-}
+
 	private class BtnCancelarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			dispose();
-			frmLogin fl=new frmLogin();
+			frmLogin fl = new frmLogin();
 			fl.mostrar();
-			
+
 		}
 	}
+
 	private class BtnLimpiarCamposActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-		txtApellidos.setText("");
-		txtEmail.setText("");
-		txtNick.setText("");
-		txtNombre.setText("");
-		pwdPass.setText("");
+			txtApellidos.setText("");
+			txtEmail.setText("");
+			txtNick.setText("");
+			txtNombre.setText("");
+			pwdPass.setText("");
 		}
 	}
 }
