@@ -3,6 +3,7 @@ package org.practicaISO.dominio;
 import java.sql.ResultSet;
 
 import org.practicaISO.persistencia.DAOAlbum;
+import org.practicaISO.persistencia.Entity;
 
 public class Album {
 
@@ -39,7 +40,7 @@ public class Album {
 
 	public Album obtenerNombreAlbum() {
 		ResultSet rs = daoalbum.obtenerAlbumDAO(idalbum);
-		Album album=null;
+		Album album = null;
 		try {
 			while (rs.next()) {
 				album = new Album(rs.getInt(1), rs.getString(2));
@@ -55,15 +56,15 @@ public class Album {
 	public void insertarAlbum() {
 		daoalbum.insertarAlbumDAO(idalbum, nombre);
 	}
-	
+
 	public void actualizarAlbum() {
 		daoalbum.actualizarAlbumDAO(idalbum, nombre);
 	}
-	
+
 	public void eliminarAlbum() {
 		daoalbum.eliminarAlbumDAO(idalbum);
 	}
-	
+
 	public String toString() {
 		return this.getIdalbum() + "-" + this.getNombre();
 	}

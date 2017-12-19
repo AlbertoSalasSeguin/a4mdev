@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class DAOAlbum {
+
 	private Connection con;
 	private PreparedStatement pst;
 
@@ -16,11 +17,9 @@ public class DAOAlbum {
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, idalbum);
 			rs = pst.executeQuery();
-
 		} catch (Exception e) {
 			System.out.println("Error al obtener álbum");
 		}
-
 		return rs;
 	}
 
