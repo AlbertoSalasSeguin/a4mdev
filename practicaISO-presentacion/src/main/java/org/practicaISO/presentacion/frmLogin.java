@@ -176,11 +176,10 @@ public class frmLogin {
 	public void entrar() {
 		String nick = txtNick.getText();
 		String password = String.valueOf(pwdPass.getPassword());
-		DAOCliente gc = new DAOCliente();
 		Cliente client = new Cliente();
 		client.setNick(nick);
 		client.setPass(password);
-		Cliente c = gc.logearCliente(client);
+		Cliente c = client.logearCliente();
 
 		if (c != null) {
 			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Bienvenido " + c.getNombre());

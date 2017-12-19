@@ -3,7 +3,6 @@ package org.practicaISO.presentacion;
 import javax.swing.JPanel;
 
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.DAOCliente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -167,9 +166,8 @@ public class MiPanelInfo extends JPanel {
 	private class BtnAtrsActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Cliente c = new Cliente(lblLblnick.getText());
-			DAOCliente gc = new DAOCliente();
 			try {
-				c = gc.obtenerCliente(c);
+				c = c.obtenerCliente();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -182,7 +180,6 @@ public class MiPanelInfo extends JPanel {
 
 	private class BtnActualizarMisDatosActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			DAOCliente gc = new DAOCliente();
 			String suscripcion;
 			if (chckbxActualizarAPremium.isSelected()) {
 				suscripcion = "Premium";
@@ -192,7 +189,7 @@ public class MiPanelInfo extends JPanel {
 			Cliente client = new Cliente(lblLblnick.getText(), pwdPass.getText(), txtEmail.getText(),
 					txtNombre.getText(), txtApellidos.getText(), suscripcion, "Usuario");
 			try {
-				gc.actualizarCliente(client);
+				client.actualizarCliente();
 				JOptionPane.showMessageDialog(null, "Tu cuenta se ha actualizado con éxito");
 			} catch (Exception e2) {
 				e2.printStackTrace();
@@ -207,11 +204,10 @@ public class MiPanelInfo extends JPanel {
 					"¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.",
 					"Ventana de confirmación", JOptionPane.YES_NO_OPTION);
 			if (confirmado == JOptionPane.YES_OPTION) {
-				DAOCliente gc = new DAOCliente();
 				Cliente client = new Cliente(lblLblnick.getText());
 				try {
-
-					gc.eliminarCliente(client);
+					
+					client.eliminarCliente();
 					JOptionPane.showMessageDialog(null, "Tu cuenta se ha eliminado con éxito. Saliendo...");
 					System.exit(0);
 

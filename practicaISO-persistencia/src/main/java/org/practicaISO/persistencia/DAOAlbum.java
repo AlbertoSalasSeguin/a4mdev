@@ -51,6 +51,22 @@ public class DAOAlbum {
 		}
 	}
 
+	public ResultSet obtenerIdsCancionesAlbumDAO(int idAlbum) {
+		ResultSet rs = null;
+		try {
+			con = Agente.getConexion();
+			String sql = "select idcancion from tb_cancion where album = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, idAlbum);
+			rs = pst.executeQuery();
+
+		} catch (Exception e) {
+			System.out.println("Error al obtener canciones");
+		}
+		return rs;
+
+	}
+
 	public void eliminarAlbumDAO(int idalbum) {
 		try {
 			con = Agente.getConexion();

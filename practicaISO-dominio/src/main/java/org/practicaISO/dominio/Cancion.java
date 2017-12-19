@@ -33,6 +33,10 @@ public class Cancion {
 		this.dcan = new DAOCancion();
 	}
 
+	public Cancion() {
+		this.dcan = new DAOCancion();
+	}
+
 	public String getTitulo() {
 		return titulo;
 	}
@@ -113,26 +117,12 @@ public class Cancion {
 		return ac;
 	}
 
-	public ArrayList<String> obtenerCanciones(String nick) {
+	public ArrayList<String> obtenerCancionesUsuario(String nick) {
 		ArrayList<String> ids = new ArrayList<String>();
 		ResultSet rs = dcan.obtenerIdsCancionesDAO(nick);
 		try {
 			while (rs.next()) {
 				ids.add(String.valueOf(rs.getInt(1)));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ids;
-	}
-
-	public ArrayList<String> obtenerIdsAlbum(int idalbum) {
-		ArrayList<String> ids = new ArrayList<String>();
-		ResultSet rs = dcan.obtenerIdsAlbumDAO(idalbum);
-		try {
-			while (rs.next()) {
-				ids.add(String.valueOf(rs.getInt(1)));
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,7 +166,7 @@ public class Cancion {
 		dcan.actualizarCancionDAO(titulo, idCancion, autor, album, precio);
 	}
 
-	public void eliminarCliente() {
+	public void eliminarCancion() {
 		dcan.eliminarCancionDAO(idCancion);
 	}
 

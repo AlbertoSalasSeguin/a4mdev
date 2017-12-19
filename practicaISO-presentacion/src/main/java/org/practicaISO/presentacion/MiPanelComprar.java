@@ -1,28 +1,20 @@
 package org.practicaISO.presentacion;
 
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.DAOAlbum;
-import org.practicaISO.persistencia.DAOCancion;
-import org.practicaISO.persistencia.DAOCliente;
-
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 
 import java.awt.Dimension;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
@@ -142,17 +134,17 @@ public class MiPanelComprar extends JPanel {
 	}
 
 	private void actualizarModelo(Cliente client) {
-		DAOCancion gc = new DAOCancion();
+		Cancion canc = new Cancion();
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		try {
-			ac = gc.leerCanciones();
+			ac = canc.leerCanciones();
 		} catch (Exception e) {
 			System.out.println("Error ");
 		}
 		if (ac != null) {
-			for (Cancion canc : ac) {
-				modelo.addElement(canc.toStringCompra());
+			for (Cancion ca : ac) {
+				modelo.addElement(ca.toStringCompra());
 			}
 		} else {
 			JOptionPane.showMessageDialog(this, "No hay canciones que mostrar");
@@ -166,9 +158,8 @@ public class MiPanelComprar extends JPanel {
 			btnComprarCancin.setEnabled(true);
 			btnReproducir.setEnabled(true);
 			Cliente client = new Cliente(lblNick.getText());
-			DAOCliente gc = new DAOCliente();
 			try {
-				client = gc.obtenerCliente(client);
+				client = client.obtenerCliente();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -187,17 +178,15 @@ public class MiPanelComprar extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
-			DAOCliente gc = new DAOCliente();
-			DAOCancion gcan = new DAOCancion();
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			Cliente client = new Cliente(lblNick.getText());
 			try {
-				canc = gcan.obtenerCancionId(canc);
+				canc = canc.obtenerCancionId();
 
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
-			ArrayList<String> ids = gcan.obtenerIds(client);
+			ArrayList<String> ids = canc.obtenerCancionesUsuario(client.getNick());
 			if (esComprada(ids, canc)) {
 				JOptionPane.showMessageDialog(null, "Esta canción ya ha sido adquirida");
 			} else {
@@ -206,7 +195,7 @@ public class MiPanelComprar extends JPanel {
 				if (confirmado == JOptionPane.YES_OPTION) {
 
 					try {
-						gc.comprarCancion(client, canc);
+						client.comprarCancion(canc.getIdCancion());
 						JOptionPane.showMessageDialog(null,
 								"Enhorabuena has comprado " + canc.getTitulo() + " de " + canc.getAutor());
 
@@ -233,12 +222,11 @@ public class MiPanelComprar extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducir.setEnabled(false);
 			btnParar.setEnabled(true);
-			DAOCancion gcan = new DAOCancion();
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
-				canc = gcan.obtenerCancionId(canc);
+				canc = canc.obtenerCancionId();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -258,10 +246,9 @@ public class MiPanelComprar extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String cancion = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(cancion, "-");
-			DAOCancion gcan = new DAOCancion();
 			Cancion canc = new Cancion(Integer.parseInt(token.nextToken()));
 			try {
-				canc = gcan.obtenerCancionId(canc);
+				canc = canc.obtenerCancionId();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}

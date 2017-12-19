@@ -5,9 +5,6 @@ import javax.swing.JPanel;
 import org.practicaISO.dominio.Album;
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.DAOAlbum;
-import org.practicaISO.persistencia.DAOCancion;
-import org.practicaISO.persistencia.DAOCliente;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -119,20 +116,18 @@ public class MiPanelArtistas extends JPanel {
 	}
 
 	public void actualizarModelo(Cliente client) {
-		DAOCliente gc = new DAOCliente();
-		DAOCancion gcan = new DAOCancion();
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		DefaultListModel<String> modelolimpio = new DefaultListModel<String>();
 		try {
-			ac = gc.obtenerCanciones(client);
+			ac = client.obtenerCanciones();
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones del usuario");
 		}
 		if (ac != null) {
 			for (Cancion canc : ac) {
 				try {
-					canc = gcan.obtenerCancionId(canc);
+					canc = canc.obtenerCancionId();
 					modelo.addElement(canc.getAutor());
 
 				} catch (Exception e) {
@@ -168,11 +163,12 @@ public class MiPanelArtistas extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducir.setEnabled(false);
 			btnParar.setEnabled(true);
-			DAOCancion gcan = new DAOCancion();
 			String autor = list.getSelectedValue().toString();
 			ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+			Cancion canc = new Cancion();
+			canc.setAutor(autor);
 			try {
-				canciones = gcan.obtenerCancionesAutor(autor);
+				canciones = canc.obtenerCancionesAutor();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}

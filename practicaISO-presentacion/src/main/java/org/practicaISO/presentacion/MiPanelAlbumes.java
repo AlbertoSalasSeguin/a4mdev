@@ -5,9 +5,6 @@ import javax.swing.JPanel;
 import org.practicaISO.dominio.Album;
 import org.practicaISO.dominio.Cancion;
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.DAOAlbum;
-import org.practicaISO.persistencia.DAOCancion;
-import org.practicaISO.persistencia.DAOCliente;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -114,26 +111,20 @@ public class MiPanelAlbumes extends JPanel {
 	}
 
 	public void actualizarModelo(Cliente client) {
-		DAOCliente gc = new DAOCliente();
-		DAOCancion gcan = new DAOCancion();
-		DAOAlbum galb = new DAOAlbum();
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		DefaultListModel<String> modelolimpio = new DefaultListModel<String>();
 		try {
-			ac = gc.obtenerCanciones(client);
+			ac = client.obtenerCanciones();
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones del usuario");
 		}
 		if (ac != null) {
 			for (Cancion canc : ac) {
 				try {
-					canc = gcan.obtenerCancionId(canc);
-					
-					
-					
-					
-					Album album = galb.obtenerAlbum(canc.getAlbum().getid);
+					canc = canc.obtenerCancionId();
+					Album alb = new Album(canc.getAlbum());
+					alb.obtenerAlbum();
 					modelo.addElement(alb.toString());
 
 				} catch (Exception e) {
@@ -160,14 +151,13 @@ public class MiPanelAlbumes extends JPanel {
 	private class BtnReproducirAlbumActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			btnReproducirAlbum.setEnabled(false);
-			DAOCancion gcan = new DAOCancion();
 			String album = list.getSelectedValue().toString();
 			StringTokenizer token = new StringTokenizer(album, "-");
 			Album alb = new Album(Integer.parseInt(token.nextToken()));
 			try {
-				ArrayList<String> idscanciones = gcan.obteneridsAlbum(alb);
+				ArrayList<String> idscanciones = alb.obtenerIdsCancionesAlbum();
 				Cancion canc = new Cancion(Integer.parseInt(idscanciones.get(0)));
-				canc = gcan.obtenerCancionId(canc);
+				canc = canc.obtenerCancionId();
 				lblMusica.setText("Reproduciendo lista aleatoria: " + canc.getTitulo() + " - " + canc.getAutor()
 						+ " del álbum con id " + canc.getAlbum());
 				btnParar.setEnabled(true);

@@ -1,6 +1,7 @@
 package org.practicaISO.dominio;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import org.practicaISO.persistencia.DAOAlbum;
 
@@ -37,7 +38,7 @@ public class Album {
 		this.nombre = nombre;
 	}
 
-	public Album obtenerNombreAlbum() {
+	public Album obtenerAlbum() {
 		ResultSet rs = daoalbum.obtenerAlbumDAO(idalbum);
 		Album album = null;
 		try {
@@ -50,6 +51,20 @@ public class Album {
 		}
 
 		return album;
+	}
+
+	public ArrayList<String> obtenerIdsCancionesAlbum() {
+		ArrayList<String> ids = new ArrayList<String>();
+		ResultSet rs = daoalbum.obtenerIdsCancionesAlbumDAO(idalbum);
+		try {
+			while (rs.next()) {
+				ids.add(String.valueOf(rs.getInt(1)));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ids;
 	}
 
 	public void insertarAlbum() {

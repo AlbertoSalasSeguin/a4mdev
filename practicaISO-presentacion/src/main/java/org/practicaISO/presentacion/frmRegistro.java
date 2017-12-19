@@ -185,15 +185,16 @@ public class frmRegistro extends JFrame {
 						DAOCliente gc= new DAOCliente();
 			
 						try {
-							gc.insertarCliente(client);
+							client.insertarCliente();
+							dispose();
+							frmInterfaz fi = new frmInterfaz(client);
+							fi.setVisible(true);
 						} catch (Exception e1) {
 							System.out.println("No se ha podido registrar al cliente.");
 						}
 						JOptionPane.showMessageDialog(contentPane, "El usuario "+client.getNombre()+ " "+client.getApellidos()+" con usuario '"+client.getNick()+ "' "
 								+ "se ha registrado correctamente.");
-						dispose();
-						frmInterfaz fi = new frmInterfaz(client);
-						fi.setVisible(true);
+						
 		}
 	}
 }

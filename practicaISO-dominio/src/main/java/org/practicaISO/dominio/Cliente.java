@@ -116,7 +116,7 @@ public class Cliente {
 		return cliente;
 	}
 
-	public Cliente obtenerInfoCliente() {
+	public Cliente obtenerCliente() {
 		ResultSet rs = dc.obtenerClienteDAO(nick);
 		Cliente cliente = null;
 		try {
@@ -144,19 +144,19 @@ public class Cliente {
 		}
 		return ac;
 	}
-	
+
 	public void insertarCliente() {
 		dc.insertarClienteDAO(nick, pass, email, nombre, apellidos, suscripcion, rol);
 	}
-	
+
 	public void actualizarCliente() {
 		dc.actualizarClienteDAO(pass, email, nombre, apellidos, suscripcion, rol, nick);
 	}
-	
+
 	public void comprarCancion(int idCancion) {
 		dc.comprarCancionDAO(nick, idCancion);
 	}
-	
+
 	public void eliminarCliente() {
 		dc.eliminarClienteDAO(nick);
 	}

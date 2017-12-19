@@ -1,16 +1,10 @@
 package org.practicaISO.presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.practicaISO.dominio.Cancion;
-import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.DAOCancion;
-import org.practicaISO.persistencia.DAOCliente;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -18,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -169,11 +162,9 @@ public class MiGestorCancion extends JFrame {
 					"Ventana de confirmación", JOptionPane.YES_NO_OPTION);
 			if (confirmado == JOptionPane.YES_OPTION) {
 				Cancion canc = new Cancion(txtTitulo.getText());
-				DAOCancion gc = new DAOCancion();
-
 				try {
-					canc = gc.obtenerCancionTitulo(canc);
-					gc.eliminarCancion(canc);
+					canc = canc.obtenerCancionTitulo();
+					canc.eliminarCancion();
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -188,12 +179,11 @@ public class MiGestorCancion extends JFrame {
 					"¿Estás seguro de que quieres actualizar esta canción?", "Ventana de confirmación",
 					JOptionPane.YES_NO_OPTION);
 			if (confirmado == JOptionPane.YES_OPTION) {
-				DAOCancion gc = new DAOCancion();
 				Cancion canc = new Cancion(txtTitulo.getText(), Integer.parseInt(lblId.getText()), txtArtista.getText(),
 						Integer.parseInt(txtAlbum.getText()), Float.parseFloat(txtPrecio.getText()));
 
 				try {
-					gc.actualizarCancion(canc);
+					canc.actualizarCancion();
 					JOptionPane.showMessageDialog(null, "Canción actualizada con éxito");
 				} catch (Exception e2) {
 					e2.printStackTrace();
