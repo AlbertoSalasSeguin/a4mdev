@@ -1,4 +1,4 @@
-package org.practicaISO.persistencia;
+Rpackage org.practicaISO.persistencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,31 +9,31 @@ import org.practicaISO.dominio.Album;
 import org.practicaISO.dominio.Cancion;
 
 
-public class DAOAlbum {
-	private Album album;
+public class DAOAlbum extends EntityDao {
+	//private Entity album;
 	private Connection con;
 	private PreparedStatement pst;
 	private ResultSet rs;
 	private Statement st;
 
-	public Album obtenerAlbum(Cancion canc) {
+	public ResultSet obtenerAlbum(int idAlbum) {
 
 		try {
 			con=Agente.getConexion();
 			String sql = "select * from tb_album where idalbum = ? order by idalbum";
 			pst=con.prepareStatement(sql);
-			pst.setInt(1, canc.getAlbum());
-			rs=pst.executeQuery();
+			pst.setInt(1, idAlbum);
+			ResultSet rsAlbum=pst.executeQuery();
 
-			while(rs.next()) {
-				album= new Album (rs.getInt(1),rs.getString(2));
-
-			}
+//			while(rsAlbum.next()) {
+//				album= new Album (rsAlbum.getInt(1),rsAlbum.getString(2));
+//
+//			}
 		} catch (Exception e) {
 			System.out.println("Error al obtener álbum");
 		}
 
-		return album;
+		return rsAlbum;
 	}
 
 	public void insertarAlbum(Album alb) {

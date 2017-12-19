@@ -1,8 +1,9 @@
 package org.practicaISO.dominio;
 
 import org.practicaISO.persistencia.DAOAlbum;
+import org.practicaISO.persistencia.Entity;
 
-public class Album {
+public class Album extends Entity{
 
 	private int idalbum;
 	private String nombre;
