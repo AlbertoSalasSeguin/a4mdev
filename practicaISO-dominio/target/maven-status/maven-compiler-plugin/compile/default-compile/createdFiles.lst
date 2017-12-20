@@ -1,6 +1,3 @@
-org\practicaISO\dominio\GestorCliente.class
 org\practicaISO\dominio\Cliente.class
 org\practicaISO\dominio\Album.class
-org\practicaISO\dominio\GestorCancion.class
-org\practicaISO\dominio\GestorAlbum.class
 org\practicaISO\dominio\Cancion.class

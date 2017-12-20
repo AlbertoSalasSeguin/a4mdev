@@ -1,3 +1,4 @@
-org\practicaISO\persistencia\GestorCancion.class
-org\practicaISO\persistencia\GestorCliente.class
-org\practicaISO\persistencia\MySQLConexion.class
+org\practicaISO\persistencia\Agente.class
+org\practicaISO\persistencia\DAOAlbum.class
+org\practicaISO\persistencia\DAOCancion.class
+org\practicaISO\persistencia\DAOCliente.class

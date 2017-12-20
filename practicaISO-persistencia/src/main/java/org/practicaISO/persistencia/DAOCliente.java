@@ -8,6 +8,8 @@ public class DAOCliente {
 	private Connection con;
 	private PreparedStatement pst;
 
+	
+	
 	public ResultSet logearClienteDAO(String nick, String pass) {
 		ResultSet rs = null;
 		try {
