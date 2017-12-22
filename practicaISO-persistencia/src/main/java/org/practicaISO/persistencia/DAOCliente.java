@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 public class DAOCliente {
 	private Connection con;
 	private PreparedStatement pst;
-
+	private boolean realizado;
 	
 	
 	public ResultSet logearClienteDAO(String nick, String pass) {
@@ -60,10 +60,10 @@ public class DAOCliente {
 
 	}
 
-	public void insertarClienteDAO(String nick, String pass, String email, String nombre, String apellidos,
+	public boolean insertarClienteDAO(String nick, String pass, String email, String nombre, String apellidos,
 			String suscripcion, String rol) {
 		try {
-
+			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
 			String sql = "insert into tb_cliente values(?,?,?,?,?,?,?)";
@@ -77,14 +77,17 @@ public class DAOCliente {
 			pst.setString(7, rol);
 			pst.executeUpdate();
 		} catch (Exception e) {
+			realizado=false;
 			System.out.println("Error al insertar cliente en la base de datos");
 		}
 
+		return realizado;
 	}
 
-	public void actualizarClienteDAO(String pass, String email, String nombre, String apellidos, String suscripcion,
+	public boolean actualizarClienteDAO(String pass, String email, String nombre, String apellidos, String suscripcion,
 			String rol, String nick) {
 		try {
+			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
 			String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ?, rol = ? where nick = ?";
@@ -98,13 +101,15 @@ public class DAOCliente {
 			pst.setString(7, nick);
 			pst.executeUpdate();
 		} catch (Exception e) {
+			realizado=false;
 			System.out.println("Error al actualizar cliente en la base de datos");
 		}
+		return realizado;
 	}
 
-	public void comprarCancionDAO(String nick, int idcancion) {
+	public boolean comprarCancionDAO(String nick, int idcancion) {
 		try {
-
+			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
 			String sql = "insert into tb_playlist values(?,?)";
@@ -113,20 +118,26 @@ public class DAOCliente {
 			pst.setInt(2, idcancion);
 			pst.executeUpdate();
 		} catch (Exception e) {
+			realizado=false;
 			System.out.println("Error al comprar canción");
 		}
+		return realizado;
+		
 
 	}
 
-	public void eliminarClienteDAO(String nick) {
+	public boolean eliminarClienteDAO(String nick) {
 		try {
+			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
 			String sql = "delete from tb_cliente where nick = '" + nick + "'";
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
+			realizado=false;
 			System.out.println("Error al eliminar cliente en la base de datos");
 		}
+		return realizado;
 	}
 }

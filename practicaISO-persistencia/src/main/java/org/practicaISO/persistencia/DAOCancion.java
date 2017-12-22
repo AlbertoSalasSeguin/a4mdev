@@ -88,7 +88,7 @@ public class DAOCancion {
 		return rs;
 	}
 
-	public void insertarCancion(String titulo, int idcancion, String autor, int idalbum, float precio) {
+	public boolean insertarCancion(String titulo, int idcancion, String autor, int idalbum, float precio) {
 		try {
 			realizado=true;
 			con = Agente.getConexion();
@@ -105,6 +105,7 @@ public class DAOCancion {
 			System.out.println("Error al insertar canción en la base de datos");
 			realizado= false;
 		}
+		return realizado;
 
 	}
 
