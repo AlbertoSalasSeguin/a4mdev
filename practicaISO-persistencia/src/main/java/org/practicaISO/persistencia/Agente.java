@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Agente {
-
-	public Agente() {
-
+	
+	public Agente () {
+		
 	}
-
+	
 	public static Connection getConexion() {
 		Connection con = null;
 		try {
