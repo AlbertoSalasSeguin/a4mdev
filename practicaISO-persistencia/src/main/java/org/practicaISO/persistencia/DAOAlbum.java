@@ -8,6 +8,8 @@ public class DAOAlbum {
 
 	private Connection con;
 	private PreparedStatement pst;
+	private boolean realizado;
+
 
 	public ResultSet obtenerAlbumDAO(int idalbum) {
 		ResultSet rs = null;
@@ -23,9 +25,9 @@ public class DAOAlbum {
 		return rs;
 	}
 
-	public void insertarAlbumDAO(int idAlbum, String nombre) {
+	public boolean insertarAlbumDAO(int idAlbum, String nombre) {
 		try {
-
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			String sql = "insert into tb_album values(?,?)";
@@ -35,20 +37,24 @@ public class DAOAlbum {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al insertar album en la base de datos");
+			realizado = false;
 		}
-
+		return realizado;
 	}
 
-	public void actualizarAlbumDAO(int idAlbum, String nombre) {
+	public boolean actualizarAlbumDAO(int idAlbum, String nombre) {
 		try {
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "update tb_album set idalbum = " + idAlbum + ", nombre = '" + nombre + "'";
+			String sql = "update tb_album set nombre = '" + nombre + "' where idalbum ="+idAlbum;
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al actualizar álbum en la base de datos");
+			realizado = false;
 		}
+		return realizado;
 	}
 
 	public ResultSet obtenerIdsCancionesAlbumDAO(int idAlbum) {
@@ -67,8 +73,9 @@ public class DAOAlbum {
 
 	}
 
-	public void eliminarAlbumDAO(int idalbum) {
+	public boolean eliminarAlbumDAO(int idalbum) {
 		try {
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			String sql = "delete from tb_album where idalbum = " + idalbum + "";
@@ -76,6 +83,8 @@ public class DAOAlbum {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al eliminar álbum en la base de datos");
+			realizado = false;
 		}
+		return realizado;
 	}
 }
