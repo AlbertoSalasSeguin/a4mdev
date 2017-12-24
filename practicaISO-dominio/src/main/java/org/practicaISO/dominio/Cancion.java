@@ -11,19 +11,19 @@ public class Cancion {
 	private String autor;
 	private int album;
 	private float precio;
-	private DAOCancion dcan;
+	final private DAOCancion dcan;
 
-	public Cancion(int idCancion) {
+	public Cancion(final int idCancion) {
 		this.idCancion = idCancion;
 		this.dcan = new DAOCancion();
 	}
 
-	public Cancion(String titulo) {
+	public Cancion(final String titulo) {
 		this.titulo = titulo;
 		this.dcan = new DAOCancion();
 	}
 
-	public Cancion(String titulo, int idCancion, String autor, int album, float precio) {
+	public Cancion(final String titulo, final int idCancion, final String autor, final int album, final float precio) {
 
 		this.titulo = titulo;
 		this.idCancion = idCancion;
@@ -41,7 +41,7 @@ public class Cancion {
 		return titulo;
 	}
 
-	public void setTitulo(String titulo) {
+	public void setTitulo(final String titulo) {
 		this.titulo = titulo;
 	}
 
@@ -49,7 +49,7 @@ public class Cancion {
 		return idCancion;
 	}
 
-	public void setIdCancion(int idCancion) {
+	public void setIdCancion(final int idCancion) {
 		this.idCancion = idCancion;
 	}
 
@@ -57,7 +57,7 @@ public class Cancion {
 		return autor;
 	}
 
-	public void setAutor(String autor) {
+	public void setAutor(final String autor) {
 		this.autor = autor;
 	}
 
@@ -65,7 +65,7 @@ public class Cancion {
 		return album;
 	}
 
-	public void setAlbum(int album) {
+	public void setAlbum(final int album) {
 		this.album = album;
 	}
 
@@ -73,7 +73,7 @@ public class Cancion {
 		return precio;
 	}
 
-	public void setPrecio(float precio) {
+	public void setPrecio(final float precio) {
 		this.precio = precio;
 	}
 
@@ -88,41 +88,41 @@ public class Cancion {
 	}
 
 	public ArrayList<Cancion> leerCanciones() {
-		ResultSet rs = dcan.leerCancionesDAO();
-		ArrayList<Cancion> ac = new ArrayList<Cancion>();
+		final ResultSet resultSet = dcan.leerCancionesDAO();
+		final ArrayList<Cancion> arrayCanciones = new ArrayList<Cancion>();
 		Cancion cancion = null;
 		try {
-			while (rs.next()) {
-				cancion = new Cancion(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getFloat(5));
-				ac.add(cancion);
+			while (resultSet.next()) {
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
+				arrayCanciones.add(cancion);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ac;
+		return arrayCanciones;
 	}
 
 	public ArrayList<Cancion> obtenerCancionesAutor() {
-		ResultSet rs = dcan.obtenerCancionesAutorDAO(autor);
-		ArrayList<Cancion> ac = new ArrayList<Cancion>();
+		final ResultSet resultSet = dcan.obtenerCancionesAutorDAO(autor);
+		final ArrayList<Cancion> arrayCanciones = new ArrayList<Cancion>();
 		Cancion cancion = null;
 		try {
-			while (rs.next()) {
-				cancion = new Cancion(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getFloat(5));
-				ac.add(cancion);
+			while (resultSet.next()) {
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
+				arrayCanciones.add(cancion);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ac;
+		return arrayCanciones;
 	}
 
-	public ArrayList<String> obtenerCancionesUsuario(String nick) {
-		ArrayList<String> ids = new ArrayList<String>();
-		ResultSet rs = dcan.obtenerIdsCancionesDAO(nick);
+	public ArrayList<String> obtenerCancionesUsuario(final String nick) {
+		final ArrayList<String> ids = new ArrayList<String>();
+		final ResultSet resultSet = dcan.obtenerIdsCancionesDAO(nick);
 		try {
-			while (rs.next()) {
-				ids.add(String.valueOf(rs.getInt(1)));
+			while (resultSet.next()) {
+				ids.add(String.valueOf(resultSet.getInt(1)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,11 +131,11 @@ public class Cancion {
 	}
 
 	public Cancion obtenerCancionId() {
-		ResultSet rs = dcan.obtenerCancionIdDAO(idCancion);
+		final ResultSet resultSet = dcan.obtenerCancionIdDAO(idCancion);
 		Cancion cancion = null;
 		try {
-			while (rs.next()) {
-				cancion = new Cancion(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getFloat(5));
+			while (resultSet.next()) {
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,11 +144,11 @@ public class Cancion {
 	}
 
 	public Cancion obtenerCancionTitulo() {
-		ResultSet rs = dcan.obtenerCancionTituloDAO(titulo);
+		final ResultSet resultSet = dcan.obtenerCancionTituloDAO(titulo);
 		Cancion cancion = null;
 		try {
-			while (rs.next()) {
-				cancion = new Cancion(rs.getString(1), rs.getInt(2), rs.getString(3), rs.getInt(4), rs.getFloat(5));
+			while (resultSet.next()) {
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
 
 			}
 		} catch (Exception e) {

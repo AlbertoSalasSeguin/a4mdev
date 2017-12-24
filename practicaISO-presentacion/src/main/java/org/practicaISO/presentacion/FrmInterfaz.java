@@ -1,8 +1,6 @@
 package org.practicaISO.presentacion;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,34 +9,34 @@ import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import java.awt.CardLayout;
 import javax.swing.JTree;
-import org.practicaISO.dominio.Cliente;
-import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultTreeModel;
+
+import org.practicaISO.dominio.Cliente;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.SystemColor;
 
-public class frmInterfaz extends JFrame {
+public class FrmInterfaz extends JFrame {
 
-	private JPanel contentPane;
-	private JSplitPane splitPane;
-	private JScrollPane scrollPane;
-	private JPanel panel;
-	private JTree tree;
-	private JPanel miPanelComprar;
-	private JPanel miPanelCanciones;
-	private JPanel miPanelArtistas;
-	private JPanel miPanelAlbumes;
-	private JPanel miPanelInfo;
+	final private JPanel contentPane;
+	final private JSplitPane splitPane;
+	final private JScrollPane scrollPane;
+	final private JPanel panel;
+	final private JTree tree;
+	final private JPanel miPanelComprar;
+	final private JPanel miPanelCanciones;
+	final private JPanel miPanelArtistas;
+	final private JPanel miPanelAlbumes;
+	final private JPanel miPanelInfo;
 
 	/**
 	 * Launch the application.
 	 */
 
-	public frmInterfaz(Cliente c) {
+	public FrmInterfaz(final Cliente cliente) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1157, 634);
@@ -100,23 +98,23 @@ public class frmInterfaz extends JFrame {
 				splitPane.setRightComponent(panel);
 				panel.setLayout(new CardLayout(0, 0));
 				{
-					miPanelComprar = new MiPanelComprar(c);
+					miPanelComprar = new MiPanelComprar(cliente);
 					panel.add(miPanelComprar, "Comprar canciones");
 				}
 				{
-					miPanelCanciones = new MiPanelCanciones(c);
+					miPanelCanciones = new MiPanelCanciones(cliente);
 					panel.add(miPanelCanciones, "Canciones");
 				}
 				{
-					miPanelArtistas = new MiPanelArtistas(c);
+					miPanelArtistas = new MiPanelArtistas(cliente);
 					panel.add(miPanelArtistas, "Artistas");
 				}
 				{
-					miPanelAlbumes = new MiPanelAlbumes(c);
+					miPanelAlbumes = new MiPanelAlbumes(cliente);
 					panel.add(miPanelAlbumes, "Álbumes");
 				}
 				{
-					miPanelInfo = new MiPanelInfo(c);
+					miPanelInfo = new MiPanelInfo(cliente);
 					panel.add(miPanelInfo, "Información de mi cuenta");
 				}
 			}
@@ -126,7 +124,7 @@ public class frmInterfaz extends JFrame {
 	private class TreeTreeSelectionListener implements TreeSelectionListener {
 		public void valueChanged(TreeSelectionEvent e) {
 			System.out.println("Nodo seleccionado " + e.getPath().getLastPathComponent());
-			String nodo = (e.getPath().getLastPathComponent()).toString();
+			final String nodo = e.getPath().getLastPathComponent().toString();
 			if (nodo.equals("Canciones") || nodo.equals("Artistas") || nodo.equals("Álbumes")
 					|| nodo.equals("Información de mi cuenta") || nodo.equals("Comprar canciones")) {
 

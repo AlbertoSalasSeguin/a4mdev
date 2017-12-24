@@ -2,8 +2,6 @@ package org.practicaISO.presentacion;
 
 import javax.swing.JPanel;
 
-import org.practicaISO.dominio.Cancion;
-import org.practicaISO.dominio.Cliente;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -16,6 +14,10 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.event.ListSelectionListener;
+
+import org.practicaISO.dominio.Cancion;
+import org.practicaISO.dominio.Cliente;
+
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

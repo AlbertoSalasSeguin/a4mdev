@@ -2,10 +2,6 @@ package org.practicaISO.presentacion;
 
 import javax.swing.JPanel;
 
-import org.practicaISO.dominio.Album;
-import org.practicaISO.dominio.Cancion;
-import org.practicaISO.dominio.Cliente;
-
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
@@ -16,10 +12,12 @@ import javax.swing.JOptionPane;
 
 import java.awt.SystemColor;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
-
 import javax.swing.JButton;
 import javax.swing.event.ListSelectionListener;
+
+import org.practicaISO.dominio.Cancion;
+import org.practicaISO.dominio.Cliente;
+
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

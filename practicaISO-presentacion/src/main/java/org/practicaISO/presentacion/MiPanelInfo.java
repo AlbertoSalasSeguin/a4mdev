@@ -1,15 +1,15 @@
 package org.practicaISO.presentacion;
 
 import javax.swing.JPanel;
-
-import org.practicaISO.dominio.Cliente;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import org.practicaISO.dominio.Cliente;
+
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;

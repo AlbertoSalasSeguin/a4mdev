@@ -13,10 +13,10 @@ public class Cliente {
 	private String suscripcion;
 	private String rol;
 	private ArrayList<Cancion> listaCanciones;
-	private DAOCliente dc;
+	final private DAOCliente dcliente;
 
-	public Cliente(String nick, String pass, String email, String nombre, String apellidos, String suscripcion,
-			String rol) {
+	public Cliente(final String nick, final String pass, final String email, final String nombre, final String apellidos, final String suscripcion,
+			final String rol) {
 
 		this.nick = nick;
 		this.pass = pass;
@@ -25,23 +25,23 @@ public class Cliente {
 		this.apellidos = apellidos;
 		this.suscripcion = suscripcion;
 		this.rol = rol;
-		this.dc = new DAOCliente();
+		this.dcliente = new DAOCliente();
 	}
 
 	public Cliente() {
-		this.dc = new DAOCliente();
+		this.dcliente = new DAOCliente();
 	}
 
-	public Cliente(String nick) {
+	public Cliente(final String nick) {
 		this.nick = nick;
-		this.dc = new DAOCliente();
+		this.dcliente = new DAOCliente();
 	}
 
 	public String getNick() {
 		return nick;
 	}
 
-	public void setNick(String nick) {
+	public void setNick(final String nick) {
 		this.nick = nick;
 	}
 
@@ -49,7 +49,7 @@ public class Cliente {
 		return pass;
 	}
 
-	public void setPass(String pass) {
+	public void setPass(final String pass) {
 		this.pass = pass;
 	}
 
@@ -57,7 +57,7 @@ public class Cliente {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
@@ -65,7 +65,7 @@ public class Cliente {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(final String nombre) {
 		this.nombre = nombre;
 	}
 
@@ -73,7 +73,7 @@ public class Cliente {
 		return apellidos;
 	}
 
-	public void setApellidos(String apellidos) {
+	public void setApellidos(final String apellidos) {
 		this.apellidos = apellidos;
 	}
 
@@ -81,7 +81,7 @@ public class Cliente {
 		return suscripcion;
 	}
 
-	public void setSuscripcion(String suscripcion) {
+	public void setSuscripcion(final String suscripcion) {
 		this.suscripcion = suscripcion;
 	}
 
@@ -89,7 +89,7 @@ public class Cliente {
 		return listaCanciones;
 	}
 
-	public void setListaCanciones(ArrayList<Cancion> listaCanciones) {
+	public void setListaCanciones(final ArrayList<Cancion> listaCanciones) {
 		this.listaCanciones = listaCanciones;
 	}
 
@@ -97,17 +97,17 @@ public class Cliente {
 		return rol;
 	}
 
-	public void setRol(String rol) {
+	public void setRol(final String rol) {
 		this.rol = rol;
 	}
 
 	public Cliente logearCliente() {
-		ResultSet rs = dc.logearClienteDAO(nick, pass);
+		final ResultSet resultSet = dcliente.logearClienteDAO(nick, pass);
 		Cliente cliente = null;
 		try {
-			while (rs.next()) {
-				cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7));
+			while (resultSet.next()) {
+				cliente = new Cliente(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,12 +117,12 @@ public class Cliente {
 	}
 
 	public Cliente obtenerCliente() {
-		ResultSet rs = dc.obtenerClienteDAO(nick);
+		final ResultSet resultSet = dcliente.obtenerClienteDAO(nick);
 		Cliente cliente = null;
 		try {
-			while (rs.next()) {
-				cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getString(5), rs.getString(6), rs.getString(7));
+			while (resultSet.next()) {
+				cliente = new Cliente(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
+						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
 
 			}
 		} catch (Exception e) {
@@ -132,33 +132,33 @@ public class Cliente {
 	}
 
 	public ArrayList<Cancion> obtenerCanciones() {
-		ResultSet rs = dc.obtenerCancionesDAO(nick);
-		ArrayList<Cancion> ac = new ArrayList<Cancion>();
+		final ResultSet resultSet = dcliente.obtenerCancionesDAO(nick);
+		final ArrayList<Cancion> arrayCanciones = new ArrayList<Cancion>();
 		try {
-			while (rs.next()) {
-				ac.add(new Cancion(rs.getInt(1)));
+			while (resultSet.next()) {
+				arrayCanciones.add(new Cancion(resultSet.getInt(1)));
 			}
-			this.setListaCanciones(ac);
+			this.setListaCanciones(arrayCanciones);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ac;
+		return arrayCanciones;
 	}
 
 	public void insertarCliente() {
-		dc.insertarClienteDAO(nick, pass, email, nombre, apellidos, suscripcion, rol);
+		dcliente.insertarClienteDAO(nick, pass, email, nombre, apellidos, suscripcion, rol);
 	}
 
 	public void actualizarCliente() {
-		dc.actualizarClienteDAO(pass, email, nombre, apellidos, suscripcion, rol, nick);
+		dcliente.actualizarClienteDAO(pass, email, nombre, apellidos, suscripcion, rol, nick);
 	}
 
-	public void comprarCancion(int idCancion) {
-		dc.comprarCancionDAO(nick, idCancion);
+	public void comprarCancion(final int idCancion) {
+		dcliente.comprarCancionDAO(nick, idCancion);
 	}
 
 	public void eliminarCliente() {
-		dc.eliminarClienteDAO(nick);
+		dcliente.eliminarClienteDAO(nick);
 	}
 
 }

@@ -109,7 +109,6 @@
 						<ruleset>/rulesets/java/braces.xml</ruleset>
 						<ruleset>/rulesets/java/naming.xml</ruleset>
 						<ruleset>/rulesets/java/design.xml</ruleset>
-						<ruleset>/rulesets/java/coupling.xml</ruleset>
 						<ruleset>/rulesets/java/controversial.xml</ruleset>
 						<ruleset>/rulesets/java/optimizations.xml</ruleset>
 					</rulesets>

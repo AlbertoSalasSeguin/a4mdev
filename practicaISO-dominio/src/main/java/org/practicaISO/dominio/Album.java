@@ -9,15 +9,15 @@ public class Album {
 
 	private int idalbum;
 	private String nombre;
-	private DAOAlbum daoalbum;
+	final private DAOAlbum daoalbum;
 
-	public Album(int idalbum, String nombre) {
+	public Album(final int idalbum, final String nombre) {
 		this.idalbum = idalbum;
 		this.nombre = nombre;
 		this.daoalbum = new DAOAlbum();
 	}
 
-	public Album(int idalbum) {
+	public Album(final int idalbum) {
 		this.idalbum = idalbum;
 		this.daoalbum = new DAOAlbum();
 	}
@@ -26,7 +26,7 @@ public class Album {
 		return idalbum;
 	}
 
-	public void setIdalbum(int idalbum) {
+	public void setIdalbum(final int idalbum) {
 		this.idalbum = idalbum;
 	}
 
@@ -34,17 +34,16 @@ public class Album {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
+	public void setNombre(final String nombre) {
 		this.nombre = nombre;
 	}
 
 	public Album obtenerAlbum() {
-		ResultSet rs = daoalbum.obtenerAlbumDAO(idalbum);
+		final ResultSet resultSet = daoalbum.obtenerAlbumDAO(idalbum);
 		Album album = null;
 		try {
-			while (rs.next()) {
-				album = new Album(rs.getInt(1), rs.getString(2));
-
+			while (resultSet.next()) {
+				album = new Album(resultSet.getInt(1), resultSet.getString(2));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,12 +53,11 @@ public class Album {
 	}
 
 	public ArrayList<String> obtenerIdsCancionesAlbum() {
-		ArrayList<String> ids = new ArrayList<String>();
-		ResultSet rs = daoalbum.obtenerIdsCancionesAlbumDAO(idalbum);
+		final ArrayList<String> ids = new ArrayList<String>();
+		final ResultSet resultSet = daoalbum.obtenerIdsCancionesAlbumDAO(idalbum);
 		try {
-			while (rs.next()) {
-				ids.add(String.valueOf(rs.getInt(1)));
-
+			while (resultSet.next()) {
+				ids.add(String.valueOf(resultSet.getInt(1)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

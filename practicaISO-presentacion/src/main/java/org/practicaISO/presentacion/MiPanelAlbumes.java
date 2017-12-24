@@ -2,10 +2,6 @@ package org.practicaISO.presentacion;
 
 import javax.swing.JPanel;
 
-import org.practicaISO.dominio.Album;
-import org.practicaISO.dominio.Cancion;
-import org.practicaISO.dominio.Cliente;
-
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
@@ -19,14 +15,18 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import org.practicaISO.dominio.Album;
+import org.practicaISO.dominio.Cancion;
+import org.practicaISO.dominio.Cliente;
+
 import javax.swing.event.ListSelectionEvent;
 
 public class MiPanelAlbumes extends JPanel {
-	private JLabel label;
+    private JLabel label;
 	private JLabel lblMostrandolbumesQue;
 	private JLabel lblNick;
 	private JList list;
@@ -34,7 +34,6 @@ public class MiPanelAlbumes extends JPanel {
 	private JLabel lblMusica;
 	private JButton btnParar;
 	private JButton btnActualizarLista;
-
 	/**
 	 * Create the panel.
 	 */
@@ -135,10 +134,8 @@ public class MiPanelAlbumes extends JPanel {
 			// para no repetir albumes
 			for (int ii = 0; ii < modelo.size(); ii++) {
 				for (int jj = 0; jj < modelo.size(); jj++) {
-					if (!modelo.get(ii).equals(modelo.get(jj))) {
-						if (!modelolimpio.contains(modelo.get(jj))) {
+					if (!modelo.get(ii).equals(modelo.get(jj)) && (!modelolimpio.contains(modelo.get(jj)))) {
 							modelolimpio.addElement(modelo.get(jj));
-						}
 					}
 				}
 			}

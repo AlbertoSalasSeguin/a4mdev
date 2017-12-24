@@ -1,14 +1,10 @@
 package org.practicaISO.presentacion;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.DAOCliente;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,29 +19,29 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class frmRegistro extends JFrame {
+public class FrmRegistro extends JFrame {
 
-	private JPanel contentPane;
-	private JLabel lblUsuario;
-	private JLabel lblContrasea;
-	private JLabel lblEmail;
-	private JLabel lblNombre;
-	private JLabel lblApellidos;
-	private JPasswordField pwdPass;
-	private JTextField txtNick;
-	private JTextField txtEmail;
-	private JTextField txtNombre;
-	private JTextField txtApellidos;
-	private JButton btnRegistrarme;
-	private JButton btnLimpiarCampos;
-	private JButton btnCancelar;
-	private JLabel lblLblimage_1;
-	private JLabel lblLblimage;
+	final private JPanel contentPane;
+	final private JLabel lblUsuario;
+	final private JLabel lblContrasea;
+	final private JLabel lblEmail;
+	final private JLabel lblNombre;
+	final private JLabel lblApellidos;
+	final private JPasswordField pwdPass;
+	final private JTextField txtNick;
+	final private JTextField txtEmail;
+	final private JTextField txtNombre;
+	final private JTextField txtApellidos;
+	final private JButton btnRegistrarme;
+	final private JButton btnLimpiarCampos;
+	final private JButton btnCancelar;
+	final private JLabel lblLblimage_1;
+	final private JLabel lblLblimage;
 
 	/**
 	 * Create the frame.
 	 */
-	public frmRegistro() {
+	public FrmRegistro() {
 		setTitle("Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 573, 564);
@@ -148,14 +144,14 @@ public class frmRegistro extends JFrame {
 		{
 			lblLblimage_1 = new JLabel("");
 			lblLblimage_1.setIcon(
-					new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+					new ImageIcon(FrmRegistro.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblLblimage_1.setBounds(126, 26, 124, 111);
 			contentPane.add(lblLblimage_1);
 		}
 		{
 			lblLblimage = new JLabel("");
 			lblLblimage.setIcon(
-					new ImageIcon(frmRegistro.class.getResource("/org/practicaISO/presentacion/IconoUsuario.png")));
+					new ImageIcon(FrmRegistro.class.getResource("/org/practicaISO/presentacion/IconoUsuario.png")));
 			lblLblimage.setBounds(33, 78, 188, 159);
 			contentPane.add(lblLblimage);
 		}
@@ -169,13 +165,13 @@ public class frmRegistro extends JFrame {
 
 				client = new Cliente(txtNick.getText(), pwdPass.getText(), txtEmail.getText(), txtNombre.getText(),
 						txtApellidos.getText(), "Normal", "Usuario");
-				DAOCliente gc = new DAOCliente();
+				//DAOCliente gc = new DAOCliente();
 
 				try {
 					client.insertarCliente();
 					dispose();
-					frmInterfaz fi = new frmInterfaz(client);
-					fi.setVisible(true);
+					final FrmInterfaz frameInterfaz = new FrmInterfaz(client);
+					frameInterfaz.setVisible(true);
 				} catch (Exception e1) {
 					System.out.println("No se ha podido registrar al cliente.");
 				}
@@ -190,7 +186,7 @@ public class frmRegistro extends JFrame {
 	private class BtnCancelarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			dispose();
-			frmLogin fl = new frmLogin();
+			FrmLogin fl = new FrmLogin();
 			fl.mostrar();
 
 		}

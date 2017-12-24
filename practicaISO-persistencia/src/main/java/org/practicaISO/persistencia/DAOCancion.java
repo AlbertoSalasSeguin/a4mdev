@@ -10,90 +10,90 @@ public class DAOCancion {
 	private boolean realizado;
 
 	public ResultSet leerCancionesDAO() {
-		ResultSet rs = null;
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select*from tb_cancion order by idcancion";
+			final String sql = "select*from tb_cancion order by idcancion";
 			pst = con.prepareStatement(sql);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener lista de canciones");
 		}
 
-		return rs;
+		return resultSet;
 	}
 
-	public ResultSet obtenerCancionesAutorDAO(String autor) {
-		ResultSet rs = null;
+	public ResultSet obtenerCancionesAutorDAO(final String autor) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select*from tb_cancion where autor = ?";
+			final String sql = "select*from tb_cancion where autor = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, autor);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener lista de canciones");
 		}
 
-		return rs;
+		return resultSet;
 	}
 
-	public ResultSet obtenerIdsCancionesDAO(String nick) {
-		ResultSet rs = null;
+	public ResultSet obtenerIdsCancionesDAO(final String nick) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select canciones from tb_playlist where nick = ?";
+			final String sql = "select canciones from tb_playlist where nick = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, nick);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones");
 		}
-		return rs;
+		return resultSet;
 
 	}
 
-	public ResultSet obtenerCancionIdDAO(int idcancion) {
-		ResultSet rs = null;
+	public ResultSet obtenerCancionIdDAO(final int idcancion) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select*from tb_cancion where idcancion = ?";
+			final String sql = "select*from tb_cancion where idcancion = ?";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, idcancion);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener la cancion");
 		}
 
-		return rs;
+		return resultSet;
 	}
 
-	public ResultSet obtenerCancionTituloDAO(String titulo) {
-		ResultSet rs = null;
+	public ResultSet obtenerCancionTituloDAO(final String titulo) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select*from tb_cancion where titulo = ?";
+			final String sql = "select*from tb_cancion where titulo = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, titulo);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener la cancion");
 		}
 
-		return rs;
+		return resultSet;
 	}
 
-	public boolean insertarCancion(String titulo, int idcancion, String autor, int idalbum, float precio) {
+	public boolean insertarCancion(final String titulo, final int idcancion, final String autor, final int idalbum, final float precio) {
 		try {
 			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "insert into tb_cancion values(?,?,?,?,?)";
+			final String sql = "insert into tb_cancion values(?,?,?,?,?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, titulo);
 			pst.setInt(2, idcancion);
@@ -109,12 +109,12 @@ public class DAOCancion {
 
 	}
 
-	public boolean actualizarCancionDAO(String titulo, int idcancion, String autor, int idalbum, float precio) {
+	public boolean actualizarCancionDAO(final String titulo, final int idcancion, final String autor, final int idalbum, final float precio) {
 		try {
 			realizado= true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "update tb_cancion set titulo = '" + titulo + "', autor = '" + autor + "'," + " album = "
+			final String sql = "update tb_cancion set titulo = '" + titulo + "', autor = '" + autor + "'," + " album = "
 					+ idalbum + ", precio = " + precio + " where idcancion = " + idcancion;
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
@@ -125,12 +125,12 @@ public class DAOCancion {
 		return realizado;
 	}
 
-	public boolean eliminarCancionDAO(int idcancion) {
+	public boolean eliminarCancionDAO(final int idcancion) {
 		try {
 			realizado= true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "delete from tb_cancion where idcancion = " + idcancion;
+			final String sql = "delete from tb_cancion where idcancion = " + idcancion;
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {

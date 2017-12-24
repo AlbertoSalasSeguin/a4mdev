@@ -1,9 +1,6 @@
 package org.practicaISO.presentacion;
 
 import javax.swing.JPanel;
-
-import org.practicaISO.dominio.Cancion;
-import org.practicaISO.dominio.Cliente;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
@@ -19,8 +16,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import org.practicaISO.dominio.Cancion;
+import org.practicaISO.dominio.Cliente;
+
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.UIManager;
 import javax.swing.ImageIcon;
 
 public class MiPanelCanciones extends JPanel {

@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JCheckBox;
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JLabel;
@@ -14,21 +13,18 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import org.practicaISO.dominio.Cliente;
-import org.practicaISO.persistencia.DAOCliente;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.UIManager;
 
-public class frmLogin {
+public class FrmLogin {
 
 	private JFrame frmLogin;
 	private JLabel lblIcon;
@@ -51,7 +47,7 @@ public class frmLogin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmLogin window = new frmLogin();
+					FrmLogin window = new FrmLogin();
 					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +59,7 @@ public class frmLogin {
 	/**
 	 * Create the application.
 	 */
-	public frmLogin() {
+	public FrmLogin() {
 		initialize();
 	}
 
@@ -82,7 +78,7 @@ public class frmLogin {
 		{
 			lblIcon = new JLabel("");
 			lblIcon.setIcon(
-					new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
+					new ImageIcon(FrmLogin.class.getResource("/org/practicaISO/presentacion/IconoSpotify.png")));
 			lblIcon.setBounds(267, 35, 106, 120);
 			frmLogin.getContentPane().add(lblIcon);
 		}
@@ -143,7 +139,7 @@ public class frmLogin {
 			lblanNoTienes = new JLabel("¿Aún no tienes cuenta?");
 			lblanNoTienes.setForeground(new Color(255, 255, 255));
 			lblanNoTienes
-					.setIcon(new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoInfo.png")));
+					.setIcon(new ImageIcon(FrmLogin.class.getResource("/org/practicaISO/presentacion/IconoInfo.png")));
 			lblanNoTienes.setBounds(159, 423, 178, 35);
 			frmLogin.getContentPane().add(lblanNoTienes);
 		}
@@ -159,7 +155,7 @@ public class frmLogin {
 			lblErrornick = new JLabel("");
 			lblErrornick.setVisible(false);
 			lblErrornick.setIcon(
-					new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
+					new ImageIcon(FrmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
 			lblErrornick.setBounds(432, 199, 56, 35);
 			frmLogin.getContentPane().add(lblErrornick);
 		}
@@ -167,7 +163,7 @@ public class frmLogin {
 			lblErrorpass = new JLabel("");
 			lblErrorpass.setVisible(false);
 			lblErrorpass.setIcon(
-					new ImageIcon(frmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
+					new ImageIcon(FrmLogin.class.getResource("/org/practicaISO/presentacion/IconoExclamacion.png")));
 			lblErrorpass.setBounds(432, 253, 56, 35);
 			frmLogin.getContentPane().add(lblErrorpass);
 		}
@@ -179,12 +175,12 @@ public class frmLogin {
 		Cliente client = new Cliente();
 		client.setNick(nick);
 		client.setPass(password);
-		Cliente c = client.logearCliente();
+		final Cliente cliente = client.logearCliente();
 
-		if (c != null) {
-			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Bienvenido " + c.getNombre());
+		if (cliente != null) {
+			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Bienvenido " + cliente.getNombre());
 			frmLogin.dispose();
-			frmInterfaz fi = new frmInterfaz(c);
+			FrmInterfaz fi = new FrmInterfaz(cliente);
 			fi.setVisible(true);
 
 		} else if (txtNick.getText().equals("")) {
@@ -245,7 +241,7 @@ public class frmLogin {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			frmLogin.dispose();
-			frmRegistro fr = new frmRegistro();
+			FrmRegistro fr = new FrmRegistro();
 			fr.setVisible(true);
 		}
 	}

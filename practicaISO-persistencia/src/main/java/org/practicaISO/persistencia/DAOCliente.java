@@ -10,63 +10,63 @@ public class DAOCliente {
 	private boolean realizado;
 	
 	
-	public ResultSet logearClienteDAO(String nick, String pass) {
-		ResultSet rs = null;
+	public ResultSet logearClienteDAO(final String nick, final String pass) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select*from tb_cliente where nick = ? and pass = ? ";
+			final String sql = "select*from tb_cliente where nick = ? and pass = ? ";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, nick);
 			pst.setString(2, pass);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener el cliente");
 		}
 
-		return rs;
+		return resultSet;
 	}
 
-	public ResultSet obtenerClienteDAO(String nick) {
-		ResultSet rs = null;
+	public ResultSet obtenerClienteDAO(final String nick) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select*from tb_cliente where nick = ?";
+			final String sql = "select*from tb_cliente where nick = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, nick);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener el cliente");
 		}
 
-		return rs;
+		return resultSet;
 	}
 
-	public ResultSet obtenerCancionesDAO(String nick) {
+	public ResultSet obtenerCancionesDAO(final String nick) {
 
-		ResultSet rs = null;
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select canciones from tb_playlist where nick = ?";
+			final String sql = "select canciones from tb_playlist where nick = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, nick);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al cargar playlist del usuario");
 		}
-		return rs;
+		return resultSet;
 
 	}
 
-	public boolean insertarClienteDAO(String nick, String pass, String email, String nombre, String apellidos,
-			String suscripcion, String rol) {
+	public boolean insertarClienteDAO(final String nick, final String pass, final String email, final String nombre, final String apellidos,
+			final String suscripcion, final String rol) {
 		try {
 			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "insert into tb_cliente values(?,?,?,?,?,?,?)";
+			final String sql = "insert into tb_cliente values(?,?,?,?,?,?,?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, nick);
 			pst.setString(2, pass);
@@ -84,13 +84,13 @@ public class DAOCliente {
 		return realizado;
 	}
 
-	public boolean actualizarClienteDAO(String pass, String email, String nombre, String apellidos, String suscripcion,
-			String rol, String nick) {
+	public boolean actualizarClienteDAO(final String pass, final String email, final String nombre, final String apellidos, final String suscripcion,
+			final String rol, final String nick) {
 		try {
 			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ?, rol = ? where nick = ?";
+			final String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ?, rol = ? where nick = ?";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, pass);
 			pst.setString(2, email);
@@ -107,12 +107,12 @@ public class DAOCliente {
 		return realizado;
 	}
 
-	public boolean comprarCancionDAO(String nick, int idcancion) {
+	public boolean comprarCancionDAO(final String nick, final int idcancion) {
 		try {
 			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "insert into tb_playlist values(?,?)";
+			final String sql = "insert into tb_playlist values(?,?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, nick);
 			pst.setInt(2, idcancion);
@@ -126,12 +126,12 @@ public class DAOCliente {
 
 	}
 
-	public boolean eliminarClienteDAO(String nick) {
+	public boolean eliminarClienteDAO(final String nick) {
 		try {
 			realizado=true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "delete from tb_cliente where nick = '" + nick + "'";
+			final String sql = "delete from tb_cliente where nick = '" + nick + "'";
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {

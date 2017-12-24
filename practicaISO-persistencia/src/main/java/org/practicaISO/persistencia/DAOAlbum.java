@@ -11,26 +11,26 @@ public class DAOAlbum {
 	private boolean realizado;
 
 
-	public ResultSet obtenerAlbumDAO(int idalbum) {
-		ResultSet rs = null;
+	public ResultSet obtenerAlbumDAO(final int idalbum) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select * from tb_album where idalbum = ? order by idalbum";
+			final String sql = "select * from tb_album where idalbum = ? order by idalbum";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, idalbum);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 		} catch (Exception e) {
 			System.out.println("Error al obtener álbum");
 		}
-		return rs;
+		return resultSet;
 	}
 
-	public boolean insertarAlbumDAO(int idAlbum, String nombre) {
+	public boolean insertarAlbumDAO(final int idAlbum, final String nombre) {
 		try {
 			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "insert into tb_album values(?,?)";
+			final String sql = "insert into tb_album values(?,?)";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, idAlbum);
 			pst.setString(2, nombre);
@@ -42,12 +42,12 @@ public class DAOAlbum {
 		return realizado;
 	}
 
-	public boolean actualizarAlbumDAO(int idAlbum, String nombre) {
+	public boolean actualizarAlbumDAO(final int idAlbum, final String nombre) {
 		try {
 			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "update tb_album set idalbum = " + idAlbum + ", nombre = '" + nombre + "'";
+			final String sql = "update tb_album set idalbum = " + idAlbum + ", nombre = '" + nombre + "'";
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
@@ -57,28 +57,28 @@ public class DAOAlbum {
 		return realizado;
 	}
 
-	public ResultSet obtenerIdsCancionesAlbumDAO(int idAlbum) {
-		ResultSet rs = null;
+	public ResultSet obtenerIdsCancionesAlbumDAO(final int idAlbum) {
+		ResultSet resultSet = null;
 		try {
 			con = Agente.getConexion();
-			String sql = "select idcancion from tb_cancion where album = ?";
+			final String sql = "select idcancion from tb_cancion where album = ?";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, idAlbum);
-			rs = pst.executeQuery();
+			resultSet = pst.executeQuery();
 
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones");
 		}
-		return rs;
+		return resultSet;
 
 	}
 
-	public boolean eliminarAlbumDAO(int idalbum) {
+	public boolean eliminarAlbumDAO(final int idalbum) {
 		try {
 			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
-			String sql = "delete from tb_album where idalbum = " + idalbum + "";
+			final String sql = "delete from tb_album where idalbum = " + idalbum + "";
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {

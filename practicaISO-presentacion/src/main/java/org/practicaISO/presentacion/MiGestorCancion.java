@@ -19,7 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 
 public class MiGestorCancion extends JFrame {
-
 	private JPanel contentPane;
 	private JLabel label;
 	private JLabel lblArtista;
