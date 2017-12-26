@@ -45,7 +45,7 @@
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">	 * Create the panel.</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../org/practicaISO/presentacion/MiPanelCanciones.html">MiPanelCanciones</a>(<a href="../../../org/practicaISO/dominio/Cliente.html">Cliente</a> c) {
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../org/practicaISO/presentacion/MiPanelCanciones.html">MiPanelCanciones</a>(<strong class="jxr_keyword">final</strong> <a href="../../../org/practicaISO/dominio/Cliente.html">Cliente</a> cliente) {
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  		setBackground(Color.DARK_GRAY);
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  		setLayout(<strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  		{
@@ -64,7 +64,7 @@
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  			lblEstaEsTu.setBounds(58, 26, 438, 58);
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  			add(lblEstaEsTu);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  		}
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		actualizarModelo(c);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		actualizarModelo(cliente);
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  		{
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  			btnReproductor = <strong class="jxr_keyword">new</strong> JButton(<span class="jxr_string">"Reproducir"</span>);
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  			btnReproductor.setIcon(
@@ -102,7 +102,7 @@
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  			lblNick.setForeground(Color.WHITE);
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  			lblNick.setFont(<strong class="jxr_keyword">new</strong> Font(<span class="jxr_string">"Tahoma"</span>, Font.BOLD | Font.ITALIC, 20));
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  			lblNick.setBounds(58, 89, 242, 38);
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  			lblNick.setText(c.getNick());
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  			lblNick.setText(cliente.getNick());
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  			add(lblNick);
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 		}
@@ -117,11 +117,11 @@
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 	}
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> 
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actualizarModelo(<a href="../../../org/practicaISO/dominio/Cliente.html">Cliente</a> c) {
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actualizarModelo(<strong class="jxr_keyword">final</strong> <a href="../../../org/practicaISO/dominio/Cliente.html">Cliente</a> cliente) {
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 		ArrayList&lt;Cancion&gt; ac = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 		DefaultListModel&lt;String&gt; modelo = <strong class="jxr_keyword">new</strong> DefaultListModel&lt;String&gt;();
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> 		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 			ac = c.obtenerCanciones();
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 			ac = cliente.obtenerCanciones();
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> 		} <strong class="jxr_keyword">catch</strong> (Exception e) {
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 			System.out.println(<span class="jxr_string">"Error al obtener canciones del usuario"</span>);
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> 		}

@@ -170,9 +170,9 @@ public class FrmLogin {
 	}
 
 	public void entrar() {
-		String nick = txtNick.getText();
-		String password = String.valueOf(pwdPass.getPassword());
-		Cliente client = new Cliente();
+		final String nick = txtNick.getText();
+		final String password = String.valueOf(pwdPass.getPassword());
+		final Cliente client = new Cliente();
 		client.setNick(nick);
 		client.setPass(password);
 		final Cliente cliente = client.logearCliente();
@@ -180,8 +180,8 @@ public class FrmLogin {
 		if (cliente != null) {
 			JOptionPane.showMessageDialog(frmLogin.getContentPane(), "Bienvenido " + cliente.getNombre());
 			frmLogin.dispose();
-			FrmInterfaz fi = new FrmInterfaz(cliente);
-			fi.setVisible(true);
+			final FrmInterfaz frameInterfaz = new FrmInterfaz(cliente);
+			frameInterfaz.setVisible(true);
 
 		} else if (txtNick.getText().equals("")) {
 
@@ -241,8 +241,8 @@ public class FrmLogin {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			frmLogin.dispose();
-			FrmRegistro fr = new FrmRegistro();
-			fr.setVisible(true);
+			final FrmRegistro frameRegistro = new FrmRegistro();
+			frameRegistro.setVisible(true);
 		}
 	}
 }

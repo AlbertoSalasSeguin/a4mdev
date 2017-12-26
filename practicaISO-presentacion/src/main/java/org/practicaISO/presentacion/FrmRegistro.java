@@ -21,22 +21,22 @@ import java.awt.Color;
 
 public class FrmRegistro extends JFrame {
 
-	final private JPanel contentPane;
-	final private JLabel lblUsuario;
-	final private JLabel lblContrasea;
-	final private JLabel lblEmail;
-	final private JLabel lblNombre;
-	final private JLabel lblApellidos;
-	final private JPasswordField pwdPass;
-	final private JTextField txtNick;
-	final private JTextField txtEmail;
-	final private JTextField txtNombre;
-	final private JTextField txtApellidos;
-	final private JButton btnRegistrarme;
-	final private JButton btnLimpiarCampos;
-	final private JButton btnCancelar;
-	final private JLabel lblLblimage_1;
-	final private JLabel lblLblimage;
+	private final JPanel contentPane;
+	private final JLabel lblUsuario;
+	private final JLabel lblContrasea;
+	private final JLabel lblEmail;
+	private final JLabel lblNombre;
+	private final JLabel lblApellidos;
+	private final JPasswordField pwdPass;
+	private final JTextField txtNick;
+	private final JTextField txtEmail;
+	private final JTextField txtNombre;
+	private final JTextField txtApellidos;
+	private final JButton btnRegistrarme;
+	private final JButton btnLimpiarCampos;
+	private final JButton btnCancelar;
+	private final JLabel lblLblimage_1;
+	private final JLabel lblLblimage;
 
 	/**
 	 * Create the frame.

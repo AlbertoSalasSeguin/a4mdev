@@ -6,17 +6,14 @@ import java.sql.SQLException;
 
 public class Agente {
 
-	public Agente() {
-
-	}
-
 	public static Connection getConexion() {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			final String url = "jdbc:mysql://localhost/bbdd_iso?autoReconnect=true&useSSL=false";
-			final String user = "root";
-			final String pass = "root";
+			String url = "jdbc:mysql://localhost/bbdd_iso?"
+					+ "autoReconnect=true&useSSL=false";
+			String user = "root";
+			String pass = "root";
 			con = DriverManager.getConnection(url, user, pass);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error al cargar el driver.");

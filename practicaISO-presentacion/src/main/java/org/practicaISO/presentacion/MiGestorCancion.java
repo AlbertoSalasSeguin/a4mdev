@@ -38,7 +38,7 @@ public class MiGestorCancion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MiGestorCancion(Cancion canc) {
+	public MiGestorCancion(final Cancion canc) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 942, 553);
 		contentPane = new JPanel();

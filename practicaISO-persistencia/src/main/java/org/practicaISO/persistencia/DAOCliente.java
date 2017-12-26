@@ -63,7 +63,7 @@ public class DAOCliente {
 	public boolean insertarClienteDAO(final String nick, final String pass, final String email, final String nombre, final String apellidos,
 			final String suscripcion, final String rol) {
 		try {
-			realizado=true;
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			final String sql = "insert into tb_cliente values(?,?,?,?,?,?,?)";
@@ -77,7 +77,7 @@ public class DAOCliente {
 			pst.setString(7, rol);
 			pst.executeUpdate();
 		} catch (Exception e) {
-			realizado=false;
+			realizado = false;
 			System.out.println("Error al insertar cliente en la base de datos");
 		}
 
@@ -87,7 +87,7 @@ public class DAOCliente {
 	public boolean actualizarClienteDAO(final String pass, final String email, final String nombre, final String apellidos, final String suscripcion,
 			final String rol, final String nick) {
 		try {
-			realizado=true;
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			final String sql = "update tb_cliente set pass = ?, email = ?, nombre = ?, apellidos = ?, suscripcion = ?, rol = ? where nick = ?";
@@ -101,7 +101,7 @@ public class DAOCliente {
 			pst.setString(7, nick);
 			pst.executeUpdate();
 		} catch (Exception e) {
-			realizado=false;
+			realizado = false;
 			System.out.println("Error al actualizar cliente en la base de datos");
 		}
 		return realizado;
@@ -109,7 +109,7 @@ public class DAOCliente {
 
 	public boolean comprarCancionDAO(final String nick, final int idcancion) {
 		try {
-			realizado=true;
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			final String sql = "insert into tb_playlist values(?,?)";
@@ -118,7 +118,7 @@ public class DAOCliente {
 			pst.setInt(2, idcancion);
 			pst.executeUpdate();
 		} catch (Exception e) {
-			realizado=false;
+			realizado = false;
 			System.out.println("Error al comprar canción");
 		}
 		return realizado;
@@ -128,14 +128,14 @@ public class DAOCliente {
 
 	public boolean eliminarClienteDAO(final String nick) {
 		try {
-			realizado=true;
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			final String sql = "delete from tb_cliente where nick = '" + nick + "'";
 			pst = con.prepareStatement(sql);
 			pst.executeUpdate();
 		} catch (Exception e) {
-			realizado=false;
+			realizado = false;
 			System.out.println("Error al eliminar cliente en la base de datos");
 		}
 		return realizado;

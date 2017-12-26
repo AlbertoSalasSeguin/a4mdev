@@ -35,7 +35,7 @@ public class MiPanelArtistas extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public MiPanelArtistas(Cliente client) {
+	public MiPanelArtistas(final Cliente client) {
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		{
@@ -113,7 +113,7 @@ public class MiPanelArtistas extends JPanel {
 		}
 	}
 
-	public void actualizarModelo(Cliente client) {
+	public void actualizarModelo(final Cliente client) {
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		DefaultListModel<String> modelolimpio = new DefaultListModel<String>();

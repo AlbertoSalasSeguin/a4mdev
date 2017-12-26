@@ -20,22 +20,21 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class FrmInterfaz extends JFrame {
-
-	final private JPanel contentPane;
-	final private JSplitPane splitPane;
-	final private JScrollPane scrollPane;
-	final private JPanel panel;
-	final private JTree tree;
-	final private JPanel miPanelComprar;
-	final private JPanel miPanelCanciones;
-	final private JPanel miPanelArtistas;
-	final private JPanel miPanelAlbumes;
-	final private JPanel miPanelInfo;
+	
+	private final JPanel contentPane;
+	private final JSplitPane splitPane;
+	private final JScrollPane scrollPane;
+	private final JPanel panel;
+	private final JTree tree;
+	private final JPanel miPanelComprar;
+	private final JPanel miPanelCanciones;
+	private final JPanel miPanelArtistas;
+	private final JPanel miPanelAlbumes;
+	private final JPanel miPanelInfo;
 
 	/**
 	 * Launch the application.
 	 */
-
 	public FrmInterfaz(final Cliente cliente) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

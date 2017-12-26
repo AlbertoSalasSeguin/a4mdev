@@ -37,7 +37,7 @@ public class MiPanelCanciones extends JPanel {
 	 * Create the panel.
 	 */
 
-	public MiPanelCanciones(Cliente c) {
+	public MiPanelCanciones(final Cliente cliente) {
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		{
@@ -56,7 +56,7 @@ public class MiPanelCanciones extends JPanel {
 			lblEstaEsTu.setBounds(58, 26, 438, 58);
 			add(lblEstaEsTu);
 		}
-		actualizarModelo(c);
+		actualizarModelo(cliente);
 		{
 			btnReproductor = new JButton("Reproducir");
 			btnReproductor.setIcon(
@@ -94,7 +94,7 @@ public class MiPanelCanciones extends JPanel {
 			lblNick.setForeground(Color.WHITE);
 			lblNick.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 			lblNick.setBounds(58, 89, 242, 38);
-			lblNick.setText(c.getNick());
+			lblNick.setText(cliente.getNick());
 			add(lblNick);
 
 		}
@@ -109,11 +109,11 @@ public class MiPanelCanciones extends JPanel {
 
 	}
 
-	public void actualizarModelo(Cliente c) {
+	public void actualizarModelo(final Cliente cliente) {
 		ArrayList<Cancion> ac = null;
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		try {
-			ac = c.obtenerCanciones();
+			ac = cliente.obtenerCanciones();
 		} catch (Exception e) {
 			System.out.println("Error al obtener canciones del usuario");
 		}

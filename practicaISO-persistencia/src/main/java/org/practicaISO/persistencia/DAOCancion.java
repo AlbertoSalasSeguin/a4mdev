@@ -90,7 +90,7 @@ public class DAOCancion {
 
 	public boolean insertarCancion(final String titulo, final int idcancion, final String autor, final int idalbum, final float precio) {
 		try {
-			realizado=true;
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			final String sql = "insert into tb_cancion values(?,?,?,?,?)";
@@ -103,7 +103,7 @@ public class DAOCancion {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al insertar canción en la base de datos");
-			realizado= false;
+			realizado = false;
 		}
 		return realizado;
 
@@ -111,7 +111,7 @@ public class DAOCancion {
 
 	public boolean actualizarCancionDAO(final String titulo, final int idcancion, final String autor, final int idalbum, final float precio) {
 		try {
-			realizado= true;
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			final String sql = "update tb_cancion set titulo = '" + titulo + "', autor = '" + autor + "'," + " album = "
@@ -120,14 +120,14 @@ public class DAOCancion {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al actualizar cancion en la base de datos");
-			realizado=false;
+			realizado = false;
 		}
 		return realizado;
 	}
 
 	public boolean eliminarCancionDAO(final int idcancion) {
 		try {
-			realizado= true;
+			realizado = true;
 			con = Agente.getConexion();
 			con.createStatement();
 			final String sql = "delete from tb_cancion where idcancion = " + idcancion;
@@ -140,3 +140,4 @@ public class DAOCancion {
 		return realizado;
 	}
 }
+

@@ -39,7 +39,7 @@ public class MiPanelInfo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public MiPanelInfo(Cliente c) {
+	public MiPanelInfo(Cliente cliente) {
 		setBackground(Color.DARK_GRAY);
 		setLayout(null);
 		{
@@ -80,21 +80,21 @@ public class MiPanelInfo extends JPanel {
 		{
 			pwdPass = new JPasswordField();
 			pwdPass.setBounds(184, 322, 116, 22);
-			pwdPass.setText(c.getPass());
+			pwdPass.setText(cliente.getPass());
 			add(pwdPass);
 		}
 		{
 			txtEmail = new JTextField();
 			txtEmail.setBounds(184, 273, 116, 22);
 			txtEmail.setColumns(10);
-			txtEmail.setText(c.getEmail());
+			txtEmail.setText(cliente.getEmail());
 			add(txtEmail);
 		}
 		{
 			txtNombre = new JTextField();
 			txtNombre.setBounds(184, 369, 116, 22);
 			txtNombre.setColumns(10);
-			txtNombre.setText(c.getNombre());
+			txtNombre.setText(cliente.getNombre());
 
 			add(txtNombre);
 		}
@@ -102,7 +102,7 @@ public class MiPanelInfo extends JPanel {
 			txtApellidos = new JTextField();
 			txtApellidos.setBounds(184, 421, 116, 22);
 			txtApellidos.setColumns(10);
-			txtApellidos.setText(c.getApellidos());
+			txtApellidos.setText(cliente.getApellidos());
 			add(txtApellidos);
 		}
 		{
@@ -138,7 +138,7 @@ public class MiPanelInfo extends JPanel {
 			lblLblnick.setForeground(Color.WHITE);
 			lblLblnick.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 			lblLblnick.setBounds(58, 89, 242, 38);
-			lblLblnick.setText(c.getNick());
+			lblLblnick.setText(cliente.getNick());
 			add(lblLblnick);
 		}
 		{

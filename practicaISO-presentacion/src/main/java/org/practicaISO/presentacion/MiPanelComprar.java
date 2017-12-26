@@ -37,7 +37,7 @@ public class MiPanelComprar extends JPanel {
 	private JButton btnEditarCancion;
 	private JButton btnActualizarLista;
 
-	public MiPanelComprar(Cliente client) {
+	public MiPanelComprar(final Cliente client) {
 		setBackground(Color.DARK_GRAY);
 		setMinimumSize(new Dimension(104, 20));
 		{
@@ -209,7 +209,7 @@ public class MiPanelComprar extends JPanel {
 			}
 		}
 
-		private boolean esComprada(ArrayList<String> ids, Cancion canc) {
+		private boolean esComprada(final ArrayList<String> ids, final Cancion canc) {
 			boolean comprado = false;
 			for (int i = 0; i < ids.size(); i++) {
 				if (canc.getIdCancion() == Integer.parseInt(ids.get(i).toString())) {

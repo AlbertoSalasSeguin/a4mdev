@@ -45,7 +45,7 @@
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  	<strong class="jxr_keyword">private</strong> JButton btnEditarCancion;
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  	<strong class="jxr_keyword">private</strong> JButton btnActualizarLista;
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../org/practicaISO/presentacion/MiPanelComprar.html">MiPanelComprar</a>(<a href="../../../org/practicaISO/dominio/Cliente.html">Cliente</a> client) {
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../org/practicaISO/presentacion/MiPanelComprar.html">MiPanelComprar</a>(<strong class="jxr_keyword">final</strong> <a href="../../../org/practicaISO/dominio/Cliente.html">Cliente</a> client) {
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  		setBackground(Color.DARK_GRAY);
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  		setMinimumSize(<strong class="jxr_keyword">new</strong> Dimension(104, 20));
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  		{
@@ -217,7 +217,7 @@
 <a class="jxr_linenumber" name="L209" href="#L209">209</a> 			}
 <a class="jxr_linenumber" name="L210" href="#L210">210</a> 		}
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> 
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> 		<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> esComprada(ArrayList&lt;String&gt; ids, <a href="../../../org/practicaISO/dominio/Cancion.html">Cancion</a> canc) {
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> 		<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> esComprada(<strong class="jxr_keyword">final</strong> ArrayList&lt;String&gt; ids, <strong class="jxr_keyword">final</strong> <a href="../../../org/practicaISO/dominio/Cancion.html">Cancion</a> canc) {
 <a class="jxr_linenumber" name="L213" href="#L213">213</a> 			<strong class="jxr_keyword">boolean</strong> comprado = false;
 <a class="jxr_linenumber" name="L214" href="#L214">214</a> 			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; ids.size(); i++) {
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> 				<strong class="jxr_keyword">if</strong> (canc.getIdCancion() == Integer.parseInt(ids.get(i).toString())) {
