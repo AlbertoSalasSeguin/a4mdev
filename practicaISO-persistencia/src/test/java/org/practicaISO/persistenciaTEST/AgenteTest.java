@@ -13,7 +13,7 @@ public class AgenteTest {
 
 	@Test
 	public void testIfConnectionNotNull() {
-		connection = a.getConexion();
+		connection = Agente.getConexion();
 		assertNotNull(connection);
 	}
 

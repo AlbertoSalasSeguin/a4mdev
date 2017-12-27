@@ -37,7 +37,7 @@ CREATE TABLE `tb_album` (
 
 LOCK TABLES `tb_album` WRITE;
 /*!40000 ALTER TABLE `tb_album` DISABLE KEYS */;
-INSERT INTO `tb_album` VALUES (1,'One'),(2,'Two'),(3,'Three'),(4,'Four'),(5,'Five'),(6,'Six'),(7,'Seven'),(8,'Eight');
+INSERT INTO `tb_album` VALUES (1,'One'),(2,'Two'),(3,'Three'),(4,'Four'),(5,'Five'),(6,'Six'),(7,'Seven'),(8,'Eight'),(30,'Album Ejemplo');
 /*!40000 ALTER TABLE `tb_album` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +66,7 @@ CREATE TABLE `tb_cancion` (
 
 LOCK TABLES `tb_cancion` WRITE;
 /*!40000 ALTER TABLE `tb_cancion` DISABLE KEYS */;
-INSERT INTO `tb_cancion` VALUES ('Time of dying',1,'Three days grace',1,10),('Taking you down',2,'Egypt Central',2,20),('Animal i have become',3,'Three days grace',1,30),('Havana',4,'Camila Cabello',3,12),('Mayores',5,'Carol G',4,13),('Highway to hell',6,'AC-DC',5,14),('This fire burns',7,'Killswitch Engage',5,16),('Desp',8,'Luis Fonsi',6,19),('Ahora me llama',9,'Bad Bunny',7,10),('Todo cambio',10,'Becky G',8,23);
+INSERT INTO `tb_cancion` VALUES ('Time of dying',1,'Three days grace',1,10),('Taking you down',2,'Egypt Central',2,20),('Animal i have become',3,'Three days grace',1,30),('Havana',4,'Camila Cabello',3,12),('Menores',5,'Carol G',4,13),('Highway to hell',6,'AC-DC',5,14),('This fire burns',7,'Killswitch Engage',5,16),('Desp',8,'Luis Fonsi',6,19),('Ahora me llama',9,'Bad Bunny',7,10),('Todo cambio',10,'Becky G',8,23);
 /*!40000 ALTER TABLE `tb_cancion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `tb_cliente` (
 
 LOCK TABLES `tb_cliente` WRITE;
 /*!40000 ALTER TABLE `tb_cliente` DISABLE KEYS */;
-INSERT INTO `tb_cliente` VALUES ('a4m','1234','a4m','A4Mdev','DEVELOPERS','Premium','Admin'),('Alberto','123','albertovinaroz@live.com','Alberto','Vinaroz','Normal','Usuario');
+INSERT INTO `tb_cliente` VALUES ('a4m','1234','a4m','A4Mdev','DEVELOPERS','premium','Admin'),('Alberto','123','albertovinaroz@live.com','Alberto','Vinaroz','Normal','Usuario');
 /*!40000 ALTER TABLE `tb_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `tb_playlist` (
 
 LOCK TABLES `tb_playlist` WRITE;
 /*!40000 ALTER TABLE `tb_playlist` DISABLE KEYS */;
-INSERT INTO `tb_playlist` VALUES ('a4m',1),('a4m',2),('a4m',3),('Alberto',5);
+INSERT INTO `tb_playlist` VALUES ('a4m',1),('a4m',2),('a4m',3),('a4m',5),('Alberto',5),('Alberto',6);
 /*!40000 ALTER TABLE `tb_playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -136,4 +136,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-30  2:15:50
+-- Dump completed on 2017-12-27 17:42:52
