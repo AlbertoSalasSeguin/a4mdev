@@ -28,6 +28,22 @@ public class DAOCancionTest {
 	}
 
 	@Test
+	public void testleerCancionesDAO () {
+		try (ResultSet rs = dc.leerCancionesDAO()) {
+			assertTrue(rs.next());
+			assertEquals("Time of dying", rs.getString("titulo"));
+			assertEquals(1, rs.getInt("idcancion"));
+			assertEquals("Three days grace", rs.getString("autor"));
+			assertEquals(1, rs.getInt("album"));
+			assertEquals(10, rs.getFloat("precio"), 0.0f);
+			assertTrue(rs.next());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@Test
 	public void testObtenerCancionesAutorDAO() {
 		try (ResultSet rs = dc.obtenerCancionesAutorDAO("Egypt Central")) {
 			assertTrue(rs.next());
