@@ -6,13 +6,18 @@ import java.sql.SQLException;
 
 public class Agente {
 	
+	private Connection conn;
+	
 	public Agente () {
-		
+		this.conn=this.getConexion();
 	}
 	
 	public static Connection getConexion() {
 		Connection con = null;
 		try {
+			System.out.println();
+			System.out.println();
+			System.out.println();
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost/bbdd_iso?autoReconnect=true&useSSL=false";
 			String user = "root";
