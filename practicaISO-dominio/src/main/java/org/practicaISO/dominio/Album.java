@@ -11,12 +11,14 @@ public class Album {
 	private String nombre;
 	private DAOAlbum daoalbum;
 
+	
 	public Album(int idalbum, String nombre) {
 		this.idalbum = idalbum;
 		this.nombre = nombre;
 		this.daoalbum = new DAOAlbum();
 	}
 
+	
 	public Album(int idalbum) {
 		this.idalbum = idalbum;
 		this.daoalbum = new DAOAlbum();
