@@ -12,157 +12,243 @@ import org.practicaISO.persistencia.DAOCancion;
 
 public class DAOCancionTest {
 
-	private DAOCancion dc ;
+	private DAOCancion dc;
 
 	@Before
 	public void inicializar() {
+		int idCancion = 77;
+		String titulo = "Time of dying";
+		int idCancion1 = 1;
+		String autor = "Three days grace";
+		int idAlbum = 1;
+		float precio = 10;
+		
 		dc = new DAOCancion();
-		dc.eliminarCancionDAO(77); // para que cada vez que se ejecuten los test, no devuelva error por duplicidad
-		dc.actualizarCancionDAO("Time of dying", 1, "Three days grace", 1, 10);
+		dc.eliminarCancionDAO(idCancion); // para que cada vez que se ejecuten los test, no devuelva error por
+											// duplicidad
+		dc.actualizarCancionDAO(titulo, idCancion1, autor, idAlbum, precio);
 	}
 
 	@After
 	public void postTests() {
-		dc.insertarCancion("Todo cambio", 10, "Becky G", 8, 23);
-		dc.actualizarCancionDAO("Time of dying", 1, "Three days grace", 1, 10);
+		String titulo = "Todo cambio";
+		int idCancion = 10;
+		String autor = "Becky G";
+		int idAlbum = 8;
+		float precio = 23;
+
+		String titulo2 = "Time of dying";
+		int idCancion2 = 1;
+		String autor2 = "Three days grace";
+		int idAlbum2 = 1;
+		float precio2 = 10;
+
+		dc.insertarCancion(titulo, idCancion, autor, idAlbum, precio);
+		dc.actualizarCancionDAO(titulo2, idCancion2, autor2, idAlbum2, precio2);
 	}
 
 	@Test
-	public void testleerCancionesDAO () {
-		try (ResultSet rs = dc.leerCancionesDAO()) {
-			assertTrue(rs.next());
-			assertEquals("Time of dying", rs.getString("titulo"));
-			assertEquals(1, rs.getInt("idcancion"));
-			assertEquals("Three days grace", rs.getString("autor"));
-			assertEquals(1, rs.getInt("album"));
-			assertEquals(10, rs.getFloat("precio"), 0.0f);
-			assertTrue(rs.next());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	@Test
-	public void testObtenerCancionesAutorDAO() {
-		try (ResultSet rs = dc.obtenerCancionesAutorDAO("Egypt Central")) {
-			assertTrue(rs.next());
-			assertEquals("Taking you down", rs.getString("titulo"));
-			assertEquals(2, rs.getInt("idcancion"));
-			assertEquals("Egypt Central", rs.getString("autor"));
-			assertEquals(2, rs.getInt("album"));
-			assertEquals(20, rs.getFloat("precio"), 0.0f);
+	public void testleerCancionesDAO() throws SQLException {
+		String valorEsperadoTitulo = "Time of dying";
+		int valorEsperadoIdCancion = 1;
+		String valorEsperadoAutor = "Three days grace";
+		int valorEsperadoAlbum = 1;
+		float valorEsperadoPrecio = 10;
 
-			assertFalse(rs.next());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		ResultSet rs = dc.leerCancionesDAO();
+		assertTrue(rs.next());
+		assertEquals(valorEsperadoTitulo, rs.getString("titulo"));
+		assertEquals(valorEsperadoIdCancion, rs.getInt("idcancion"));
+		assertEquals(valorEsperadoAutor, rs.getString("autor"));
+		assertEquals(valorEsperadoAlbum, rs.getInt("album"));
+		assertEquals(valorEsperadoPrecio, rs.getFloat("precio"), 0.0f);
+		assertTrue(rs.next());
 	}
 
 	@Test
-	public void testObtenerIdsCancionesDAO() {
-		try (ResultSet rs = dc.obtenerIdsCancionesDAO("Alberto")) {
-			assertTrue(rs.next());
-			assertEquals(5, rs.getInt("canciones"));
-			assertTrue(rs.next());
-			assertEquals(6, rs.getInt("canciones"));
-			assertFalse(rs.next());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void testObtenerCancionesAutorDAO() throws SQLException {
+		String autor = "Egypt Central";
+		String valorEsperadoTitulo = "Taking you down";
+		int valorEsperadoIdcancion = 2;
+		String valorEsperadoAutor = "Egypt Central";
+		int valorEsperadoAlbum = 2;
+		float valorEsperadoPrecio = 20;
+
+		ResultSet rs = dc.obtenerCancionesAutorDAO(autor);
+		assertTrue(rs.next());
+		assertEquals(valorEsperadoTitulo, rs.getString("titulo"));
+		assertEquals(valorEsperadoIdcancion, rs.getInt("idcancion"));
+		assertEquals(valorEsperadoAutor, rs.getString("autor"));
+		assertEquals(valorEsperadoAlbum, rs.getInt("album"));
+		assertEquals(valorEsperadoPrecio, rs.getFloat("precio"), 0.0f);
+
+		assertFalse(rs.next());
 	}
 
 	@Test
-	public void testObtenerCancionIdDAO() {
-		try (ResultSet rs = dc.obtenerCancionIdDAO(4)) {
-			assertTrue(rs.next());
-			assertEquals("Havana", rs.getString("titulo"));
-			assertEquals(4, rs.getInt("idcancion"));
-			assertEquals("Camila Cabello", rs.getString("autor"));
-			assertEquals(3, rs.getInt("album"));
-			assertEquals(12, rs.getFloat("precio"), 0.0f);
+	public void testObtenerIdsCancionesDAO() throws SQLException {
+		String nick = "Alberto";
+		int valorEsperadoCancion1 = 5;
+		int valorEsperadoCancion2 = 6;
+		
+		ResultSet rs = dc.obtenerIdsCancionesDAO(nick);
+		assertTrue(rs.next());
+		assertEquals(valorEsperadoCancion1, rs.getInt("canciones"));
+		assertTrue(rs.next());
+		assertEquals(valorEsperadoCancion2, rs.getInt("canciones"));
+		assertFalse(rs.next());
+	}
 
-			assertFalse(rs.next());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	@Test
+	public void testObtenerCancionIdDAO() throws SQLException {
+		int idCancion = 4;
+		String valorEsperadoTitulo = "Havana";
+		int valorEsperadoIdcancion = 4;
+		String valorEsperadoAutor = "Camila Cabello";
+		int valorEsperadoAlbum = 3;
+		float valorEsperadoPrecio = 12;
+		
+		ResultSet rs = dc.obtenerCancionIdDAO(idCancion);
+		assertTrue(rs.next());
+		assertEquals(valorEsperadoTitulo, rs.getString("titulo"));
+		assertEquals(valorEsperadoIdcancion, rs.getInt("idcancion"));
+		assertEquals(valorEsperadoAutor, rs.getString("autor"));
+		assertEquals(valorEsperadoAlbum, rs.getInt("album"));
+		assertEquals(valorEsperadoPrecio, rs.getFloat("precio"), 0.0f);
+
+		assertFalse(rs.next());
 
 	}
 
 	@Test
-	public void testObtenerCancionTituloDAO() {
-		try (ResultSet rs = dc.obtenerCancionTituloDAO("This fire burns")) {
-			assertTrue(rs.next());
-			assertEquals("This fire burns", rs.getString("titulo"));
-			assertEquals(7, rs.getInt("idcancion"));
-			assertEquals("Killswitch Engage", rs.getString("autor"));
-			assertEquals(5, rs.getInt("album"));
-			assertEquals(16, rs.getFloat("precio"), 0.0f);
+	public void testObtenerCancionTituloDAO() throws SQLException {
+		String titulo = "This fire burns";
+		String valorEsperadoTitulo = "This fire burns";
+		int valorEsperadoIdCancion = 7;
+		String valorEsperadoAutor = "Killswitch Engage";
+		int valorEsperadoAlbum = 5;
+		float valorEsperadoPrecio = 16;
+		
+		ResultSet rs = dc.obtenerCancionTituloDAO(titulo);
+		assertTrue(rs.next());
+		assertEquals(valorEsperadoTitulo, rs.getString("titulo"));
+		assertEquals(valorEsperadoIdCancion, rs.getInt("idcancion"));
+		assertEquals(valorEsperadoAutor, rs.getString("autor"));
+		assertEquals(valorEsperadoAlbum, rs.getInt("album"));
+		assertEquals(valorEsperadoPrecio, rs.getFloat("precio"), 0.0f);
 
-			assertFalse(rs.next());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		assertFalse(rs.next());
+
 	}
 
 	@Test
 	public void testInsertarCancion() {
-		assertTrue(dc.insertarCancion("Ejemplo titulo cancion", 77, "Ejemplo autor", 1, 23));
+		String valorEsperadoTitulo = "Ejemplo titulo cancion";
+		int valorEsperadoIdcancion = 77;
+		String valorEsperadoAutor = "Ejemplo autor";
+		int valorEsperadoAlbum = 1;
+		float valorEsperadoPrecio = 23;
+		
+		assertTrue(dc.insertarCancion(valorEsperadoTitulo, valorEsperadoIdcancion, valorEsperadoAutor, valorEsperadoAlbum, valorEsperadoPrecio));
 	}
 
 	@Test
 	public void testInsertarCancionExistente() {
-		assertFalse(dc.insertarCancion("Todo cambio", 10, "Becky G", 8, 23));
+		String valorEsperadoTitulo = "Todo cambio";
+		int valorEsperadoIdcancion = 10;
+		String valorEsperadoAutor = "Becky G";
+		int valorEsperadoAlbum = 8;
+		float valorEsperadoPrecio = 23;
+		
+		assertFalse(dc.insertarCancion(valorEsperadoTitulo, valorEsperadoIdcancion, valorEsperadoAutor, valorEsperadoAlbum, valorEsperadoPrecio));
 	}
-	
+
 	@Test
 	public void testInsertarCancionNombreNulo() {
-		String titulonulo = null;
-		assertFalse(dc.insertarCancion(titulonulo, 77, "Ejemplo autor", 1, 23));
-		assertNull(titulonulo);
+		String valorEsperadoTitulo = null;
+		int valorEsperadoIdcancion = 77;
+		String valorEsperadoAutor = "Ejemplo autor";
+		int valorEsperadoAlbum = 1;
+		float valorEsperadoPrecio = 23;
+		
+		assertFalse(dc.insertarCancion(valorEsperadoTitulo, valorEsperadoIdcancion, valorEsperadoAutor, valorEsperadoAlbum, valorEsperadoPrecio));
+		assertNull(valorEsperadoTitulo);
 	}
 
 	@Test
 	public void testInsertarCancionAutorNulo() {
-		String autornulo = null;
-		assertFalse(dc.insertarCancion("Ejemplo titulo cancion", 77, autornulo, 1, 23));
-		assertNull(autornulo);
+		String valorEsperadoTitulo = "Ejemplo titulo cancion";
+		int valorEsperadoIdCancion = 77;
+		String valorEsperadoAutor = null;
+		int valorEsperadoIdAlbum = 1;
+		float valorEsperadoPrecio = 23;
+		
+		assertFalse(dc.insertarCancion(valorEsperadoTitulo, valorEsperadoIdCancion, valorEsperadoAutor, valorEsperadoIdAlbum, valorEsperadoPrecio));
+		assertNull(valorEsperadoAutor);
 	}
 
 	@Test
 	public void testInsertarCancionAlbumNoExistente() {
-		assertFalse(dc.insertarCancion("Ejemplo titulo cancion", 77, "Ejemplo autor", 455, 23));
+		String valorEsperadoTitulo = "Ejemplo titulo cancion";
+		int valorEsperadoIdCancion = 77;
+		String valorEsperadoAutor = "Ejemplo autor";
+		int valorEsperadoIdAlbum = 455;
+		float valorEsperadoPrecio = 23;
+		
+		assertFalse(dc.insertarCancion(valorEsperadoTitulo, valorEsperadoIdCancion, valorEsperadoAutor, valorEsperadoIdAlbum, valorEsperadoPrecio));
 	}
 
 	@Test
 	public void testActualizarCancionDAOExistente() {
-		assertTrue(dc.actualizarCancionDAO("Time of dying", 1, "Three days grace", 1, 15));
+		String valorEsperadoTitulo = "Time of dying";
+		int valorEsperadoIdCancion = 1;
+		String valorEsperadoAutor = "Three days grace";
+		int valorEsperadoIdAlbum = 1;
+		float valorEsperadoPrecio = 15;
+		
+		assertTrue(dc.actualizarCancionDAO(valorEsperadoTitulo, valorEsperadoIdCancion, valorEsperadoAutor, valorEsperadoIdAlbum, valorEsperadoPrecio));
 	}
 
 	@Test
 	public void testActualizarCancionDAOTituloNulo() {
-		String titulonulo = null;
-		dc.actualizarCancionDAO(titulonulo, 1, "Three days grace", 1, 10);
-		assertNull(titulonulo);
+		String valorEsperadoTitulo = null;
+		int valorEsperadoIdCancion = 1;
+		String valorEsperadoAutor = "Three days grace";
+		int valorEsperadoIdAlbum = 1;
+		float valorEsperadoPrecio = 10;
+		
+		dc.actualizarCancionDAO(valorEsperadoTitulo, valorEsperadoIdCancion, valorEsperadoAutor, valorEsperadoIdAlbum, valorEsperadoPrecio);
+		assertNull(valorEsperadoTitulo);
 	}
 
 	@Test
 	public void testActualizarCancionDAOAutorNulo() {
-		String autornulo = null;
-		dc.actualizarCancionDAO("Time of dying", 1, autornulo, 1, 10);
-		assertNull(autornulo);
+		String valorEsperadoTitulo = "Time of dying";
+		int valorEsperadoIdCancion = 1;
+		String valorEsperadoAutor = null;
+		int valorEsperadoIdAlbum = 1;
+		float valorEsperadoPrecio = 10;
+		
+		dc.actualizarCancionDAO(valorEsperadoTitulo, valorEsperadoIdCancion, valorEsperadoAutor, valorEsperadoIdAlbum, valorEsperadoPrecio);
+		assertNull(valorEsperadoAutor);
 	}
 
 	@Test
 	public void testActualizarCancionDAOAlbumNoExistente() {
-		assertFalse(dc.actualizarCancionDAO("Time of dying", 1, "Three days grace", 45556, 10));
+		String valorEsperadoTitulo = "Time of dying";
+		int valorEsperadoIdCancion = 1;
+		String valorEsperadoAutor = "Three days grace";
+		int valorEsperadoIdAlbum = 45556;
+		float valorEsperadoPrecio = 10;
+		
+		assertFalse(dc.actualizarCancionDAO(valorEsperadoTitulo, valorEsperadoIdCancion, valorEsperadoAutor, valorEsperadoIdAlbum, valorEsperadoPrecio));
 
 	}
 
-	
 	@Test
 	public void testEliminarCancionDAO() {
-		assertTrue(dc.eliminarCancionDAO(10));
+		int idCancion = 10;
+		assertTrue(dc.eliminarCancionDAO(idCancion));
 	}
 
 }
