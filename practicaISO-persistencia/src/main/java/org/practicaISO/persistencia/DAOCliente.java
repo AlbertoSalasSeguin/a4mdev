@@ -8,8 +8,13 @@ public class DAOCliente {
 	private Connection con;
 	private PreparedStatement pst;
 	private boolean realizado;
-	
-	
+
+	public static final int THREE = 3;
+	public static final int FOUR = 4;
+	public static final int FIVE = 5;
+	public static final int SIX = 6;
+	public static final int SEVEN = 7;
+
 	public ResultSet logearClienteDAO(final String nick, final String pass) {
 		ResultSet resultSet = null;
 		try {
@@ -70,11 +75,11 @@ public class DAOCliente {
 			pst = con.prepareStatement(sql);
 			pst.setString(1, nick);
 			pst.setString(2, pass);
-			pst.setString(3, email);
-			pst.setString(4, nombre);
-			pst.setString(5, apellidos);
-			pst.setString(6, suscripcion);
-			pst.setString(7, rol);
+			pst.setString(THREE, email);
+			pst.setString(FOUR, nombre);
+			pst.setString(FIVE, apellidos);
+			pst.setString(SIX, suscripcion);
+			pst.setString(SEVEN, rol);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			realizado = false;
@@ -94,11 +99,11 @@ public class DAOCliente {
 			pst = con.prepareStatement(sql);
 			pst.setString(1, pass);
 			pst.setString(2, email);
-			pst.setString(3, nombre);
-			pst.setString(4, apellidos);
-			pst.setString(5, suscripcion);
-			pst.setString(6, rol);
-			pst.setString(7, nick);
+			pst.setString(THREE, nombre);
+			pst.setString(FOUR, apellidos);
+			pst.setString(FIVE, suscripcion);
+			pst.setString(SIX, rol);
+			pst.setString(SEVEN, nick);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			realizado = false;
@@ -122,7 +127,7 @@ public class DAOCliente {
 			System.out.println("Error al comprar canción");
 		}
 		return realizado;
-		
+
 
 	}
 

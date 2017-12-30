@@ -4,10 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
 public class DAOCancion {
 	private Connection con;
 	private PreparedStatement pst;
 	private boolean realizado;
+
+	public static final int THREE = 3;
+	public static final int FOUR = 4;
+	public static final int FIVE = 5;
 
 	public ResultSet leerCancionesDAO() {
 		ResultSet resultSet = null;
@@ -97,9 +102,9 @@ public class DAOCancion {
 			pst = con.prepareStatement(sql);
 			pst.setString(1, titulo);
 			pst.setInt(2, idcancion);
-			pst.setString(3, autor);
-			pst.setInt(4, idalbum);
-			pst.setFloat(5, precio);
+			pst.setString(THREE, autor);
+			pst.setInt(FOUR, idalbum);
+			pst.setFloat(FIVE, precio);
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al insertar canción en la base de datos");
@@ -135,7 +140,7 @@ public class DAOCancion {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error al eliminar cancion en la base de datos");
-			realizado=false;
+			realizado = false;
 		}
 		return realizado;
 	}

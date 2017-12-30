@@ -13,7 +13,7 @@ public class Agente {
 			String url = "jdbc:mysql://localhost/bbdd_iso?"
 					+ "autoReconnect=true&useSSL=false";
 			String user = "root";
-			String pass = "root";
+			String pass = "1234";
 			con = DriverManager.getConnection(url, user, pass);
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error al cargar el driver.");

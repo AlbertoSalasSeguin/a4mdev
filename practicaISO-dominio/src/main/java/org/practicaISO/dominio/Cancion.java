@@ -11,25 +11,29 @@ public class Cancion {
 	private String autor;
 	private int album;
 	private float precio;
-	final private DAOCancion dcan;
+	private final DAOCancion dcan;
 
-	public Cancion(final int idCancion) {
-		this.idCancion = idCancion;
+	public static final int THREE = 3;
+	public static final int FOUR = 4;
+	public static final int FIVE = 5;
+
+	public Cancion(final int idCancionCons) {
+		this.idCancion = idCancionCons;
 		this.dcan = new DAOCancion();
 	}
 
-	public Cancion(final String titulo) {
-		this.titulo = titulo;
+	public Cancion(final String tituloCons) {
+		this.titulo = tituloCons;
 		this.dcan = new DAOCancion();
 	}
 
-	public Cancion(final String titulo, final int idCancion, final String autor, final int album, final float precio) {
+	public Cancion(final String tituloCons, final int idCancionCons, final String autorCons, final int albumCons, final float precioCons) {
 
-		this.titulo = titulo;
-		this.idCancion = idCancion;
-		this.autor = autor;
-		this.album = album;
-		this.precio = precio;
+		this.titulo = tituloCons;
+		this.idCancion = idCancionCons;
+		this.autor = autorCons;
+		this.album = albumCons;
+		this.precio = precioCons;
 		this.dcan = new DAOCancion();
 	}
 
@@ -41,40 +45,40 @@ public class Cancion {
 		return titulo;
 	}
 
-	public void setTitulo(final String titulo) {
-		this.titulo = titulo;
+	public void setTitulo(final String newTitulo) {
+		this.titulo = newTitulo;
 	}
 
 	public int getIdCancion() {
 		return idCancion;
 	}
 
-	public void setIdCancion(final int idCancion) {
-		this.idCancion = idCancion;
+	public void setIdCancion(final int newIdCancion) {
+		this.idCancion = newIdCancion;
 	}
 
 	public String getAutor() {
 		return autor;
 	}
 
-	public void setAutor(final String autor) {
-		this.autor = autor;
+	public void setAutor(final String newAutor) {
+		this.autor = newAutor;
 	}
 
 	public int getAlbum() {
 		return album;
 	}
 
-	public void setAlbum(final int album) {
-		this.album = album;
+	public void setAlbum(final int newAlbum) {
+		this.album = newAlbum;
 	}
 
 	public float getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(final float precio) {
-		this.precio = precio;
+	public void setPrecio(final float newPrecio) {
+		this.precio = newPrecio;
 	}
 
 	public String toStringCompra() {
@@ -93,7 +97,7 @@ public class Cancion {
 		Cancion cancion = null;
 		try {
 			while (resultSet.next()) {
-				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(THREE), resultSet.getInt(FOUR), resultSet.getFloat(FIVE));
 				arrayCanciones.add(cancion);
 			}
 		} catch (Exception e) {
@@ -108,7 +112,7 @@ public class Cancion {
 		Cancion cancion = null;
 		try {
 			while (resultSet.next()) {
-				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(THREE), resultSet.getInt(FOUR), resultSet.getFloat(FIVE));
 				arrayCanciones.add(cancion);
 			}
 		} catch (Exception e) {
@@ -135,7 +139,7 @@ public class Cancion {
 		Cancion cancion = null;
 		try {
 			while (resultSet.next()) {
-				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(THREE), resultSet.getInt(FOUR), resultSet.getFloat(FIVE));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -148,7 +152,7 @@ public class Cancion {
 		Cancion cancion = null;
 		try {
 			while (resultSet.next()) {
-				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getInt(4), resultSet.getFloat(5));
+				cancion = new Cancion(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(THREE), resultSet.getInt(FOUR), resultSet.getFloat(FIVE));
 
 			}
 		} catch (Exception e) {

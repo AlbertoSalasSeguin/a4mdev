@@ -13,18 +13,24 @@ public class Cliente {
 	private String suscripcion;
 	private String rol;
 	private ArrayList<Cancion> listaCanciones;
-	final private DAOCliente dcliente;
+	private final DAOCliente dcliente;
 
-	public Cliente(final String nick, final String pass, final String email, final String nombre, final String apellidos, final String suscripcion,
-			final String rol) {
+	public static final int THREE = 3;
+	public static final int FOUR = 4;
+	public static final int FIVE = 5;
+	public static final int SIX = 6;
+	public static final int SEVEN = 7;
 
-		this.nick = nick;
-		this.pass = pass;
-		this.email = email;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.suscripcion = suscripcion;
-		this.rol = rol;
+	public Cliente(final String nickCons, final String passCons, final String emailCons, final String nombreCons, final String apellidosCons, final String suscripcionCons,
+			final String rolCons) {
+
+		this.nick = nickCons;
+		this.pass = passCons;
+		this.email = emailCons;
+		this.nombre = nombreCons;
+		this.apellidos = apellidosCons;
+		this.suscripcion = suscripcionCons;
+		this.rol = rolCons;
 		this.dcliente = new DAOCliente();
 	}
 
@@ -32,8 +38,8 @@ public class Cliente {
 		this.dcliente = new DAOCliente();
 	}
 
-	public Cliente(final String nick) {
-		this.nick = nick;
+	public Cliente(final String nickCons) {
+		this.nick = nickCons;
 		this.dcliente = new DAOCliente();
 	}
 
@@ -41,64 +47,64 @@ public class Cliente {
 		return nick;
 	}
 
-	public void setNick(final String nick) {
-		this.nick = nick;
+	public void setNick(final String newNick) {
+		this.nick = newNick;
 	}
 
 	public String getPass() {
 		return pass;
 	}
 
-	public void setPass(final String pass) {
-		this.pass = pass;
+	public void setPass(final String newPass) {
+		this.pass = newPass;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(final String email) {
-		this.email = email;
+	public void setEmail(final String newEmail) {
+		this.email = newEmail;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(final String nombre) {
-		this.nombre = nombre;
+	public void setNombre(final String newNombre) {
+		this.nombre = newNombre;
 	}
 
 	public String getApellidos() {
 		return apellidos;
 	}
 
-	public void setApellidos(final String apellidos) {
-		this.apellidos = apellidos;
+	public void setApellidos(final String newApellidos) {
+		this.apellidos = newApellidos;
 	}
 
 	public String getSuscripcion() {
 		return suscripcion;
 	}
 
-	public void setSuscripcion(final String suscripcion) {
-		this.suscripcion = suscripcion;
+	public void setSuscripcion(final String newSuscripcion) {
+		this.suscripcion = newSuscripcion;
 	}
 
 	public ArrayList<Cancion> getListaCanciones() {
 		return listaCanciones;
 	}
 
-	public void setListaCanciones(final ArrayList<Cancion> listaCanciones) {
-		this.listaCanciones = listaCanciones;
+	public void setListaCanciones(final ArrayList<Cancion> newListaCanciones) {
+		this.listaCanciones = newListaCanciones;
 	}
 
 	public String getRol() {
 		return rol;
 	}
 
-	public void setRol(final String rol) {
-		this.rol = rol;
+	public void setRol(final String newRol) {
+		this.rol = newRol;
 	}
 
 	public Cliente logearCliente() {
@@ -106,8 +112,8 @@ public class Cliente {
 		Cliente cliente = null;
 		try {
 			while (resultSet.next()) {
-				cliente = new Cliente(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
-						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+				cliente = new Cliente(resultSet.getString(1), resultSet.getString(2), resultSet.getString(THREE), resultSet.getString(FOUR),
+						resultSet.getString(FIVE), resultSet.getString(SIX), resultSet.getString(SEVEN));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,8 +127,8 @@ public class Cliente {
 		Cliente cliente = null;
 		try {
 			while (resultSet.next()) {
-				cliente = new Cliente(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4),
-						resultSet.getString(5), resultSet.getString(6), resultSet.getString(7));
+				cliente = new Cliente(resultSet.getString(1), resultSet.getString(2), resultSet.getString(THREE), resultSet.getString(FOUR),
+						resultSet.getString(FIVE), resultSet.getString(SIX), resultSet.getString(SEVEN));
 
 			}
 		} catch (Exception e) {
@@ -153,8 +159,8 @@ public class Cliente {
 		dcliente.actualizarClienteDAO(pass, email, nombre, apellidos, suscripcion, rol, nick);
 	}
 
-	public void comprarCancion(final int idCancion) {
-		dcliente.comprarCancionDAO(nick, idCancion);
+	public void comprarCancion(final int idCancionCC) {
+		dcliente.comprarCancionDAO(nick, idCancionCC);
 	}
 
 	public void eliminarCliente() {

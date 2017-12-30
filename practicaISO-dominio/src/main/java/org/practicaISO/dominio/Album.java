@@ -9,16 +9,16 @@ public class Album {
 
 	private int idalbum;
 	private String nombre;
-	final private DAOAlbum daoalbum;
+	private final DAOAlbum daoalbum;
 
-	public Album(final int idalbum, final String nombre) {
-		this.idalbum = idalbum;
-		this.nombre = nombre;
+	public Album(final int idalbumCons, final String nombreCons) {
+		this.idalbum = idalbumCons;
+		this.nombre = nombreCons;
 		this.daoalbum = new DAOAlbum();
 	}
 
-	public Album(final int idalbum) {
-		this.idalbum = idalbum;
+	public Album(final int idalbumCons) {
+		this.idalbum = idalbumCons;
 		this.daoalbum = new DAOAlbum();
 	}
 
@@ -26,16 +26,16 @@ public class Album {
 		return idalbum;
 	}
 
-	public void setIdalbum(final int idalbum) {
-		this.idalbum = idalbum;
+	public void setIdalbum(final int newIdalbum) {
+		this.idalbum = newIdalbum;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(final String nombre) {
-		this.nombre = nombre;
+	public void setNombre(final String newNombre) {
+		this.nombre = newNombre;
 	}
 
 	public Album obtenerAlbum() {
